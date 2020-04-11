@@ -11,9 +11,7 @@ public class Walk : MonoBehaviour
     void Start()
     {
         Animator = gameObject.GetComponent<Animator>();
-       //  transform.DOMoveX(5f,5f);
     }
-
    
     void Update()
     {
@@ -40,7 +38,6 @@ public class Walk : MonoBehaviour
         {
             Animator.SetBool("_walk", false);
         }
-
 
         if (Input.GetKey(KeyCode.A))
         {
