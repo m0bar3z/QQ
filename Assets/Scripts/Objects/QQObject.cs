@@ -26,7 +26,7 @@ public class QQObject : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        
     }
 
     protected virtual void Awake()
