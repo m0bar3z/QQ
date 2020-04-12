@@ -2,20 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gunGrab : MonoBehaviour
+public class GunGrab : MonoBehaviour
 {
-   
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "gun")
