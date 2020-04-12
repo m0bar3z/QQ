@@ -58,4 +58,9 @@ public class Bullet : MonoBehaviour
             Shoot(transform.up);
         }
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
