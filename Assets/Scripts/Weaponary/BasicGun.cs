@@ -45,10 +45,11 @@ public class BasicGun : MonoBehaviour
 
             pos.z = 0;
             Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(dir);
-        }
 
-        mag--;
-        CheckForReload();
+            mag--;
+            CheckForReload();
+            if (mag <= 0) break;
+        }
 
         audioSource.PlayOneShot(shootSFX);
         holderController.rb.AddForce(-dir * recoil * 10, ForceMode2D.Impulse);
