@@ -6,6 +6,7 @@ public class Person : QQObject
 {
     public QQObject rightHand;
     public bool hasGun, facingRight = true;
+    public float handsReach = 2;
 
     public void PickUp()
     {
