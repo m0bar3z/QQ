@@ -19,7 +19,7 @@ public class PlayerController : Person
 
             if (hasGun)
             {
-                gun.Interact();
+                rightHand.Interact();
             }
         }
     }
