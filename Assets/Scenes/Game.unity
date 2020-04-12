@@ -628,6 +628,7 @@ MonoBehaviour:
   rightHand: {fileID: 1351972932}
   hasGun: 1
   facingRight: 0
+  handsReach: 2
   MoveUp: 119
   MoveDown: 115
   MoveLeft: 97
