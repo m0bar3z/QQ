@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class QQObject : MonoBehaviour
 {
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    private void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -17,6 +17,11 @@ public class QQObject : MonoBehaviour
     }
 
     public virtual void ReceiveForce(Vector2 force)
+    {
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    public virtual void Interact()
     {
 
     }
