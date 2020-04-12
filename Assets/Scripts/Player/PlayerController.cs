@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public BasicGun gun;
+    public Moving PlayerMoving;
     public bool hasGun, facingRight = true;
+    public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
 
     private void Start()
     {
@@ -32,6 +34,39 @@ public class PlayerController : MonoBehaviour
             {
                 gun.Shoot();
             }
+        }
+        ////////////////// Moving!!!
+        /// Move Up
+        if (Input.GetKeyDown(MoveUp))
+        {
+            PlayerMoving.Up = true;
+        } else if (Input.GetKeyUp(MoveUp))
+        {
+            PlayerMoving.Up = false;
+        }
+        /// Move Down
+        if (Input.GetKeyDown(MoveDown))
+        {
+            PlayerMoving.Down = true;
+        }else if (Input.GetKeyUp(MoveDown))
+        {
+            PlayerMoving.Down = false;
+        }
+        /// Move Left
+        if (Input.GetKeyDown(MoveLeft))
+        {
+            PlayerMoving.Left = true;
+        } else if (Input.GetKeyUp(MoveLeft))
+        {
+            PlayerMoving.Left = false;
+        }
+        /// Move Right
+        if (Input.GetKeyDown(MoveRight))
+        {
+            PlayerMoving.Right = true;
+        } else if (Input.GetKeyUp(MoveRight))
+        {
+            PlayerMoving.Right = false;
         }
     }
 
