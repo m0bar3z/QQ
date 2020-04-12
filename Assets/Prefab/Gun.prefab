@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8193200535544986647}
   - component: {fileID: 8193200535544986640}
+  - component: {fileID: -1246512055783283428}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -44,7 +45,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   betweenBullets: 0.01
+  recoil: 0.5
+  reloadTime: 2
   chunkSize: 20
+  capacity: 7
   bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
     type: 3}
   gunHole: {fileID: 0}
+  shootSFX: {fileID: 0}
+  reloadSFX: {fileID: 0}
+  audioSource: {fileID: 0}
+  holder: {fileID: 0}
+  holderController: {fileID: 0}
+--- !u!50 &-1246512055783283428
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193200535544986646}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
