@@ -26,7 +26,7 @@ public class BasicGun : QQObject
     private bool waiting = false, reloading = false;
     private int mag = 0;
 
-    public void Shoot()
+    public override void Interact()
     {
         if (waiting || reloading) return;
 
