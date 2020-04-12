@@ -98,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d006aefab4f4488488f9dfb12c028e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holder: {fileID: 0}
+  holderController: {fileID: 0}
+  rb: {fileID: 6793469649731297470}
   bulletSpeed: 10
   testShoot: 0
   destroyAfter: 20
-  rb: {fileID: 6793469649731297470}
 --- !u!96 &6793469649731297346
 TrailRenderer:
   serializedVersion: 2

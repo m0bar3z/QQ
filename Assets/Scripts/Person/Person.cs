@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class Person : QQObject
 {
-    public BasicGun gun;
+    public QQObject rightHand;
     public bool hasGun, facingRight = true;
+
+    public void PickUp()
+    {
+
+    }
+
+    protected void DoInteract()
+    {
+
+    }
 
     protected override void Start()
     {
@@ -13,8 +23,8 @@ public class Person : QQObject
 
         if (hasGun)
         {
-            gun.holder = transform;
-            gun.holderController = this;
+            rightHand.holder = transform;
+            rightHand.holderController = this;
         }
     }
 

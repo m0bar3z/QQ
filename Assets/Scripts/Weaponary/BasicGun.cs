@@ -18,10 +18,6 @@ public class BasicGun : QQObject
     public AudioClip shootSFX, reloadSFX;
     public AudioSource audioSource;
 
-    // TODO : change player controller to controller after adding enemies
-    public Transform holder;
-    public Person holderController;
-
     private float time = 0;
     private bool waiting = false, reloading = false;
     private int mag = 0;

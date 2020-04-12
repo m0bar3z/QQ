@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class QQObject : MonoBehaviour
 {
-    protected Rigidbody2D rb;
+    public Transform holder;
+    public Person holderController;
 
-    protected virtual void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    protected Rigidbody2D rb;
 
     public virtual void PickUp(PlayerController picker)
     {
@@ -24,5 +22,15 @@ public class QQObject : MonoBehaviour
     public virtual void Interact()
     {
 
+    }
+
+    protected virtual void Start()
+    {
+
+    }
+
+    protected virtual void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 }
