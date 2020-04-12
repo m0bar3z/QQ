@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BasicGun : MonoBehaviour
+public class BasicGun : QQObject
 {
     [Range(0, 5)]
     public float betweenBullets = 0.2f;
@@ -20,13 +20,13 @@ public class BasicGun : MonoBehaviour
 
     // TODO : change player controller to controller after adding enemies
     public Transform holder;
-    public PlayerController holderController;
+    public Person holderController;
 
     private float time = 0;
     private bool waiting = false, reloading = false;
     private int mag = 0;
 
-    public void Shoot()
+    public override void Interact()
     {
         if (waiting || reloading) return;
 
@@ -51,7 +51,15 @@ public class BasicGun : MonoBehaviour
         CheckForReload();
 
         audioSource.PlayOneShot(shootSFX);
-        holderController.rb.AddForce(-dir * recoil * 10, ForceMode2D.Impulse);
+        holderController.ReceiveForce(-dir * recoil * 10);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        // set mag to full capacity
+        ResetMagToFull();
     }
 
     private void CheckForReload()
@@ -74,12 +82,6 @@ public class BasicGun : MonoBehaviour
             }
         );
         audioSource.PlayOneShot(reloadSFX);
-    }
-
-    private void Start()
-    {
-        // set mag to full capacity
-        ResetMagToFull();
     }
 
     private void ResetMagToFull()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : QQObject
 {
     private static List<Bullet> bullets = new List<Bullet>();
     private static int bulletsLimit = 500;
@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
 
     public bool testShoot = false; // if on bullet flies on start
     public float destroyAfter = 5; // the bullet get's destroyed after this amount of time
-    public Rigidbody2D rb; // rigid body of bullet
 
     private Vector3 dir; // dir in which the bullet is shot
 
@@ -22,8 +21,10 @@ public class Bullet : MonoBehaviour
         Fly();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         TestShoot();
         CheckBulletLimit();
         Destroy(gameObject, destroyAfter);
