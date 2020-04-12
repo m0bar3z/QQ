@@ -399,7 +399,6 @@ GameObject:
   - component: {fileID: 618682804}
   - component: {fileID: 618682805}
   - component: {fileID: 618682801}
-  - component: {fileID: 618682803}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -485,7 +484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618682797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.09}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0.09}
   m_LocalScale: {x: 0.8265935, y: 0.8265935, z: 0.8265935}
   m_Children:
   - {fileID: 1385335358}
@@ -499,12 +498,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618682797}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4453d2e38fce9f4886a18c67cc47ee8, type: 3}
+  m_Script: {fileID: 11500000, guid: d408814bc37702f4aa9274f1d7a09819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 0.6
+  Rig: {fileID: 0}
+  Speed: 4
+  Up: 0
+  Down: 0
+  Right: 0
+  Left: 0
 --- !u!61 &618682802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -531,18 +535,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41, y: 0.83}
   m_EdgeRadius: 0
---- !u!114 &618682803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618682797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9f9e5ca2ab5cf74fac95fc7ac4f0997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &618682804
 Rigidbody2D:
   serializedVersion: 4
@@ -578,8 +570,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 618682804}
   gun: {fileID: 1351972932}
+  PlayerMoving: {fileID: 618682801}
   hasGun: 1
   facingRight: 0
+  MoveUp: 119
+  MoveDown: 115
+  MoveLeft: 97
+  MoveRight: 100
 --- !u!1 &1242905121
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
       propertyPath: recoil
-      value: 3.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
