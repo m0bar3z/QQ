@@ -17,9 +17,16 @@ public class PlayerController : Person
         {
             CheckFacing();
 
-            if (hasGun)
+            if (rightHandFull)
             {
                 rightHand.Interact();
+            }
+            else
+            {
+                Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                dir -= (Vector2)transform.position;
+
+                ReceiveForce(dir.normalized);
             }
         }
     }

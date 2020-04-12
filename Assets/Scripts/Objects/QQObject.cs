@@ -9,13 +9,19 @@ public class QQObject : MonoBehaviour
 
     protected Rigidbody2D rb;
 
-    public virtual void PickUp(PlayerController picker)
+    public virtual void PickUp(Person picker)
     {
-
+        transform.parent = picker.handPos;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector2.zero;
+        picker.rightHand = this;
+        picker.rightHandFull = true;
+        transform.localPosition = Vector3.zero;
     }
 
     public virtual void ReceiveForce(Vector2 force)
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
