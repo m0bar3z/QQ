@@ -5,12 +5,20 @@ using UnityEngine;
 public class Person : QQObject
 {
     public QQObject rightHand;
-    public bool hasGun, facingRight = true;
+    public bool rightHandFull, facingRight = true;
     public float handsReach = 2;
+    public Transform handPos;
 
     public void PickUp()
     {
-
+        Collider2D[] nearbyObjs = Physics2D.OverlapCircleAll(transform.position, handsReach);
+        foreach(Collider2D c in nearbyObjs)
+        {
+            QQObject o = c.GetComponent<QQObject>();
+            if (o == null) continue;
+            o.PickUp(this);
+            break;
+        }
     }
 
     protected void DoInteract()
@@ -22,7 +30,7 @@ public class Person : QQObject
     {
         base.Start();
 
-        if (hasGun)
+        if (rightHandFull)
         {
             rightHand.holder = transform;
             rightHand.holderController = this;
