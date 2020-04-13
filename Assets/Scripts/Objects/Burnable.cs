@@ -5,46 +5,68 @@ using UnityEngine;
 public class Burnable : MonoBehaviour
 {
     [Range(1f, 8f)]
-    public float Radius;
-    public bool Burning;
-    public float ExtraTemperature;
-    public Collider2D[] Colliders;
+    public float radius;
+    public bool burning;
+    public float extraTemperature, burnEffectTick;
+    public Collider2D[] colliders;
 
-    private HealthSystem _health;
-    private TemperatureSystem _temperatureSystem;
+    private QQObject _obj;
+
+    public virtual void Burn()
+    {
+        burning = true;
+        InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
+
+        // for test purposes
+        GetComponent<SpriteRenderer>().color = Color.red;
+    }
 
     private void Start()
     {
-        _health = new HealthSystem();
-        _temperatureSystem = new TemperatureSystem();
-        Burn();
-    }
-    public virtual void Burn()
-    {
-      Burning = true;
-        _temperatureSystem.AddTemp(ExtraTemperature);
-      InvokeRepeating("ReduceHealth", 1f, 0.5f);
+        SetObj();
+
+        if (burning)
+        {
+            Burn();
+        }
     }
 
-    private void ReduceHealth()
+    private void OnDrawGizmos()
     {
-        Colliders = Physics2D.OverlapCircleAll(transform.position, Radius);
-        if (Colliders.Length >= 1)
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private void SetObj()
+    {
+        _obj = GetComponent<QQObject>();
+        if (_obj == null)
         {
-            for (int i = 0; i < Colliders.Length; i++)
+            Debug.LogWarning("there's a burnable component on something that's not an object");
+        }
+    }
+
+    // TODO: find a way so we don't have this many getcomponents
+    private void BurnEffect()
+    {
+        colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+
+        if (colliders.Length >= 1)
+        {
+            for (int i = 0; i < colliders.Length; i++)
             {
-                print("Health reduced!!!  " + _health.Amount + "  " + Colliders[i].gameObject.name);
-                // Colliders[i].GetComponent<HealthSystem>().Amount -= 1;
-                _health.Amount--;
+                Burnable adjucantBurnable = colliders[i].GetComponent<Burnable>();
+                if(adjucantBurnable != null && !adjucantBurnable.burning)
+                {
+                    adjucantBurnable.Burn();
+                }
+
+                _obj.health.Amount--;
             }
         }
         else
         { 
             print("no one in burn radius!!!");
-            Burning = false;
+            burning = false;
         }
     }
-
-
-
 }
