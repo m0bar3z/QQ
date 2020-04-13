@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthSystem
 {
+    public float Amount = 5;
     public virtual void Health()
     {
 
