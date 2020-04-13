@@ -7,6 +7,8 @@ public class QQObject : MonoBehaviour
     public Transform holder;
     public Person holderController;
 
+    public HealthSystem health;
+
     protected Rigidbody2D rb;
 
     public virtual void PickUp(Person picker)
@@ -32,7 +34,7 @@ public class QQObject : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+        health = new HealthSystem();
     }
 
     protected virtual void Awake()
