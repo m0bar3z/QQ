@@ -9,7 +9,7 @@ public class Enemy : Person
   
     [Range(0.25f, 5f)]
     public float timeBetweensteps;
-    public float stopAtRange = 4, moveForceMultiplier, burnForceMultiplier;
+    public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1;
 
 
     [SerializeField] // for assigning by hand in tests
@@ -19,48 +19,62 @@ public class Enemy : Person
     [SerializeField]
     private Vector2 targetDistance;
 
-    public void AssignTarget(Transform target)
+    private float _time;
+
+    protected override void Start()
+    {
+        base.Start();
+        _burnable.OnBurn += onBurn;
+    }
+
+    protected override void Update()
+    {
+        _time += Time.deltaTime;
+        if(_time > timeBetweensteps * timeMultiplier)
+        {
+            _time = 0;
+            Tick();
+        }
+    }
+
+    private void onBurn()
+    {
+        timeMultiplier = 0.5f;
+    }
+
+    private void AssignTarget(Transform target)
     {
         _target = target;
     }
 
-    public void GetClose()
+    private void Tick()
+    {
+        Move();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+
+    }
+
+    private void Move()
     {
         targetDistance = _target.position - transform.position;
 
-        if (targetDistance.magnitude > stopAtRange && !_burnable.burning )
+        if (targetDistance.magnitude > stopAtRange && !_burnable.burning)
         {
             ReceiveForce(targetDistance.normalized * moveForceMultiplier);
-        } else if (_burnable.burning)
+        }
+        else if (_burnable.burning)
         {
             RandomRun();
         }
     }
 
-    public void Shooting()
-    {
-
-    }
-
-    public void RandomRun()
+    private void RandomRun()
     {
         targetDistance = (new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f))).normalized;
-        ReceiveForce(targetDistance * burnForceMultiplier);
+        ReceiveForce(targetDistance * moveForceMultiplier);
     }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        InvokeRepeating(nameof(GetClose), 1f, timeBetweensteps);
-    }
-
-    // go for the nearest gun if not holding any
-
-    // get close to target using a trigger
-
-    // shoot the target
-
-    // if burning run around randomly (makes others catch fire xD)
-
 }

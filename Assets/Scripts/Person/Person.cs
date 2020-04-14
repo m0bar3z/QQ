@@ -46,6 +46,8 @@ public class Person : QQObject
         }
     }
 
+    protected override void Update() { }
+
     protected void CheckFacing()
     {
         Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
