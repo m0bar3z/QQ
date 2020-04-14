@@ -4204,6 +4204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
+      propertyPath: shootingSFX.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
       propertyPath: holder
       value: 
       objectReference: {fileID: 618682800}
@@ -4212,6 +4217,56 @@ PrefabInstance:
       propertyPath: holderController
       value: 
       objectReference: {fileID: 618682805}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: reloadSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 06f0b9b830a7f4e489fa190630814be8, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c189e6f470a42eb43b31153af7746baa, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b9ee60b40cb07c4da090e8e52362465, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c70874880176bec4f9d6c5ab5d8e4572, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: ebd3d2172f56f324db4d12601ea08dae, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f47320eac5afd64bbf90f2f5942c54a, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 42fdc14156c58a246abce735172f87e4, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2933fdd6a0d8c0e448fa12792e9b877e, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 95f0194963d250a4392e5981562788f6, type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shootingSFX.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5aa6151633f15c746a9ff18d4fd01b28, type: 3}
     - target: {fileID: 8193200535544986646, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
       propertyPath: m_Name
