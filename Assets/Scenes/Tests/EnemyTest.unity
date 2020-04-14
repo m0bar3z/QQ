@@ -4190,9 +4190,12 @@ MonoBehaviour:
   facingRight: 1
   handsReach: 2
   handPos: {fileID: 0}
-  speed: 5
+  sizeofEachStep: 1
+  timeBetweensteps: 1
+  stopAtRange: 2
+  moveForceMultiplier: 5
+  _target: {fileID: 618682800}
   targetDistance: {x: 0, y: 0}
-  playerTest: {fileID: 0}
 --- !u!50 &1188070222
 Rigidbody2D:
   serializedVersion: 4
