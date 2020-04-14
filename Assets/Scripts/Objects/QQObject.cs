@@ -5,8 +5,8 @@ using UnityEngine;
 public class QQObject : MonoBehaviour
 {
     public Person holderController;
-
     public HealthSystem health;
+    public bool isStatic;
 
     protected Rigidbody2D rb;
 
@@ -49,6 +49,9 @@ public class QQObject : MonoBehaviour
 
     protected virtual void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if(!isStatic)
+            rb = GetComponent<Rigidbody2D>();
     }
+
+    protected virtual void Update() { }
 }

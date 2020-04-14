@@ -4,18 +4,77 @@ using UnityEngine;
 
 public class Enemy : Person
 {
+  /*  [Range(1, 10)]
+    public float sizeofEachStep;*/
+  
+    [Range(0.25f, 5f)]
+    public float timeBetweensteps;
+    public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1;
+
+
+    [SerializeField] // for assigning by hand in tests
     private Transform _target; // this will be given to enemy by crowd system
+    [SerializeField]
+    private Burnable _burnable;
+    [SerializeField]
+    private Vector2 targetDistance;
+
+    private float _time;
 
     public void AssignTarget(Transform target)
     {
         _target = target;
     }
 
-    // go for the nearest gun if not holding any
+    protected override void Start()
+    {
+        base.Start();
+        _burnable.OnBurn += onBurn;
+    }
 
-    // get close to target using a trigger
+    protected override void Update()
+    {
+        _time += Time.deltaTime;
+        if(_time > timeBetweensteps * timeMultiplier)
+        {
+            _time = 0;
+            Tick();
+        }
+    }
 
-    // shoot the target
+    private void onBurn()
+    {
+        timeMultiplier = 0.5f;
+    }
 
-    // if burning run around randomly (makes others catch fire xD)
+    private void Tick()
+    {
+        Move();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+
+    }
+
+    private void Move()
+    {
+        targetDistance = _target.position - transform.position;
+
+        if (targetDistance.magnitude > stopAtRange && !_burnable.burning)
+        {
+            ReceiveForce(targetDistance.normalized * moveForceMultiplier);
+        }
+        else if (_burnable.burning)
+        {
+            RandomRun();
+        }
+    }
+
+    private void RandomRun()
+    {
+        targetDistance = (new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f))).normalized;
+        ReceiveForce(targetDistance * moveForceMultiplier);
+    }
 }
