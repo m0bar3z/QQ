@@ -12,10 +12,15 @@ public class Burnable : MonoBehaviour
 
     private QQObject _obj;
 
+    // OnBurn event
+    public event SystemTools.SimpleSystemCB OnBurn;
+
     public virtual void Burn()
     {
         burning = true;
         InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
+
+        OnBurn?.Invoke();
 
         // for test purposes
         GetComponent<SpriteRenderer>().color = Color.red;
@@ -66,7 +71,6 @@ public class Burnable : MonoBehaviour
         else
         { 
             print("no one in burn radius!!!");
-            burning = false;
         }
     }
 }

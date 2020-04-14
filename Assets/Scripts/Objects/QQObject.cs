@@ -52,4 +52,6 @@ public class QQObject : MonoBehaviour
         if(!isStatic)
             rb = GetComponent<Rigidbody2D>();
     }
+
+    protected virtual void Update() { }
 }
