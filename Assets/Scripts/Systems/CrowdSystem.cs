@@ -6,7 +6,10 @@ using UnityEngine;
 // This manages spawning of enemies
 public class CrowdSystem : MonoBehaviour
 {
-    private float _spawnSpeed;
+    public GameObject enemyPref;
+    public Transform[] doors;
+
+    private float _chunckSize = 1, _betweenSpawns = 5;
     private int _lvl;
 
     private float _lvlSpeedDiff = 10;
@@ -15,20 +18,41 @@ public class CrowdSystem : MonoBehaviour
     private Transform _target;
     private PlayerController _pc;
 
-    public virtual void AddSpeed(float change)
+    private float _time = 0;
+
+    public virtual void SpeedUp()
     {
-        _spawnSpeed += change;
+        _betweenSpawns -= 0.1f * _betweenSpawns;
     }
 
     public virtual void LevelUp()
     {
         _lvl++;
-        AddSpeed(_lvlSpeedDiff);
+        if(_betweenSpawns < 0.01)
+        {
+
+        }
+        SpeedUp();
     }
 
     protected virtual void Start()
     {
         AssignTarget();
+    }
+
+    protected virtual void Update()
+    {
+        TimerTick();
+    }
+
+    private void TimerTick()
+    {
+        _time += Time.deltaTime;
+        if (_time >= _betweenSpawns)
+        {
+            _time = 0;
+            Spawn();
+        }
     }
 
     private void AssignTarget()
@@ -42,5 +66,20 @@ public class CrowdSystem : MonoBehaviour
         {
             Debug.LogError("No player in the scene");
         }
+    }
+
+    private void Spawn()
+    {
+        for(int i = 0; i < _chunckSize; i++)
+        {
+            SpawnOne();
+        }
+    }
+
+    private void SpawnOne()
+    {
+        Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
+
+        Instantiate(enemyPref, spawnPos, Quaternion.identity);
     }
 }
