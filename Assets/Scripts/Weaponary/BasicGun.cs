@@ -15,7 +15,8 @@ public class BasicGun : QQObject
     public int capacity = 7;
     public GameObject bulletPref;
     public Transform gunHole;
-    public AudioClip shootSFX, reloadSFX;
+    public AudioClip reloadSFX;
+    public AudioClip[] shootingSFX;
     public AudioSource audioSource;
 
     private float time = 0;
@@ -37,7 +38,7 @@ public class BasicGun : QQObject
             dir.z = 0;
             dir = dir.normalized;
 
-            transform.right = holderController.facingRight?dir:-dir;
+            transform.right = holderController.facingRight ? dir : -dir;
 
             pos.z = 0;
             Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(dir);
@@ -46,8 +47,15 @@ public class BasicGun : QQObject
         mag--;
         CheckForReload();
 
-        audioSource.PlayOneShot(shootSFX);
+        PlayShootingSFX();
         holderController.ReceiveForce(-dir * recoil * 10);
+    }
+
+    private void PlayShootingSFX()
+    {
+        audioSource.PlayOneShot(shootingSFX[
+            Random.Range(0, shootingSFX.Length)
+        ]);
     }
 
     protected override void Start()
