@@ -21,6 +21,11 @@ public class Enemy : Person
 
     private float _time;
 
+    public void AssignTarget(Transform target)
+    {
+        _target = target;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -40,11 +45,6 @@ public class Enemy : Person
     private void onBurn()
     {
         timeMultiplier = 0.5f;
-    }
-
-    private void AssignTarget(Transform target)
-    {
-        _target = target;
     }
 
     private void Tick()

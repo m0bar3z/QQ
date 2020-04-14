@@ -93,7 +93,7 @@ public class BasicGun : QQObject
         mag = capacity;
     }
 
-    private void Update()
+    protected override void Update()
     {
         TimerTick();
     }

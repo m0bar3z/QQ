@@ -23,15 +23,15 @@ public class CrowdSystem : MonoBehaviour
     public virtual void SpeedUp()
     {
         _betweenSpawns -= 0.1f * _betweenSpawns;
+        if (_betweenSpawns < 0.01f)
+        {
+            _betweenSpawns = 0.01f;
+        }
     }
 
     public virtual void LevelUp()
     {
         _lvl++;
-        if(_betweenSpawns < 0.01)
-        {
-
-        }
         SpeedUp();
     }
 
@@ -80,6 +80,6 @@ public class CrowdSystem : MonoBehaviour
     {
         Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
 
-        Instantiate(enemyPref, spawnPos, Quaternion.identity);
+        Instantiate(enemyPref, spawnPos, Quaternion.identity).GetComponent<Enemy>().AssignTarget(_target);
     }
 }
