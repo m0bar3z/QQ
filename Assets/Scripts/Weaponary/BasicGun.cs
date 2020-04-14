@@ -37,7 +37,7 @@ public class BasicGun : QQObject
             dir.z = 0;
             dir = dir.normalized;
 
-            transform.right = holderController.facingRight?-dir:dir;
+            transform.right = holderController.facingRight?dir:-dir;
 
             pos.z = 0;
             Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(dir);
