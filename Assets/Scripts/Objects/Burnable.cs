@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Burnable : MonoBehaviour
 {
-    [Range(1f, 8f)]
+    [Range(0.01f, 8f)]
     public float radius;
     public bool burning;
     public float extraTemperature, burnEffectTick;
