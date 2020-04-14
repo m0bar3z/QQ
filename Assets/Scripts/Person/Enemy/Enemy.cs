@@ -9,21 +9,38 @@ public class Enemy : Person
   
     [Range(0.25f, 5f)]
     public float timeBetweensteps;
-    public Vector2 targetDistance;
-    public PlayerController playerTest;
-    
 
+    public float stopAtRange = 4, moveForceMultiplier;
+
+    [SerializeField] // for assigning by hand in tests
     private Transform _target; // this will be given to enemy by crowd system
+    [SerializeField]
+    private Vector2 targetDistance;
 
     public void AssignTarget(Transform target)
     {
         _target = target;
     }
-    private void Start()
+
+    public void GetClose()
     {
-        playerTest = FindObjectOfType<PlayerController>();
-        _target = playerTest.GetComponent<Transform>(); 
-        targetDistance = new Vector2(0f, 0f);
+        targetDistance = _target.position - transform.position;
+
+        if (targetDistance.magnitude > stopAtRange)
+        {
+            ReceiveForce(targetDistance.normalized * moveForceMultiplier);
+        }
+    }
+
+    public void Shooting()
+    {
+
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
         InvokeRepeating(nameof(GetClose), 1f, timeBetweensteps);
     }
 
@@ -34,29 +51,5 @@ public class Enemy : Person
     // shoot the target
 
     // if burning run around randomly (makes others catch fire xD)
-
-    public void GetClose()
-    {
-        FindTarget();
-        if(targetDistance.magnitude > 10f)
-        {
-            print("magn " + targetDistance.magnitude);
-            ReceiveForce(targetDistance);
-        }
-        
-        //Vector2.MoveTowards(transform.position, _target.position, 0.5f);
-    }
-
-    public void FindTarget()
-    {
-       // speed += Time.deltaTime;
-        targetDistance.x = (_target.position.x - transform.position.x) * sizeofEachStep;
-        targetDistance.y = (_target.position.y - transform.position.y) * sizeofEachStep;
-    }
-
-    public void Shooting()
-    {
-
-    }
 
 }
