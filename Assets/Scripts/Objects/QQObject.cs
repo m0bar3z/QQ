@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class QQObject : MonoBehaviour
 {
-    public Transform holder;
     public Person holderController;
 
     public HealthSystem health;
 
     protected Rigidbody2D rb;
 
-    public virtual void PickUp(Person picker)
+    public virtual void GetPickedUp(Person picker)
     {
         transform.parent = picker.handPos;
         rb.bodyType = RigidbodyType2D.Kinematic;
@@ -19,6 +18,17 @@ public class QQObject : MonoBehaviour
         picker.rightHand = this;
         picker.rightHandFull = true;
         transform.localPosition = Vector3.zero;
+
+        holderController = picker;
+    }
+
+    public virtual void GetThrown(Vector2 dir)
+    {
+        holderController = null;
+
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        transform.parent = null;
+        ReceiveForce(dir * 20);
     }
 
     public virtual void ReceiveForce(Vector2 force)
