@@ -5,6 +5,8 @@ using UnityEngine;
 // a system to spawn blood in map
 public class BloodSystem : MonoBehaviour
 {
+    public static BloodSystem instance;
+
     public GameObject bloodPrefab;
     public Vector2 size;
     public int xTiles, yTiles;
@@ -35,7 +37,14 @@ public class BloodSystem : MonoBehaviour
 
     protected virtual void Start()
     {
-        _bloodPoses = new Vector2[xTiles ,yTiles];
+        instance = this;
+
+        PreSpawnAllBloods();
+    }
+
+    private void PreSpawnAllBloods()
+    {
+        _bloodPoses = new Vector2[xTiles, yTiles];
         _bloods = new GameObject[xTiles, yTiles];
 
         Vector2 tileSize = new Vector2(size.x / xTiles, size.y / yTiles);
@@ -45,7 +54,7 @@ public class BloodSystem : MonoBehaviour
             for (int j = 0; j < yTiles; j++)
             {
                 Vector2 pos = transform.position + new Vector3((i * tileSize.x) + (tileSize.x / 2) - (size.x / 2), (j * tileSize.y) + (tileSize.y / 2) - (size.y / 2), 0);
-                _bloodPoses[i ,j] = pos;
+                _bloodPoses[i, j] = pos;
                 GameObject bld = Instantiate(bloodPrefab, pos, Quaternion.identity, transform);
                 bld.transform.localScale = new Vector3(tileSize.x, tileSize.y, 1);
                 bld.SetActive(false);
