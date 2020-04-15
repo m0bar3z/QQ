@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3297070023406046532}
   - component: {fileID: 3297070023406046535}
   - component: {fileID: 7369432519603459303}
-  - component: {fileID: 7119156842403830169}
+  - component: {fileID: 5387692788790912954}
   m_Layer: 0
   m_Name: enemyTest
   m_TagString: Untagged
@@ -122,8 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
   isStatic: 0
-  rightHand: {fileID: 0}
-  rightHandFull: 0
+  hasHolder: 0
+  rightHand: {fileID: 8193200535045595342}
+  rightHandFull: 1
   facingRight: 1
   handsReach: 1
   handPos: {fileID: 3102703430254278663}
@@ -132,7 +133,7 @@ MonoBehaviour:
   moveForceMultiplier: 10
   timeMultiplier: 1
   _target: {fileID: 0}
-  _burnable: {fileID: 0}
+  _burnable: {fileID: 5387692788790912954}
   targetDistance: {x: 0, y: 0}
 --- !u!61 &7369432519603459303
 BoxCollider2D:
@@ -160,6 +161,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4067399, y: 0.8354788}
   m_EdgeRadius: 0
+--- !u!114 &5387692788790912954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297070023406046534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469547850c4bed94a8b969fda1bf2237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.97
+  burning: 0
+  extraTemperature: 0
+  burnEffectTick: 0.5
+  colliders: []
 --- !u!1 &4398537223145609951
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +216,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3102703430254278663}
     m_Modifications:
+    - target: {fileID: -1246512055783283428, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: holderController
+      value: 
+      objectReference: {fileID: 3297070023406046535}
+    - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: hasHolder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: b9f1096d75fa61641bec2c9cf6e98db9,
         type: 3}
       propertyPath: m_Name
