@@ -37,7 +37,12 @@ public class QQObject : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
-    public virtual void Interact()
+    public virtual void Trigger()
+    {
+
+    }
+
+    public virtual void Trigger(Vector3 dir)
     {
 
     }
