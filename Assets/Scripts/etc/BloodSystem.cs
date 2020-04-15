@@ -12,11 +12,18 @@ public class BloodSystem : MonoBehaviour
     public int xTiles, yTiles;
 
     private Vector2[,] _bloodPoses;
+    private Vector2 scale;
     private GameObject[,] _bloods;
 
-    public void SpawnBlood(Vector2 pos)
+    public void Spill(Vector2 pos, Vector2 dir)
     {
+        dir = dir.normalized;
+        dir = new Vector2(Mathf.RoundToInt(dir.x), Mathf.RoundToInt(dir.y));
 
+        print(pos.x);
+        print(((int)pos.x + xTiles / 2) * (int)scale.x);
+
+        _bloods[((int)pos.x + xTiles/2) * (int)scale.x, ((int)pos.y + yTiles/2) * (int)scale.y].SetActive(true);
     }
 
     private void OnDrawGizmos()
@@ -42,8 +49,20 @@ public class BloodSystem : MonoBehaviour
         PreSpawnAllBloods();
     }
 
+    protected virtual void Update()
+    {
+        // for testing
+        if (Input.GetMouseButtonUp(1))
+        {
+            Vector2 posdir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Spill(posdir, posdir);
+        }
+    }
+
     private void PreSpawnAllBloods()
     {
+        scale = new Vector2(xTiles/size.x, yTiles/size.y);
+
         _bloodPoses = new Vector2[xTiles, yTiles];
         _bloods = new GameObject[xTiles, yTiles];
 
