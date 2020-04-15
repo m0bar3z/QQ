@@ -9,14 +9,37 @@ public class BloodSystem : MonoBehaviour
 
     public GameObject bloodPrefab;
     public Vector2 size;
-    public int xTiles, yTiles;
+    public int xTiles, yTiles, spillFactor = 2;
 
     private Vector2[,] _bloodPoses;
+    private Vector2 scale;
     private GameObject[,] _bloods;
 
-    public void SpawnBlood(Vector2 pos)
+    public void Spill(Vector2 pos, Vector2 dir)
     {
+        dir = dir.normalized;
+        dir = new Vector2(Mathf.RoundToInt(dir.x), Mathf.RoundToInt(dir.y));
 
+        int x = Mathf.FloorToInt(pos.x * scale.x) + xTiles / 2;
+        int y = Mathf.FloorToInt(pos.y * scale.y) + yTiles / 2;
+
+        _bloods[ x  ,  y ].SetActive(true);
+
+        for(int i = 0; i < spillFactor; i++)
+        {
+            x += (int)dir.x;
+            y += (int)dir.y;
+
+            // TODO: change this to arithmatic stuff with one cond
+            if(x < 0 || x >= xTiles || y < 0 || y >= yTiles)
+            {
+                break;
+            }
+            else
+            {
+                _bloods[x, y].SetActive(true);
+            }
+        }
     }
 
     private void OnDrawGizmos()
@@ -42,8 +65,20 @@ public class BloodSystem : MonoBehaviour
         PreSpawnAllBloods();
     }
 
+    protected virtual void Update()
+    {
+        // for testing
+        if (Input.GetMouseButtonUp(1))
+        {
+            Vector2 posdir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Spill(posdir, posdir);
+        }
+    }
+
     private void PreSpawnAllBloods()
     {
+        scale = new Vector2(xTiles/size.x, yTiles/size.y);
+
         _bloodPoses = new Vector2[xTiles, yTiles];
         _bloods = new GameObject[xTiles, yTiles];
 

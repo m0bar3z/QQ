@@ -23,24 +23,19 @@ public class BasicGun : QQObject
     private bool waiting = false, reloading = false;
     private int mag = 0;
 
-    public override void Interact()
+    public override void Trigger(Vector3 dir)
     {
         if (waiting || reloading) return;
-
-        Vector3 dir = Vector3.zero;
 
         for (int i = 0; i < chunkSize; i++)
         {
             waiting = true;
 
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            dir = pos - gunHole.position;
             dir.z = 0;
             dir = dir.normalized;
 
             transform.right = holderController.facingRight ? dir : -dir;
-
-            pos.z = 0;
+            
             Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(dir);
         }
 

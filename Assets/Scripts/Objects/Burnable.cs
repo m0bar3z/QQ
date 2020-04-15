@@ -68,9 +68,5 @@ public class Burnable : MonoBehaviour
                 _obj.health.Amount--;
             }
         }
-        else
-        { 
-            print("no one in burn radius!!!");
-        }
     }
 }

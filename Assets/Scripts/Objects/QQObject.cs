@@ -6,25 +6,27 @@ public class QQObject : MonoBehaviour
 {
     public Person holderController;
     public HealthSystem health;
-    public bool isStatic;
+    public bool isStatic, hasHolder;
 
     protected Rigidbody2D rb;
 
     public virtual void GetPickedUp(Person picker)
     {
+        holderController = picker;
+        hasHolder = true;
+
         transform.parent = picker.handPos;
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.velocity = Vector2.zero;
         picker.rightHand = this;
         picker.rightHandFull = true;
         transform.localPosition = Vector3.zero;
-
-        holderController = picker;
     }
 
     public virtual void GetThrown(Vector2 dir)
     {
         holderController = null;
+        hasHolder = false;
 
         rb.bodyType = RigidbodyType2D.Dynamic;
         transform.parent = null;
@@ -37,7 +39,12 @@ public class QQObject : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
-    public virtual void Interact()
+    public virtual void Trigger()
+    {
+
+    }
+
+    public virtual void Trigger(Vector3 dir)
     {
 
     }

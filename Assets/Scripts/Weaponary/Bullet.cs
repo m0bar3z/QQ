@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : QQObject
 {
+    public GameObject bulletEffect;
+
     private static List<Bullet> bullets = new List<Bullet>();
     private static int bulletsLimit = 500;
 
@@ -63,5 +65,14 @@ public class Bullet : QQObject
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer != 9)
+        {
+            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

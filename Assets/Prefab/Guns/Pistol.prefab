@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414100878}
   - component: {fileID: 414100879}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 414100877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.47, y: 0.47, z: 0.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1242905122}
   m_Father: {fileID: 8193200535544986647}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 54574e682f583a744923690de3cd3e7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2fd8a83352a2004ca0c9e0dd438aca2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242905122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242905121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.245, y: 0, z: 0}
+  m_LocalPosition: {x: 0.272, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 414100878}
@@ -124,8 +124,9 @@ GameObject:
   - component: {fileID: 8193200535544986640}
   - component: {fileID: -1246512055783283428}
   - component: {fileID: 1351972933}
-  m_Layer: 0
-  m_Name: Gun
+  - component: {fileID: 1351972935}
+  m_Layer: 8
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,18 +159,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb18dee4a12f72b4a80d5c1e03958600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder: {fileID: 0}
   holderController: {fileID: 0}
+  isStatic: 0
   betweenBullets: 0.5
-  recoil: 1.5
+  recoil: 1
   reloadTime: 2
-  chunkSize: 5
-  capacity: 6
+  chunkSize: 1
+  capacity: 8
   bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
     type: 3}
   gunHole: {fileID: 1242905122}
-  shootSFX: {fileID: 8300000, guid: f2a238118b3ea6c49b54839c2810f5c3, type: 3}
-  reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
+  reloadSFX: {fileID: 8300000, guid: 06f0b9b830a7f4e489fa190630814be8, type: 3}
+  shootingSFX:
+  - {fileID: 8300000, guid: c189e6f470a42eb43b31153af7746baa, type: 3}
+  - {fileID: 8300000, guid: 2b9ee60b40cb07c4da090e8e52362465, type: 3}
+  - {fileID: 8300000, guid: c70874880176bec4f9d6c5ab5d8e4572, type: 3}
+  - {fileID: 8300000, guid: ebd3d2172f56f324db4d12601ea08dae, type: 3}
+  - {fileID: 8300000, guid: 9f47320eac5afd64bbf90f2f5942c54a, type: 3}
+  - {fileID: 8300000, guid: 42fdc14156c58a246abce735172f87e4, type: 3}
+  - {fileID: 8300000, guid: 2933fdd6a0d8c0e448fa12792e9b877e, type: 3}
+  - {fileID: 8300000, guid: 95f0194963d250a4392e5981562788f6, type: 3}
+  - {fileID: 8300000, guid: 5aa6151633f15c746a9ff18d4fd01b28, type: 3}
   audioSource: {fileID: 1351972933}
 --- !u!50 &-1246512055783283428
 Rigidbody2D:
@@ -184,8 +194,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 10
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -288,3 +298,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &1351972935
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193200535544986646}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.078370996, y: -0.014368236}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18937708, y: 0.11281584}
+  m_EdgeRadius: 0

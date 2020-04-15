@@ -12,15 +12,18 @@ public class Person : QQObject
 
     public virtual void PickUp()
     {
-        Collider2D[] nearbyObjs = Physics2D.OverlapCircleAll(transform.position, handsReach);
-        foreach(Collider2D c in nearbyObjs)
+        if (!rightHandFull)
         {
-            if (c.gameObject == gameObject) continue;
+            Collider2D[] nearbyObjs = Physics2D.OverlapCircleAll(transform.position, handsReach);
+            foreach (Collider2D c in nearbyObjs)
+            {
+                if (c.gameObject == gameObject) continue;
 
-            QQObject o = c.GetComponent<QQObject>();
-            if (o == null) continue;
-            o.GetPickedUp(this);
-            break;
+                QQObject o = c.GetComponent<QQObject>();
+                if (o == null || o.hasHolder) continue;
+                o.GetPickedUp(this);
+                break;
+            }
         }
     }
 

@@ -55,7 +55,7 @@ public class Enemy : Person
 
     private void Shoot()
     {
-
+        rightHand.Trigger(_target.position - rightHand.transform.position);
     }
 
     private void Move()
