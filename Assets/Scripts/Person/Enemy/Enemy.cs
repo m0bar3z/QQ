@@ -55,7 +55,9 @@ public class Enemy : Person
 
     private void Shoot()
     {
-
+        CheckFacing();
+        PickUp();
+        Trigger(_target.position - transform.position);
     }
 
     private void Move()

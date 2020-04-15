@@ -3892,10 +3892,25 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 1219671685}
+    - target: {fileID: 3297070023406046535, guid: ff055620280357e4485388ef58d2aa77,
+        type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 1836421680}
+    - target: {fileID: 3297070023406046535, guid: ff055620280357e4485388ef58d2aa77,
+        type: 3}
+      propertyPath: _burnable
+      value: 
+      objectReference: {fileID: 1818820066}
+    - target: {fileID: 3297070023406046535, guid: ff055620280357e4485388ef58d2aa77,
+        type: 3}
+      propertyPath: moveForceMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3297070023406046554, guid: ff055620280357e4485388ef58d2aa77,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.513
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 3297070023406046554, guid: ff055620280357e4485388ef58d2aa77,
         type: 3}
@@ -4567,6 +4582,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1818820060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3297070023406046534, guid: ff055620280357e4485388ef58d2aa77,
+    type: 3}
+  m_PrefabInstance: {fileID: 653175386}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818820066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818820060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469547850c4bed94a8b969fda1bf2237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  burning: 0
+  extraTemperature: 0
+  burnEffectTick: 0
+  colliders: []
 --- !u!4 &1836421680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6885726290802021369, guid: d8d14a4a7bda4b34495b8a8d1328e328,
