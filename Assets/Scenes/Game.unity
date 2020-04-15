@@ -226,8 +226,9 @@ MonoBehaviour:
   bloodPrefab: {fileID: 3194339777828087386, guid: 632df1c4f7a2b1e47829c2b100df5bd2,
     type: 3}
   size: {x: 22, y: 16}
-  xTiles: 88
-  yTiles: 64
+  xTiles: 176
+  yTiles: 128
+  spillFactor: 2
 --- !u!4 &241763506
 Transform:
   m_ObjectHideFlags: 0
