@@ -9,7 +9,7 @@ public class BloodSystem : MonoBehaviour
 
     public GameObject bloodPrefab;
     public Vector2 size;
-    public int xTiles, yTiles;
+    public int xTiles, yTiles, spillFactor = 2;
 
     private Vector2[,] _bloodPoses;
     private Vector2 scale;
@@ -20,10 +20,26 @@ public class BloodSystem : MonoBehaviour
         dir = dir.normalized;
         dir = new Vector2(Mathf.RoundToInt(dir.x), Mathf.RoundToInt(dir.y));
 
-        print(pos.x);
-        print(((int)pos.x + xTiles / 2) * (int)scale.x);
+        int x = Mathf.FloorToInt(pos.x * scale.x) + xTiles / 2;
+        int y = Mathf.FloorToInt(pos.y * scale.y) + yTiles / 2;
 
-        _bloods[((int)pos.x + xTiles/2) * (int)scale.x, ((int)pos.y + yTiles/2) * (int)scale.y].SetActive(true);
+        _bloods[ x  ,  y ].SetActive(true);
+
+        for(int i = 0; i < spillFactor; i++)
+        {
+            x += (int)dir.x;
+            y += (int)dir.y;
+
+            // TODO: change this to arithmatic stuff with one cond
+            if(x < 0 || x >= xTiles || y < 0 || y >= yTiles)
+            {
+                break;
+            }
+            else
+            {
+                _bloods[x, y].SetActive(true);
+            }
+        }
     }
 
     private void OnDrawGizmos()
