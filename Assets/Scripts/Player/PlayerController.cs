@@ -6,8 +6,10 @@ public class PlayerController : Person
 {
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         CheckInput();
     }
 
@@ -15,19 +17,25 @@ public class PlayerController : Person
     {
         if (Input.GetMouseButton(0))
         {
-            CheckFacing();
+            RightHandTrigger();
+        }
+    }
 
-            if (rightHandFull)
-            {
-                rightHand.Interact();
-            }
-            else
-            {
-                Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                dir -= (Vector2)transform.position;
+    private void RightHandTrigger()
+    {
+        CheckFacing();
 
-                ReceiveForce(dir.normalized);
-            }
+        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dir -= (Vector2)transform.position;
+
+        if (rightHandFull)
+        {
+            rightHand.Trigger(dir);
+        }
+        else
+        {
+
+            ReceiveForce(dir.normalized);
         }
     }
 }

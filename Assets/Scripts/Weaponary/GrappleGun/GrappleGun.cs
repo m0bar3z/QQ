@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrappleGun : BasicGun
 {
-    public override void Interact()
+    public override void Trigger()
     {
 
     }
