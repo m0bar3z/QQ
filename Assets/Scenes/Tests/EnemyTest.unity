@@ -3892,10 +3892,15 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 1219671685}
+    - target: {fileID: 3297070023406046535, guid: ff055620280357e4485388ef58d2aa77,
+        type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 1836421680}
     - target: {fileID: 3297070023406046554, guid: ff055620280357e4485388ef58d2aa77,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.513
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 3297070023406046554, guid: ff055620280357e4485388ef58d2aa77,
         type: 3}
