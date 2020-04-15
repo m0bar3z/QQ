@@ -10,6 +10,7 @@ public class BloodSystem : MonoBehaviour
     public GameObject bloodPrefab;
     public Vector2 size;
     public int xTiles, yTiles, spillFactor = 2;
+    public bool drawGizmo;
 
     private Vector2[,] _bloodPoses;
     private Vector2 scale;
@@ -44,16 +45,19 @@ public class BloodSystem : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, size);
-
-        Vector2 tileSize = new Vector2(size.x / xTiles, size.y / yTiles);
-
-        for (int i = 0; i < xTiles; i++)
+        if (drawGizmo)
         {
-            for (int j = 0; j < yTiles; j++)
+            Gizmos.DrawWireCube(transform.position, size);
+
+            Vector2 tileSize = new Vector2(size.x / xTiles, size.y / yTiles);
+
+            for (int i = 0; i < xTiles; i++)
             {
-                Vector2 pos = transform.position + new Vector3((i * tileSize.x) + (tileSize.x / 2) - (size.x / 2), (j * tileSize.y) + (tileSize.y / 2) - (size.y / 2), 0);
-                Gizmos.DrawWireCube(pos, tileSize);
+                for (int j = 0; j < yTiles; j++)
+                {
+                    Vector2 pos = transform.position + new Vector3((i * tileSize.x) + (tileSize.x / 2) - (size.x / 2), (j * tileSize.y) + (tileSize.y / 2) - (size.y / 2), 0);
+                    Gizmos.DrawWireCube(pos, tileSize);
+                }
             }
         }
     }
