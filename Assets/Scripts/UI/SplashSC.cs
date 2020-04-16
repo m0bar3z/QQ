@@ -6,10 +6,6 @@ using UnityEngine;
 public class SplashSC : MonoBehaviour
 {
     public float time;
-    void Start()
-    {
-        Invoke(nameof(LoadingStartMenu), time);
-    }
 
     public void LoadingStartMenu()
     {
@@ -26,4 +22,8 @@ public class SplashSC : MonoBehaviour
         Application.Quit();
     }
 
+    private void Start()
+    {
+        Invoke(nameof(LoadingStartMenu), time);
+    }
 }

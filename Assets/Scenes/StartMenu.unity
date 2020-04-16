@@ -275,7 +275,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1557167608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4040681715852650377, guid: f122a9065357e4040b7a0c1a4a20eba5,
+          type: 3}
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Options
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &871462667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1582798882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4040681715852650422, guid: f122a9065357e4040b7a0c1a4a20eba5,
+          type: 3}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &900361911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1362421805
 GameObject:
@@ -765,7 +789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.87, y: 96}
+  m_AnchoredPosition: {x: 0, y: 96}
   m_SizeDelta: {x: 79.62, y: 48.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598407867
@@ -814,13 +838,13 @@ MonoBehaviour:
       - m_Target: {fileID: 4040681715852650377, guid: f122a9065357e4040b7a0c1a4a20eba5,
           type: 3}
         m_MethodName: LoadLevel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1598407868
@@ -955,7 +979,7 @@ RectTransform:
   - {fileID: 871462665}
   - {fileID: 900361909}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1039,6 +1063,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905009198}
   m_CullTransparentMesh: 0
+--- !u!1001 &2043830691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8335789318160644417, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: musics.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7065b34bf0bad3f4c9e2bf8bd2f30a34, type: 3}
+    - target: {fileID: 8335789318160644417, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: musics.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7065b34bf0bad3f4c9e2bf8bd2f30a34, type: 3}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644419, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335789318160644430, guid: 012994339046a5b48884fb75a42de9d4,
+        type: 3}
+      propertyPath: m_Name
+      value: MusicManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 012994339046a5b48884fb75a42de9d4, type: 3}
 --- !u!1 &2045571904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,5 +1223,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
