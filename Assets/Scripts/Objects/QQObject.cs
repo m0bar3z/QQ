@@ -6,7 +6,9 @@ public class QQObject : MonoBehaviour
 {
     public Person holderController;
     public HealthSystem health;
-    public bool isStatic, hasHolder;
+    public bool isStatic, hasHolder, isBloody;
+
+    public GameObject bloodEffect;
 
     protected Rigidbody2D rb;
 
@@ -52,6 +54,8 @@ public class QQObject : MonoBehaviour
     protected virtual void Start()
     {
         health = new HealthSystem();
+        health.OnDamage += OnDamage;
+        health.OnDie += OnDie;
     }
 
     protected virtual void Awake()
@@ -61,4 +65,30 @@ public class QQObject : MonoBehaviour
     }
 
     protected virtual void Update() { }
+
+    protected virtual void OnDamage()
+    {
+        if (isBloody)
+        {
+            Instantiate(bloodEffect, transform.position, Quaternion.identity);
+        }
+    }
+
+    protected virtual void OnDie()
+    {
+        Destroy(gameObject);
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 9)
+        {
+            if (isBloody)
+            {
+                BloodSystem.instance.Spill((Vector2)transform.position, (Vector2)transform.position - (Vector2)collision.transform.position);
+            }
+
+            health.Damage(100);
+        }
+    }
 }

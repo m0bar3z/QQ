@@ -23,7 +23,7 @@ public class PlayerController : Person
 
     private void RightHandTrigger()
     {
-        CheckFacing();
+        CheckFacing(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
         Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dir -= (Vector2)transform.position;

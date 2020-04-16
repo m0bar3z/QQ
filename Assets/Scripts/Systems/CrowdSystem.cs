@@ -6,11 +6,14 @@ using UnityEngine;
 // This manages spawning of enemies
 public class CrowdSystem : MonoBehaviour
 {
+    public static int enemiesCount = 0;
+
     public GameObject enemyPref;
     public Transform[] doors;
 
+    [SerializeField]
     private float _chunckSize = 1, _betweenSpawns = 5;
-    private int _lvl;
+    private int _lvl, maxEnemies = 10;
 
     private float _lvlSpeedDiff = 10;
     private float _temperatureMultiplier = 1;
@@ -48,7 +51,7 @@ public class CrowdSystem : MonoBehaviour
     private void TimerTick()
     {
         _time += Time.deltaTime;
-        if (_time >= _betweenSpawns)
+        if (_time >= _betweenSpawns && enemiesCount < maxEnemies)
         {
             _time = 0;
             Spawn();
@@ -81,5 +84,6 @@ public class CrowdSystem : MonoBehaviour
         Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
 
         Instantiate(enemyPref, spawnPos, Quaternion.identity).GetComponent<Enemy>().AssignTarget(_target);
+        enemiesCount++;
     }
 }

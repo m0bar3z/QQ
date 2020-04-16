@@ -65,7 +65,7 @@ public class Burnable : MonoBehaviour
                     adjucantBurnable.Burn();
                 }
 
-                _obj.health.Amount--;
+                _obj.health.Damage(7);
             }
         }
     }

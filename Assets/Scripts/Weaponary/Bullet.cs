@@ -45,7 +45,11 @@ public class Bullet : QQObject
 
     private void Destroy()
     {
-        Destroy(gameObject);
+        try
+        {
+            Destroy(gameObject);
+        }
+        catch { }
     }
 
     private void Fly()

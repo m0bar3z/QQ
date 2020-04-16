@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class HealthSystem
 {
-    public float Amount = 5;
+    public float amount = 100;
+
+    public event SystemTools.SimpleSystemCB OnDie;
+    public event SystemTools.SimpleSystemCB OnDamage;
+
     public virtual void Health()
     {
 
     }
-   public virtual void Damage()
-    {
 
+    public virtual void Damage(float damage)
+    {
+        amount -= damage;
+        OnDamage?.Invoke();
+        if(amount <= 0)
+        {
+            Die();
+        }
     }
+
     public virtual void GetAlive()
     {
 
+    }
+
+    public virtual void Die()
+    {
+        OnDie?.Invoke();
     }
 }

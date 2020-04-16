@@ -10,6 +10,8 @@ public class Person : QQObject
     public float handsReach = 2;
     public Transform handPos;
 
+    protected Burnable _burnable;
+
     public virtual void PickUp()
     {
         if (!rightHandFull)
@@ -47,16 +49,18 @@ public class Person : QQObject
         {
             rightHand.holderController = this;
         }
+
+        _burnable = GetComponent<Burnable>();
+        _burnable.OnBurn += OnBurn;
     }
 
     protected override void Update() { }
 
-    protected void CheckFacing()
+    protected void CheckFacing(Vector3 targetPos)
     {
-        Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mp.z = 0;
+        targetPos.z = 0;
 
-        bool shouldFaceRight = (mp - transform.position).x > 0;
+        bool shouldFaceRight = (targetPos - transform.position).x > 0;
         if (shouldFaceRight && !facingRight)
         {
             InvertXScale();
@@ -65,6 +69,21 @@ public class Person : QQObject
         {
             InvertXScale();
         }
+    }
+
+    protected override void OnDamage()
+    {
+        base.OnDamage();
+    }
+
+    protected override void OnDie()
+    {
+        base.OnDie();
+    }
+
+    protected virtual void OnBurn()
+    {
+
     }
 
     private void InvertXScale()

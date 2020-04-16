@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
   isStatic: 0
+  hasHolder: 0
   betweenBullets: 0.5
   recoil: 1.5
   reloadTime: 2
@@ -253,7 +254,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

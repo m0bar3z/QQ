@@ -35,15 +35,19 @@ public class BasicGun : QQObject
             dir = dir.normalized;
 
             transform.right = holderController.facingRight ? dir : -dir;
+
+            Vector3 tempDir = dir;
+            if (chunkSize > 1)
+                tempDir = Quaternion.Euler(0, 0, (i - chunkSize/2) * 5) * dir;
             
-            Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(dir);
+            Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(tempDir);
         }
 
         mag--;
         CheckForReload();
 
         PlayShootingSFX();
-        holderController.ReceiveForce(-dir * recoil * 10);
+        holderController.ReceiveForce(-dir * recoil * 10); // recoil
     }
 
     private void PlayShootingSFX()

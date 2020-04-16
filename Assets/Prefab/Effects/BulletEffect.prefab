@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5492276225552902025}
   - component: {fileID: 8091415306776086688}
   - component: {fileID: 5939051582120775157}
+  - component: {fileID: -1477918568868041717}
   m_Layer: 0
   m_Name: BulletEffect
   m_TagString: Untagged
@@ -4812,7 +4813,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4873,3 +4874,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0247f71cfcc932649bae5ceb1f7d635e, type: 3}
   - {fileID: 8300000, guid: 83cb47a1c77594b4e82ccc2849a22c93, type: 3}
   - {fileID: 8300000, guid: 902b7f7268b98e2469f272fda31305da, type: 3}
+--- !u!114 &-1477918568868041717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659987502379310701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232f42fee67e52948918661a89c7f7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyAfter: 0.5

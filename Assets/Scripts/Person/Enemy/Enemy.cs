@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Enemy : Person
 {
-  /*  [Range(1, 10)]
+    /*[Range(1, 10)]
     public float sizeofEachStep;*/
   
     [Range(0.25f, 5f)]
     public float timeBetweensteps;
-    public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1;
-
+    public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
 
     [SerializeField] // for assigning by hand in tests
     private Transform _target; // this will be given to enemy by crowd system
-    [SerializeField]
-    private Burnable _burnable;
     [SerializeField]
     private Vector2 targetDistance;
 
@@ -29,7 +26,6 @@ public class Enemy : Person
     protected override void Start()
     {
         base.Start();
-        _burnable.OnBurn += onBurn;
     }
 
     protected override void Update()
@@ -42,8 +38,19 @@ public class Enemy : Person
         }
     }
 
-    private void onBurn()
+    protected override void OnDamage()
     {
+        base.OnDamage();
+    }
+
+    protected override void OnDie()
+    {
+        base.OnDie();
+    }
+
+    protected override void OnBurn()
+    {
+        base.OnBurn();
         timeMultiplier = 0.5f;
     }
 
@@ -55,7 +62,13 @@ public class Enemy : Person
 
     private void Shoot()
     {
-        rightHand.Trigger(_target.position - rightHand.transform.position);
+        CheckFacing(_target.position);
+
+        Vector3 diff = _target.position - transform.position;
+        diff.z = 0;
+
+        if (diff.magnitude < reach)
+            rightHand.Trigger(diff);
     }
 
     private void Move()
