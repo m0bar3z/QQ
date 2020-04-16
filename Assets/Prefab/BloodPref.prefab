@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3671858239274096186}
   - component: {fileID: 5278941500831288087}
   - component: {fileID: 7570176102829148115}
-  - component: {fileID: 5034344336935205727}
+  - component: {fileID: 132086761824195981}
   - component: {fileID: -5997447625270334332}
   m_Layer: 10
   m_Name: BloodPref
@@ -101,7 +101,7 @@ MonoBehaviour:
   extraTemperature: 0
   burnEffectTick: 0.5
   colliders: []
---- !u!114 &5034344336935205727
+--- !u!114 &132086761824195981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3194339777828087386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969958b0c0f7ffb4ca5d07b5bb88b599, type: 3}
+  m_Script: {fileID: 11500000, guid: 70a0e07a4c6f81644a30ef56d52c4dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
@@ -118,6 +118,8 @@ MonoBehaviour:
   hasHolder: 0
   isBloody: 0
   bloodEffect: {fileID: 0}
+  x: 0
+  y: 0
 --- !u!61 &-5997447625270334332
 BoxCollider2D:
   m_ObjectHideFlags: 0

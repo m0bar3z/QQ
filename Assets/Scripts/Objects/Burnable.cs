@@ -20,6 +20,8 @@ public class Burnable : MonoBehaviour
         burning = true;
         InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
 
+        Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
+
         OnBurn?.Invoke();
 
         // for test purposes

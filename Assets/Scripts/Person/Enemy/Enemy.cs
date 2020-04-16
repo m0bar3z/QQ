@@ -56,8 +56,15 @@ public class Enemy : Person
 
     private void Tick()
     {
-        Move();
-        Shoot();
+        if (!_burnable.burning)
+        {
+            Move();
+            Shoot();
+        }
+        else
+        {
+            RandomRun();
+        }
     }
 
     private void Shoot()
@@ -73,15 +80,10 @@ public class Enemy : Person
 
     private void Move()
     {
-        targetDistance = _target.position - transform.position;
-
-        if (targetDistance.magnitude > stopAtRange && !_burnable.burning)
+        if (targetDistance.magnitude > stopAtRange)
         {
+            targetDistance = _target.position - transform.position;
             ReceiveForce(targetDistance.normalized * moveForceMultiplier);
-        }
-        else if (_burnable.burning)
-        {
-            RandomRun();
         }
     }
 
