@@ -131,13 +131,12 @@ MonoBehaviour:
   facingRight: 1
   handsReach: 1
   handPos: {fileID: 3102703430254278663}
-  timeBetweensteps: 1.5
+  timeBetweensteps: 0.68
   stopAtRange: 3
   moveForceMultiplier: 10
   timeMultiplier: 1
   reach: 5
   _target: {fileID: 0}
-  _burnable: {fileID: 5387692788790912954}
   targetDistance: {x: 0, y: 0}
 --- !u!61 &7369432519603459303
 BoxCollider2D:

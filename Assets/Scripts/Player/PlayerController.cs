@@ -8,15 +8,17 @@ public class PlayerController : Person
 
     protected override void Update()
     {
-        base.Update();
-
-        CheckInput();
+        if (!locked)
+        {
+            base.Update();
+            CheckInput();
+        }
     }
 
     protected override void OnDie()
     {
         Statics.instance.GameOver();
-        base.OnDie();
+        locked = true;
     }
 
     private void CheckInput()

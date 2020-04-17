@@ -11,6 +11,7 @@ public class Person : QQObject
     public Transform handPos;
 
     protected Burnable _burnable;
+    protected bool locked = false;
 
     public virtual void PickUp()
     {
@@ -22,7 +23,7 @@ public class Person : QQObject
                 if (c.gameObject == gameObject) continue;
 
                 QQObject o = c.GetComponent<QQObject>();
-                if (o == null || o.hasHolder) continue;
+                if (o == null || o.hasHolder || o.isStatic) continue;
                 o.GetPickedUp(this);
                 break;
             }

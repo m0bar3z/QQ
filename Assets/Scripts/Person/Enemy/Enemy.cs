@@ -45,6 +45,7 @@ public class Enemy : Person
 
     protected override void OnDie()
     {
+        CrowdSystem.enemiesCount--;
         base.OnDie();
     }
 
