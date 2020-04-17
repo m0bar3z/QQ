@@ -13,6 +13,12 @@ public class PlayerController : Person
         CheckInput();
     }
 
+    protected override void OnDie()
+    {
+        Statics.instance.GameOver();
+        base.OnDie();
+    }
+
     private void CheckInput()
     {
         if (Input.GetMouseButton(0))

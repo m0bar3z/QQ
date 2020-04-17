@@ -7,8 +7,18 @@ public class Statics : MonoBehaviour
     public static Statics instance;
 
     public GameObject fireFX;
+    public GameObject gameOverMenu;
 
-    private void Start()
+    // Game Over Stuff
+    public event SystemTools.SimpleSystemCB OnGameOver;
+    public int score;
+
+    public void GameOver()
+    {
+        OnGameOver?.Invoke();
+    }
+
+    private void Awake()
     {
         instance = this;
     }
