@@ -80,9 +80,9 @@ public class Enemy : Person
 
     private void Move()
     {
+        targetDistance = _target.position - transform.position;
         if (targetDistance.magnitude > stopAtRange)
         {
-            targetDistance = _target.position - transform.position;
             ReceiveForce(targetDistance.normalized * moveForceMultiplier);
         }
     }
