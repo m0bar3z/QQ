@@ -101,8 +101,11 @@ MonoBehaviour:
   holderController: {fileID: 0}
   isStatic: 0
   hasHolder: 0
+  isBloody: 0
+  bloodEffect: {fileID: 0}
   bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
     type: 3}
+  damage: 20
   bulletSpeed: 5
   testShoot: 0
   destroyAfter: 5

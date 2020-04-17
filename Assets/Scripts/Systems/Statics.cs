@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Statics : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class Statics : MonoBehaviour
 
     public GameObject fireFX;
     public GameObject gameOverMenu;
+
+    public Slider healthSlider;
+
+    private bool healthSliderSet = false;
 
     // Game Over Stuff
     public event SystemTools.SimpleSystemCB OnGameOver;
@@ -18,8 +23,17 @@ public class Statics : MonoBehaviour
         OnGameOver?.Invoke();
     }
 
+    public void SetHealth(float value)
+    {
+        if (healthSliderSet)
+        {
+            healthSlider.value = value;
+        }
+    }
+
     private void Awake()
     {
         instance = this;
+        healthSliderSet = healthSlider != null;
     }
 }

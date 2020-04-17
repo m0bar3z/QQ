@@ -21,6 +21,12 @@ public class PlayerController : Person
         locked = true;
     }
 
+    protected override void OnDamage()
+    {
+        Statics.instance.SetHealth(health.amount / 100);
+        base.OnDamage();
+    }
+
     private void CheckInput()
     {
         if (Input.GetMouseButton(0))
@@ -31,18 +37,18 @@ public class PlayerController : Person
 
     private void RightHandTrigger()
     {
-        CheckFacing(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        dir -= (Vector2)transform.position;
+        CheckFacing(Camera.main.ScreenToWorldPoint(Input.mousePosition));        
 
         if (rightHandFull)
         {
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dir -= (Vector2)rightHand.transform.position;
             rightHand.Trigger(dir);
         }
         else
         {
-
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dir -= (Vector2)transform.position;
             ReceiveForce(dir.normalized);
         }
     }

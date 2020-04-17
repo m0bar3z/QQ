@@ -88,7 +88,7 @@ public class QQObject : MonoBehaviour
                 BloodSystem.instance.Spill((Vector2)transform.position, (Vector2)transform.position - (Vector2)collision.transform.position);
             }
 
-            health.Damage(100);
+            health.Damage(collision.gameObject.GetComponent<Bullet>().damage);
         }
     }
 }
