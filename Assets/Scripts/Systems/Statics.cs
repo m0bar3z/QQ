@@ -8,7 +8,6 @@ public class Statics : MonoBehaviour
     public static Statics instance;
 
     public GameObject fireFX;
-    public GameObject gameOverMenu;
 
     public Slider healthSlider;
 

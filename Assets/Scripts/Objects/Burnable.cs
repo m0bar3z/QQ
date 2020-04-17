@@ -11,6 +11,7 @@ public class Burnable : MonoBehaviour
     public Collider2D[] colliders;
 
     private QQObject _obj;
+    private GameObject burnFX;
 
     // OnBurn event
     public event SystemTools.SimpleSystemCB OnBurn;
@@ -20,12 +21,19 @@ public class Burnable : MonoBehaviour
         burning = true;
         InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
 
-        Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
+        burnFX = Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
 
         OnBurn?.Invoke();
 
         // for test purposes
         GetComponent<SpriteRenderer>().color = Color.red;
+    }
+
+    public virtual void StopBurning()
+    {
+        burning = false;
+        Destroy(burnFX);
+        CancelInvoke(nameof(BurnEffect));
     }
 
     private void Start()

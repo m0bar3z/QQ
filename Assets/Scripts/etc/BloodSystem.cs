@@ -45,7 +45,7 @@ public class BloodSystem : MonoBehaviour
 
     public void Deactivate(int x, int y)
     {
-        _bloods[x, y].GetComponent<Burnable>().burning = false;
+        _bloods[x, y].GetComponent<Burnable>().StopBurning();
         _bloods[x, y].SetActive(false);
     }
 
