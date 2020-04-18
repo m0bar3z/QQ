@@ -11,5 +11,10 @@ public class Blood : Burnable
         {
             Burn();
         }
+        else if(collision.gameObject.layer == 11)
+        {
+            collision.gameObject.GetComponent<PlayerController>().health.Healt(5);
+            GetComponent<BloodObject>().Deactivate();
+        }
     }
 }

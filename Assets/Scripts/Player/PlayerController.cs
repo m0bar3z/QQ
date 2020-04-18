@@ -6,6 +6,12 @@ public class PlayerController : Person
 {
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
 
+    protected override void Start()
+    {
+        base.Start();
+        health.OnHeal += OnHeal;
+    }
+
     protected override void Update()
     {
         if (!locked)
@@ -25,6 +31,11 @@ public class PlayerController : Person
     {
         Statics.instance.SetHealth(health.amount / 100);
         base.OnDamage();
+    }
+
+    protected void OnHeal()
+    {
+        Statics.instance.SetHealth(health.amount / 100);
     }
 
     private void CheckInput()

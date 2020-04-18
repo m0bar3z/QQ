@@ -6,6 +6,11 @@ public class BloodObject : QQObject
 {
     public int x, y;
 
+    public void Deactivate()
+    {
+        BloodSystem.instance.Deactivate(x, y);
+    }
+
     public void SetXY(int x, int y)
     {
         this.x = x;
@@ -19,6 +24,6 @@ public class BloodObject : QQObject
 
     protected override void OnDie()
     {
-        BloodSystem.instance.Deactivate(x, y);
+        Deactivate();
     }
 }

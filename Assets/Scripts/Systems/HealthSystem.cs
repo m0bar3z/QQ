@@ -6,12 +6,14 @@ public class HealthSystem
 {
     public float amount = 100;
 
-    public event SystemTools.SimpleSystemCB OnDie;
+    public event SystemTools.SimpleSystemCB OnDie, OnHeal;
     public event SystemTools.SimpleSystemCB OnDamage;
 
-    public virtual void Health()
+    public virtual void Healt(float amount)
     {
-
+        this.amount += amount;
+        if (this.amount > 100) this.amount = 100;
+        OnHeal?.Invoke();
     }
 
     public virtual void Damage(float damage)

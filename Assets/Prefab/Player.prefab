@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6885726290802021371}
   - component: {fileID: 6885726290802021373}
   - component: {fileID: 6885726290802021372}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
   isStatic: 0
+  hasHolder: 0
+  isBloody: 0
+  bloodEffect: {fileID: 0}
   rightHand: {fileID: 0}
   rightHandFull: 0
   facingRight: 1
@@ -185,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6885726291369016586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HandPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
