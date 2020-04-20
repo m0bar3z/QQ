@@ -18,9 +18,18 @@ public class Enemy : Person
 
     private float _time;
 
+    private CrowdSystem crowdSystem;
+    private bool gotCS;
+
     public void AssignTarget(Transform target)
     {
         _target = target;
+    }
+
+    public void AssignCS(CrowdSystem cs)
+    {
+        crowdSystem = cs;
+        gotCS = true;
     }
 
     protected override void Start()
@@ -45,7 +54,9 @@ public class Enemy : Person
 
     protected override void OnDie()
     {
-        CrowdSystem.enemiesCount--;
+        if(gotCS)
+            crowdSystem.GotKill();
+
         base.OnDie();
     }
 
