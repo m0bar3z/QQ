@@ -67,11 +67,6 @@ public class Bullet : QQObject
         }
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
-
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer != 9)
