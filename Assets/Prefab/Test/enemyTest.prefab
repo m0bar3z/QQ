@@ -136,6 +136,8 @@ MonoBehaviour:
   moveForceMultiplier: 10
   timeMultiplier: 1
   reach: 5
+  coinSpawnNumber: 5
+  coin: {fileID: 2908427190590912309, guid: 3d62c6a47f402a2489de569289bbafbf, type: 3}
   _target: {fileID: 0}
   targetDistance: {x: 0, y: 0}
 --- !u!61 &7369432519603459303

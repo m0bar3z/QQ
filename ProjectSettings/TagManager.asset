@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - gun
+  - coin
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Bullet
   - Blood
   - Player
-  - 
+  - Collectible
   - 
   - 
   - 

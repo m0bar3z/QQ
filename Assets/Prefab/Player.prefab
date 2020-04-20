@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 6885726290802021371}
   - component: {fileID: 6885726290802021373}
   - component: {fileID: 6885726290802021372}
+  - component: {fileID: 1045730095}
+  - component: {fileID: 1045730094}
+  - component: {fileID: 1045730093}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -145,7 +148,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 20
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -179,6 +182,60 @@ MonoBehaviour:
   MoveDown: 115
   MoveLeft: 97
   MoveRight: 100
+  coinFX: {fileID: 6206904238022313651, guid: f5c0b860a36f4704db56e4a234ab0fd3, type: 3}
+--- !u!58 &1045730095
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6885726290802021348}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5.2824497
+--- !u!250 &1045730094
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6885726290802021348}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ForceMagnitude: -20
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
+--- !u!114 &1045730093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6885726290802021348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469547850c4bed94a8b969fda1bf2237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1.02
+  burning: 0
+  extraTemperature: 0
+  burnEffectTick: 0.5
+  colliders: []
 --- !u!1 &6885726291369016587
 GameObject:
   m_ObjectHideFlags: 0

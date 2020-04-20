@@ -9,6 +9,7 @@ public class Burnable : MonoBehaviour
     public bool burning;
     public float extraTemperature, burnEffectTick;
     public Collider2D[] colliders;
+    public Burnable from;
 
     private QQObject _obj;
     private GameObject burnFX;
@@ -70,7 +71,7 @@ public class Burnable : MonoBehaviour
             for (int i = 0; i < colliders.Length; i++)
             {
                 Burnable adjucantBurnable = colliders[i].GetComponent<Burnable>();
-                if(adjucantBurnable != null && !adjucantBurnable.burning)
+                if(adjucantBurnable != null && !adjucantBurnable.burning && !colliders[i].isTrigger)
                 {
                     adjucantBurnable.Burn();
                 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : Person
 {
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
+    public GameObject coinFX;
 
     protected override void Start()
     {
@@ -61,6 +62,20 @@ public class PlayerController : Person
             Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dir -= (Vector2)transform.position;
             ReceiveForce(dir.normalized);
+        }
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        if(collision.gameObject.layer == 12)
+        {
+            if(collision.gameObject.tag == "coin")
+            {
+                Shop.coins++;
+                Instantiate(coinFX, transform.position, Quaternion.identity);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

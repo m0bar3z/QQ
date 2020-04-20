@@ -10,6 +10,8 @@ public class Enemy : Person
     [Range(0.25f, 5f)]
     public float timeBetweensteps;
     public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
+    public int coinSpawnNumber;
+    public GameObject coin;
 
     [SerializeField] // for assigning by hand in tests
     private Transform _target; // this will be given to enemy by crowd system
@@ -56,6 +58,12 @@ public class Enemy : Person
     {
         if(gotCS)
             crowdSystem.GotKill();
+
+        for(int i = 0; i < coinSpawnNumber; i++)
+        {
+            GameObject c = Instantiate(coin, transform.position, Quaternion.identity);
+            c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+        }
 
         base.OnDie();
     }

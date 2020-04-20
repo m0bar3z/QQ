@@ -276,8 +276,10 @@ MonoBehaviour:
   - {fileID: 1294987914}
   - {fileID: 320578144}
   - {fileID: 1173023544}
+  lvlUpRate: 0.3
   _chunckSize: 1
   _betweenSpawns: 5
+  _betweenSteps: 0.5
 --- !u!114 &241763508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +345,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 37dad40d912f89e4181dba0037f69782, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4310,7 +4312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &991539289
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4481,29 +4483,6 @@ Transform:
   m_Father: {fileID: 521443115}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1045730092 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6885726290802021348, guid: d8d14a4a7bda4b34495b8a8d1328e328,
-    type: 3}
-  m_PrefabInstance: {fileID: 6885726291261311561}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1045730093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045730092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469547850c4bed94a8b969fda1bf2237, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1.02
-  burning: 0
-  extraTemperature: 0
-  burnEffectTick: 0.5
-  colliders: []
 --- !u!1 &1173023543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6538,6 +6517,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1045730093, guid: d8d14a4a7bda4b34495b8a8d1328e328, type: 3}
+      propertyPath: printit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6885726290802021348, guid: d8d14a4a7bda4b34495b8a8d1328e328,
         type: 3}
       propertyPath: m_Name
@@ -6597,11 +6580,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885726290802021373, guid: d8d14a4a7bda4b34495b8a8d1328e328,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8d14a4a7bda4b34495b8a8d1328e328, type: 3}
