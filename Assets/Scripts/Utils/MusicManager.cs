@@ -15,20 +15,20 @@ public class MusicManager : MonoBehaviour
         audioSource.clip = musics[index];
         audioSource.Play();
     }
-    private void OnLevelWasLoaded(int level)
-    {
-        if(level != 3)
-        {
-            PlaySceneMusic(level);
-        }
-     
-    }
 
     public void ChnageVolume(float vol)
     {
         audioSource.volume = vol;
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level != 3)
+        {
+            PlaySceneMusic(level);
+        }
+
+    }
     private void Awake()
     {
         if (instance != null)
