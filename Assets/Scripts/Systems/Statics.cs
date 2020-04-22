@@ -11,7 +11,7 @@ public class Statics : MonoBehaviour
 
     public Slider healthSlider;
 
-    private bool healthSliderSet = false;
+    private bool healthSliderSet = false, inGlitch = false;
 
     // Game Over Stuff
     public event SystemTools.SimpleSystemCB OnGameOver;
@@ -19,11 +19,13 @@ public class Statics : MonoBehaviour
 
     public void GlitchForS(float duration)
     {
-        StartCoroutine(GlitchCoroutine(duration));
+        if(!inGlitch)
+            StartCoroutine(GlitchCoroutine(duration));
     }
 
     public IEnumerator GlitchCoroutine(float duration)
     {
+        inGlitch = true;
         float ts = Time.timeScale;
         //float fts = Time.fixedDeltaTime;
         Time.timeScale = 0;
@@ -33,6 +35,7 @@ public class Statics : MonoBehaviour
 
         Time.timeScale = ts;
         //Time.fixedDeltaTime = fts;
+        inGlitch = false;
     }
 
     public void GameOver()
