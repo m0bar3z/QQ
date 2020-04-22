@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3297070023406046535}
   - component: {fileID: 7369432519603459303}
   - component: {fileID: 5387692788790912954}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: enemyTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,6 +183,7 @@ MonoBehaviour:
   extraTemperature: 0
   burnEffectTick: 0.5
   colliders: []
+  from: {fileID: 0}
 --- !u!1 &4398537223145609951
 GameObject:
   m_ObjectHideFlags: 0

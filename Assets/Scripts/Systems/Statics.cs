@@ -17,6 +17,24 @@ public class Statics : MonoBehaviour
     public event SystemTools.SimpleSystemCB OnGameOver;
     public int score;
 
+    public void GlitchForS(float duration)
+    {
+        StartCoroutine(GlitchCoroutine(duration));
+    }
+
+    public IEnumerator GlitchCoroutine(float duration)
+    {
+        float ts = Time.timeScale;
+        //float fts = Time.fixedDeltaTime;
+        Time.timeScale = 0;
+        //Time.fixedDeltaTime = 0;
+
+        yield return new WaitForSecondsRealtime(duration);
+
+        Time.timeScale = ts;
+        //Time.fixedDeltaTime = fts;
+    }
+
     public void GameOver()
     {
         OnGameOver?.Invoke();

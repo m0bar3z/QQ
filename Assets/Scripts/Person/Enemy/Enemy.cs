@@ -41,11 +41,14 @@ public class Enemy : Person
 
     protected override void Update()
     {
-        _time += Time.deltaTime;
-        if(_time > timeBetweensteps * timeMultiplier)
+        if (PlayerController.isAlive)
         {
-            _time = 0;
-            Tick();
+            _time += Time.deltaTime;
+            if (_time > timeBetweensteps * timeMultiplier)
+            {
+                _time = 0;
+                Tick();
+            }
         }
     }
 

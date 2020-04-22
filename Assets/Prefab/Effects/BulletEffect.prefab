@@ -4867,13 +4867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 8091415306776086688}
   clips:
-  - {fileID: 8300000, guid: 2249f57409a5d6a4696d5cbe86ff9586, type: 3}
-  - {fileID: 8300000, guid: 2fbd611d8a196d84994563b6aa998ff3, type: 3}
-  - {fileID: 8300000, guid: a2ceb20c9eb7fe442b44c14d2ab9141c, type: 3}
-  - {fileID: 8300000, guid: 2fcb856036eddfa408a8573ba9deb7f2, type: 3}
-  - {fileID: 8300000, guid: 0247f71cfcc932649bae5ceb1f7d635e, type: 3}
-  - {fileID: 8300000, guid: 83cb47a1c77594b4e82ccc2849a22c93, type: 3}
-  - {fileID: 8300000, guid: 902b7f7268b98e2469f272fda31305da, type: 3}
+  - {fileID: 8300000, guid: 21b8952df0b57ab45abc7abb06b42f99, type: 3}
+  - {fileID: 8300000, guid: cc4a0cd70208d6142abbdf268ad2d295, type: 3}
 --- !u!114 &-1477918568868041717
 MonoBehaviour:
   m_ObjectHideFlags: 0

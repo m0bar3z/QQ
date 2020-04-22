@@ -8,6 +8,7 @@ public class HealthSystem
 
     public event SystemTools.SimpleSystemCB OnDie, OnHeal;
     public event SystemTools.SimpleSystemCB OnDamage;
+    public bool isDead = false;
 
     public virtual void Healt(float amount)
     {
@@ -33,6 +34,7 @@ public class HealthSystem
 
     public virtual void Die()
     {
+        isDead = true;
         OnDie?.Invoke();
     }
 }

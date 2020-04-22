@@ -9,6 +9,8 @@ public class BasicGun : QQObject
     public float betweenBullets = 0.2f;
     [Range(0.01f, 30f)]
     public float recoil = 0.5f;
+    [Range(0f, 0.99f)]
+    public float explosionChanceOfBullets = 0f;
     public float reloadTime = 2;
     [Range(1, 20)]
     public int chunkSize = 3;
@@ -27,6 +29,9 @@ public class BasicGun : QQObject
     {
         if (waiting || reloading) return;
 
+        int recoilDir = holderController.facingRight ? 1 : -1;
+        transform.DOLocalMove(new Vector3(-dir.x * recoilDir, -dir.y, dir.z)/10, betweenBullets / 3).SetLoops(2, LoopType.Yoyo);
+
         for (int i = 0; i < chunkSize; i++)
         {
             waiting = true;
@@ -39,8 +44,10 @@ public class BasicGun : QQObject
             Vector3 tempDir = dir;
             if (chunkSize > 1)
                 tempDir = Quaternion.Euler(0, 0, (i - chunkSize/2) * 5) * dir;
-            
-            Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>().Shoot(tempDir);
+
+            Bullet b = Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>();
+            b.explosionChance = explosionChanceOfBullets;
+            b.Shoot(tempDir);
         }
 
         mag--;

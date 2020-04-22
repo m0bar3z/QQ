@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Bullet : QQObject
 {
-    public GameObject bulletEffect;
+    public GameObject bulletEffect, explosionFX;
     public int damage = 100;
+    public float explosionChance = 0f;
 
     private static List<Bullet> bullets = new List<Bullet>();
     private static int bulletsLimit = 500;
@@ -71,7 +72,14 @@ public class Bullet : QQObject
     {
         if (collision.gameObject.layer != 9)
         {
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            if (Random.Range(0, 0.99f) < explosionChance)
+            {
+                Instantiate(explosionFX, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
