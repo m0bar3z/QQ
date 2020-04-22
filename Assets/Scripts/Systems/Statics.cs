@@ -7,6 +7,10 @@ public class Statics : MonoBehaviour
 {
     public static Statics instance;
 
+    // coin pitch shift
+    public static float pitchShift = 0;
+    public static float resetIn = 1f;
+
     public GameObject fireFX;
 
     public Slider healthSlider;
@@ -21,6 +25,21 @@ public class Statics : MonoBehaviour
     {
         if(!inGlitch)
             StartCoroutine(GlitchCoroutine(duration));
+    }
+
+    public void StartResetPitch()
+    {
+        Invoke(nameof(ResetPitch), resetIn);
+    }
+    
+    public void StopResetPitch()
+    {
+        CancelInvoke(nameof(ResetPitch));
+    }
+
+    public void ResetPitch()
+    {
+        pitchShift = 0;
     }
 
     public IEnumerator GlitchCoroutine(float duration)
