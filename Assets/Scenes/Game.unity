@@ -4610,6 +4610,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: explosionChanceOfBullets
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: b9f1096d75fa61641bec2c9cf6e98db9,
         type: 3}
       propertyPath: m_Name
@@ -4945,6 +4950,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: explosionChanceOfBullets
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
       propertyPath: m_Name
