@@ -59,6 +59,7 @@ public class CrowdSystem : MonoBehaviour
 
     protected virtual void Start()
     {
+        enemiesCount = 0;
         AssignTarget();
     }
 

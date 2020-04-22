@@ -9,6 +9,7 @@ public class PlayerController : Person
 
     protected override void Start()
     {
+        isAlive = true;
         base.Start();
         health.OnHeal += OnHeal;
     }
