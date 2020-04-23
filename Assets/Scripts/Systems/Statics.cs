@@ -15,6 +15,8 @@ public class Statics : MonoBehaviour
 
     public Slider healthSlider;
 
+    public Shop shop;
+
     private bool healthSliderSet = false, inGlitch = false;
 
     // Game Over Stuff

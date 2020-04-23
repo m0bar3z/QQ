@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour
         if(collision.gameObject.layer == 11)
         {
             Statics.instance.StopResetPitch();
-            Shop.coins++;
+            Statics.instance.shop.AddCoins();
             Instantiate(coinFX, transform.position, Quaternion.identity).GetComponent<AudioSource>().pitch += Statics.pitchShift;
             Statics.pitchShift += 0.07f;
             Statics.instance.StartResetPitch();
