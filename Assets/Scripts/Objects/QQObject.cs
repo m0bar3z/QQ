@@ -66,6 +66,14 @@ public class QQObject : MonoBehaviour
         }
     }
 
+    public virtual void Hurt(int damage)
+    {
+        if (!health.isDead)
+        {
+            health.Damage(damage);
+        }
+    }
+
     protected virtual void Start()
     {
         health = new HealthSystem();
@@ -91,6 +99,7 @@ public class QQObject : MonoBehaviour
 
     protected virtual void OnDie()
     {
+        Statics.instance.GlitchForS(0.1f);
         Destroy(gameObject);
     }
 
@@ -99,10 +108,8 @@ public class QQObject : MonoBehaviour
         // layer 9 is bullet
         if(collision.gameObject.layer == 9)
         {
-            if(!dontGlitch)
-                Statics.instance.GlitchForS(0.1f);
-
-            Hurt(collision.gameObject.GetComponent<Bullet>().damage, (Vector2)transform.position - (Vector2)collision.transform.position);
+            Bullet b = collision.gameObject.GetComponent<Bullet>();
+            Hurt(b.damage, (Vector2)transform.position - (Vector2)collision.transform.position);
         }
     }
 }

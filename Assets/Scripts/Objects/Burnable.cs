@@ -9,10 +9,10 @@ public class Burnable : MonoBehaviour
     public bool burning;
     public float extraTemperature, burnEffectTick;
     public Collider2D[] colliders;
-    public Burnable from;
+    public GameObject burnFX;
+    public bool hasBurnFX = false;
 
     private QQObject _obj;
-    private GameObject burnFX;
 
     // OnBurn event
     public event SystemTools.SimpleSystemCB OnBurn;
@@ -22,7 +22,14 @@ public class Burnable : MonoBehaviour
         burning = true;
         InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
 
-        burnFX = Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
+        if (hasBurnFX)
+        {
+            burnFX.SetActive(true);
+        }
+        else
+        {
+            burnFX = Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
+        }        
 
         OnBurn?.Invoke();
 
@@ -76,7 +83,7 @@ public class Burnable : MonoBehaviour
                     adjucantBurnable.Burn();
                 }
 
-                _obj.health.Damage(7);
+                _obj.Hurt(5);
             }
         }
     }

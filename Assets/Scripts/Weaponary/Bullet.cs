@@ -15,6 +15,7 @@ public class Bullet : QQObject
     public float bulletSpeed = 10; // speed of the bullet
 
     public bool testShoot = false; // if on bullet flies on start
+    public bool destroyOnTouch = true;
     public float destroyAfter = 5; // the bullet get's destroyed after this amount of time
 
     private Vector3 dir; // dir in which the bullet is shot
@@ -29,7 +30,6 @@ public class Bullet : QQObject
     {
         base.Start();
 
-        TestShoot();
         CheckBulletLimit();
         Destroy(gameObject, destroyAfter);
     }
@@ -60,14 +60,6 @@ public class Bullet : QQObject
         rb.velocity = dir * bulletSpeed;
     }
 
-    private void TestShoot()
-    {
-        if (testShoot)
-        {
-            Shoot(transform.up);
-        }
-    }
-
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer != 9)
@@ -80,7 +72,9 @@ public class Bullet : QQObject
             {
                 Instantiate(bulletEffect, transform.position, Quaternion.identity);
             }
-            Destroy(gameObject);
+
+            if(destroyOnTouch)
+                Destroy(gameObject);
         }
     }
 }
