@@ -20,7 +20,9 @@ public class BasicGun : QQObject
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
-    public bool dirRecoil = false;
+    public bool dirRecoil = false, shake = false;
+
+    public float shakeStrength; public int shakeVibrato;
 
     private float time = 0;
     private bool waiting = false, reloading = false;
@@ -53,6 +55,12 @@ public class BasicGun : QQObject
 
         mag--;
         CheckForReload();
+
+        if (shake)
+        {
+            Camera.main.DOShakePosition(betweenBullets / 2, shakeStrength, shakeVibrato);
+            Camera.main.DOShakeRotation(betweenBullets / 2, shakeStrength, shakeVibrato);
+        }
 
         PlayShootingSFX();
         holderController.ReceiveForce(-dir * recoil * 10); // recoil
