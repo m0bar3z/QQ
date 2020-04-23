@@ -171,7 +171,7 @@ MonoBehaviour:
   reloadTime: 1
   chunkSize: 5
   capacity: 6
-  bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
+  bulletPref: {fileID: 6793469649731297349, guid: a3ccd4120eb1fc74f8135b67ef9622c3,
     type: 3}
   gunHole: {fileID: 1242905122}
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}

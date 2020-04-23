@@ -20,10 +20,10 @@ public class Bullet : QQObject
 
     private Vector3 dir; // dir in which the bullet is shot
 
-    public void Shoot(Vector3 dir)
+    public void Shoot(Vector3 dir, bool withRecoil = false)
     {
         this.dir = dir.normalized;
-        Fly();
+        Fly(withRecoil);
     }
 
     protected override void Start()
@@ -54,10 +54,11 @@ public class Bullet : QQObject
         catch { }
     }
 
-    private void Fly()
+    private void Fly(bool withRecoil)
     {
         transform.up = dir;
-        rb.velocity = dir * bulletSpeed;
+        Vector2 recoil_ = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)) * bulletSpeed / 5;
+        rb.velocity = dir * bulletSpeed + (Vector3)recoil_;
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

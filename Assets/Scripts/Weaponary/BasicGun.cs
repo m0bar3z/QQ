@@ -20,6 +20,7 @@ public class BasicGun : QQObject
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
+    public bool dirRecoil = false;
 
     private float time = 0;
     private bool waiting = false, reloading = false;
@@ -47,7 +48,7 @@ public class BasicGun : QQObject
 
             Bullet b = Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>();
             b.explosionChance = explosionChanceOfBullets;
-            b.Shoot(tempDir);
+            b.Shoot(tempDir, dirRecoil);
         }
 
         mag--;
