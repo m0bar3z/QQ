@@ -137,7 +137,7 @@ MonoBehaviour:
   moveForceMultiplier: 10
   timeMultiplier: 1
   reach: 5
-  coinSpawnNumber: 5
+  coinSpawnNumber: 10
   coin: {fileID: 2908427190590912309, guid: 3d62c6a47f402a2489de569289bbafbf, type: 3}
   _target: {fileID: 0}
   targetDistance: {x: 0, y: 0}
@@ -248,6 +248,11 @@ PrefabInstance:
     - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
         type: 3}
       propertyPath: explosionChanceOfBullets
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: shake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: b9f1096d75fa61641bec2c9cf6e98db9,

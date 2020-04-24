@@ -176,7 +176,7 @@ MonoBehaviour:
   gunHole: {fileID: 1242905122}
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: 8cb5cfb7b2366d141bce4aa78f9aa611, type: 3}
+  - {fileID: 8300000, guid: cd5c056e4840e124c860b87ed6b88cfc, type: 3}
   audioSource: {fileID: 1351972933}
   dirRecoil: 1
   shake: 1
