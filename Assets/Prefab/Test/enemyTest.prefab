@@ -124,6 +124,7 @@ MonoBehaviour:
   isStatic: 0
   hasHolder: 0
   isBloody: 1
+  dontGlitch: 0
   bloodEffect: {fileID: 6206904238022313651, guid: 11edf4b893fbd3840ba070351be1fc67,
     type: 3}
   rightHand: {fileID: 8193200535045595342}
@@ -183,7 +184,8 @@ MonoBehaviour:
   extraTemperature: 0
   burnEffectTick: 0.5
   colliders: []
-  from: {fileID: 0}
+  burnFX: {fileID: 0}
+  hasBurnFX: 0
 --- !u!1 &4398537223145609951
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +245,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6793469649731297349, guid: c71acd2416ef788438e9546123535b63,
         type: 3}
+    - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: explosionChanceOfBullets
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: b9f1096d75fa61641bec2c9cf6e98db9,
         type: 3}
       propertyPath: m_Name
