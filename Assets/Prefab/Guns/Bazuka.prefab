@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3047342746496326064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.539, y: 0, z: 0}
+  m_LocalPosition: {x: 0.735, y: -0.021, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3047342747330367007}
@@ -165,8 +165,8 @@ MonoBehaviour:
   isBloody: 0
   dontGlitch: 0
   bloodEffect: {fileID: 0}
-  betweenBullets: 0.3
-  recoil: 2
+  betweenBullets: 1
+  recoil: 3
   explosionChanceOfBullets: 0.99
   reloadTime: 0.5
   chunkSize: 1
@@ -178,6 +178,12 @@ MonoBehaviour:
   shootingSFX:
   - {fileID: 8300000, guid: d9b1cf0b23f9c2d46808598dbc0f1258, type: 3}
   audioSource: {fileID: 3047342746118822868}
+  dirRecoil: 0
+  shake: 1
+  halfVibration: 0
+  shakeStrength: 5
+  shakeVibrato: 5
+  vibrationDuration: 1000
 --- !u!50 &4970049804229428877
 Rigidbody2D:
   serializedVersion: 4

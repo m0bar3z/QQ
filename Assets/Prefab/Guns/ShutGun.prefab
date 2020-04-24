@@ -167,7 +167,7 @@ MonoBehaviour:
   bloodEffect: {fileID: 0}
   betweenBullets: 0.4
   recoil: 1.5
-  explosionChanceOfBullets: 0
+  explosionChanceOfBullets: 0.3
   reloadTime: 1
   chunkSize: 5
   capacity: 6
@@ -178,6 +178,12 @@ MonoBehaviour:
   shootingSFX:
   - {fileID: 8300000, guid: 8cb5cfb7b2366d141bce4aa78f9aa611, type: 3}
   audioSource: {fileID: 1351972933}
+  dirRecoil: 1
+  shake: 1
+  halfVibration: 0
+  shakeStrength: 0.3
+  shakeVibrato: 10
+  vibrationDuration: 200
 --- !u!50 &-1246512055783283428
 Rigidbody2D:
   serializedVersion: 4
