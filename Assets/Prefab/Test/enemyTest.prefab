@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3297070023406046535}
   - component: {fileID: 7369432519603459303}
   - component: {fileID: 5387692788790912954}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: enemyTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,17 +123,22 @@ MonoBehaviour:
   holderController: {fileID: 0}
   isStatic: 0
   hasHolder: 0
+  isBloody: 1
+  bloodEffect: {fileID: 6206904238022313651, guid: 11edf4b893fbd3840ba070351be1fc67,
+    type: 3}
   rightHand: {fileID: 8193200535045595342}
   rightHandFull: 1
   facingRight: 1
   handsReach: 1
   handPos: {fileID: 3102703430254278663}
-  timeBetweensteps: 0.5
+  timeBetweensteps: 0.68
   stopAtRange: 3
   moveForceMultiplier: 10
   timeMultiplier: 1
+  reach: 5
+  coinSpawnNumber: 5
+  coin: {fileID: 2908427190590912309, guid: 3d62c6a47f402a2489de569289bbafbf, type: 3}
   _target: {fileID: 0}
-  _burnable: {fileID: 5387692788790912954}
   targetDistance: {x: 0, y: 0}
 --- !u!61 &7369432519603459303
 BoxCollider2D:
@@ -178,6 +183,7 @@ MonoBehaviour:
   extraTemperature: 0
   burnEffectTick: 0.5
   colliders: []
+  from: {fileID: 0}
 --- !u!1 &4398537223145609951
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +237,12 @@ PrefabInstance:
       propertyPath: hasHolder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8193200535544986640, guid: b9f1096d75fa61641bec2c9cf6e98db9,
+        type: 3}
+      propertyPath: bulletPref
+      value: 
+      objectReference: {fileID: 6793469649731297349, guid: c71acd2416ef788438e9546123535b63,
+        type: 3}
     - target: {fileID: 8193200535544986646, guid: b9f1096d75fa61641bec2c9cf6e98db9,
         type: 3}
       propertyPath: m_Name

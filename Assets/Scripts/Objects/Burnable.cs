@@ -9,6 +9,8 @@ public class Burnable : MonoBehaviour
     public bool burning;
     public float extraTemperature, burnEffectTick;
     public Collider2D[] colliders;
+    public GameObject burnFX;
+    public bool hasBurnFX = false;
 
     private QQObject _obj;
 
@@ -20,10 +22,26 @@ public class Burnable : MonoBehaviour
         burning = true;
         InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
 
+        if (hasBurnFX)
+        {
+            burnFX.SetActive(true);
+        }
+        else
+        {
+            burnFX = Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
+        }        
+
         OnBurn?.Invoke();
 
         // for test purposes
         GetComponent<SpriteRenderer>().color = Color.red;
+    }
+
+    public virtual void StopBurning()
+    {
+        burning = false;
+        Destroy(burnFX);
+        CancelInvoke(nameof(BurnEffect));
     }
 
     private void Start()
@@ -60,12 +78,12 @@ public class Burnable : MonoBehaviour
             for (int i = 0; i < colliders.Length; i++)
             {
                 Burnable adjucantBurnable = colliders[i].GetComponent<Burnable>();
-                if(adjucantBurnable != null && !adjucantBurnable.burning)
+                if(adjucantBurnable != null && !adjucantBurnable.burning && !colliders[i].isTrigger)
                 {
                     adjucantBurnable.Burn();
                 }
 
-                _obj.health.Amount--;
+                _obj.Hurt(5);
             }
         }
     }

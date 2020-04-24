@@ -43,6 +43,12 @@ public class BloodSystem : MonoBehaviour
         }
     }
 
+    public void Deactivate(int x, int y)
+    {
+        _bloods[x, y].GetComponent<Burnable>().StopBurning();
+        _bloods[x, y].SetActive(false);
+    }
+
     private void OnDrawGizmos()
     {
         if (drawGizmo)
@@ -96,6 +102,7 @@ public class BloodSystem : MonoBehaviour
                 _bloodPoses[i, j] = pos;
                 GameObject bld = Instantiate(bloodPrefab, pos, Quaternion.identity, transform);
                 bld.transform.localScale = new Vector3(tileSize.x, tileSize.y, 1);
+                bld.GetComponent<BloodObject>().SetXY(i, j);
                 bld.SetActive(false);
                 _bloods[i, j] = bld;
             }

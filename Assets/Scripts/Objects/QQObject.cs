@@ -6,9 +6,13 @@ public class QQObject : MonoBehaviour
 {
     public Person holderController;
     public HealthSystem health;
-    public bool isStatic, hasHolder;
+    public bool isStatic, hasHolder, isBloody;
+    public bool dontGlitch = false;
+
+    public GameObject bloodEffect;
 
     protected Rigidbody2D rb;
+    protected bool isDead = false;
 
     public virtual void GetPickedUp(Person picker)
     {
@@ -49,9 +53,32 @@ public class QQObject : MonoBehaviour
 
     }
 
+    public virtual void Hurt(int damage, Vector2 dir)
+    {
+        if (!health.isDead)
+        {
+            if (isBloody)
+            {
+                BloodSystem.instance.Spill((Vector2)transform.position, dir);
+            }
+
+            health.Damage(damage);
+        }
+    }
+
+    public virtual void Hurt(int damage)
+    {
+        if (!health.isDead)
+        {
+            health.Damage(damage);
+        }
+    }
+
     protected virtual void Start()
     {
         health = new HealthSystem();
+        health.OnDamage += OnDamage;
+        health.OnDie += OnDie;
     }
 
     protected virtual void Awake()
@@ -61,4 +88,28 @@ public class QQObject : MonoBehaviour
     }
 
     protected virtual void Update() { }
+
+    protected virtual void OnDamage()
+    {
+        if (isBloody)
+        {
+            Instantiate(bloodEffect, transform.position, Quaternion.identity);
+        }
+    }
+
+    protected virtual void OnDie()
+    {
+        Statics.instance.GlitchForS(0.1f);
+        Destroy(gameObject);
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        // layer 9 is bullet
+        if(collision.gameObject.layer == 9)
+        {
+            Bullet b = collision.gameObject.GetComponent<Bullet>();
+            Hurt(b.damage, (Vector2)transform.position - (Vector2)collision.transform.position);
+        }
+    }
 }

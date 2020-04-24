@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6793469649731297349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.82, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,11 +100,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
   isStatic: 0
+  hasHolder: 0
+  isBloody: 0
+  bloodEffect: {fileID: 0}
   bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
     type: 3}
-  bulletSpeed: 10
+  explosionFX: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
+    type: 3}
+  damage: 100
+  explosionChance: 0
+  bulletSpeed: 20
   testShoot: 0
-  destroyAfter: 20
+  destroyAfter: 5
 --- !u!96 &6793469649731297346
 TrailRenderer:
   serializedVersion: 2

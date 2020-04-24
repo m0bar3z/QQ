@@ -161,25 +161,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
   isStatic: 0
-  betweenBullets: 0.5
+  hasHolder: 0
+  isBloody: 0
+  bloodEffect: {fileID: 0}
+  betweenBullets: 0.3
   recoil: 1
-  reloadTime: 2
+  reloadTime: 1
   chunkSize: 1
   capacity: 8
   bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
     type: 3}
   gunHole: {fileID: 1242905122}
-  reloadSFX: {fileID: 8300000, guid: 06f0b9b830a7f4e489fa190630814be8, type: 3}
+  reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: c189e6f470a42eb43b31153af7746baa, type: 3}
-  - {fileID: 8300000, guid: 2b9ee60b40cb07c4da090e8e52362465, type: 3}
-  - {fileID: 8300000, guid: c70874880176bec4f9d6c5ab5d8e4572, type: 3}
-  - {fileID: 8300000, guid: ebd3d2172f56f324db4d12601ea08dae, type: 3}
-  - {fileID: 8300000, guid: 9f47320eac5afd64bbf90f2f5942c54a, type: 3}
-  - {fileID: 8300000, guid: 42fdc14156c58a246abce735172f87e4, type: 3}
-  - {fileID: 8300000, guid: 2933fdd6a0d8c0e448fa12792e9b877e, type: 3}
-  - {fileID: 8300000, guid: 95f0194963d250a4392e5981562788f6, type: 3}
-  - {fileID: 8300000, guid: 5aa6151633f15c746a9ff18d4fd01b28, type: 3}
+  - {fileID: 8300000, guid: 6c92a9e3a2e352e4191d70ea05f71c9e, type: 3}
   audioSource: {fileID: 1351972933}
 --- !u!50 &-1246512055783283428
 Rigidbody2D:
@@ -222,8 +217,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.01
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

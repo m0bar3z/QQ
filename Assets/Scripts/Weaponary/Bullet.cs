@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Bullet : QQObject
 {
-    public GameObject bulletEffect;
+    public GameObject bulletEffect, explosionFX;
+    public int damage = 100;
+    public float explosionChance = 0f;
 
     private static List<Bullet> bullets = new List<Bullet>();
     private static int bulletsLimit = 500;
@@ -13,21 +15,21 @@ public class Bullet : QQObject
     public float bulletSpeed = 10; // speed of the bullet
 
     public bool testShoot = false; // if on bullet flies on start
+    public bool destroyOnTouch = true;
     public float destroyAfter = 5; // the bullet get's destroyed after this amount of time
 
     private Vector3 dir; // dir in which the bullet is shot
 
-    public void Shoot(Vector3 dir)
+    public void Shoot(Vector3 dir, bool withRecoil = false)
     {
         this.dir = dir.normalized;
-        Fly();
+        Fly(withRecoil);
     }
 
     protected override void Start()
     {
         base.Start();
 
-        TestShoot();
         CheckBulletLimit();
         Destroy(gameObject, destroyAfter);
     }
@@ -45,34 +47,35 @@ public class Bullet : QQObject
 
     private void Destroy()
     {
-        Destroy(gameObject);
+        try
+        {
+            Destroy(gameObject);
+        }
+        catch { }
     }
 
-    private void Fly()
+    private void Fly(bool withRecoil)
     {
         transform.up = dir;
-        rb.velocity = dir * bulletSpeed;
+        Vector2 recoil_ = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)) * bulletSpeed / 5;
+        rb.velocity = dir * bulletSpeed + (Vector3)recoil_;
     }
 
-    private void TestShoot()
-    {
-        if (testShoot)
-        {
-            Shoot(transform.up);
-        }
-    }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
-
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer != 9)
         {
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            if (Random.Range(0, 0.99f) < explosionChance)
+            {
+                Instantiate(explosionFX, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            }
+
+            if(destroyOnTouch)
+                Destroy(gameObject);
         }
     }
 }

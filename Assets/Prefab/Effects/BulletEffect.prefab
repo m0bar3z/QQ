@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5492276225552902025}
   - component: {fileID: 8091415306776086688}
   - component: {fileID: 5939051582120775157}
+  - component: {fileID: -1477918568868041717}
   m_Layer: 0
   m_Name: BulletEffect
   m_TagString: Untagged
@@ -4776,8 +4777,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.01
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4866,10 +4867,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 8091415306776086688}
   clips:
-  - {fileID: 8300000, guid: 2249f57409a5d6a4696d5cbe86ff9586, type: 3}
-  - {fileID: 8300000, guid: 2fbd611d8a196d84994563b6aa998ff3, type: 3}
-  - {fileID: 8300000, guid: a2ceb20c9eb7fe442b44c14d2ab9141c, type: 3}
-  - {fileID: 8300000, guid: 2fcb856036eddfa408a8573ba9deb7f2, type: 3}
-  - {fileID: 8300000, guid: 0247f71cfcc932649bae5ceb1f7d635e, type: 3}
-  - {fileID: 8300000, guid: 83cb47a1c77594b4e82ccc2849a22c93, type: 3}
-  - {fileID: 8300000, guid: 902b7f7268b98e2469f272fda31305da, type: 3}
+  - {fileID: 8300000, guid: 21b8952df0b57ab45abc7abb06b42f99, type: 3}
+  - {fileID: 8300000, guid: cc4a0cd70208d6142abbdf268ad2d295, type: 3}
+--- !u!114 &-1477918568868041717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659987502379310701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232f42fee67e52948918661a89c7f7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyAfter: 0.5
