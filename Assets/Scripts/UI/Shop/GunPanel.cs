@@ -8,6 +8,7 @@ public class GunPanel : MonoBehaviour
     public Text txt;
     public Image img;
     public int index;
+    public ShopGood good;
 
     public void SetImage(Sprite sprite)
     {
@@ -21,6 +22,6 @@ public class GunPanel : MonoBehaviour
 
     public void Buy()
     {
-        Statics.instance.shop.Buy(index);
+        Statics.instance.shop.Buy(index, good.price);
     }
 }

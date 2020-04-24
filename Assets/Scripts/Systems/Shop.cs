@@ -20,7 +20,28 @@ public class Shop : MonoBehaviour
     private List<GunPanel> panels = new List<GunPanel>();
 
     private PlayerController controller;
-    private bool hasController;
+    private bool hasController; 
+    private CanvasScaler canvasScaler;
+
+    private Vector2 ScreenScale
+    {
+        get
+        {
+            if (canvasScaler == null)
+            {
+                canvasScaler = GetComponentInParent<CanvasScaler>();
+            }
+
+            if (canvasScaler)
+            {
+                return new Vector2(canvasScaler.referenceResolution.x / Screen.width, canvasScaler.referenceResolution.y / Screen.height);
+            }
+            else
+            {
+                return Vector2.one;
+            }
+        }
+    }
 
     public void AddCoins()
     {
@@ -28,11 +49,14 @@ public class Shop : MonoBehaviour
         SetCoins();
     }
 
-    public void Buy(int index)
+    public void Buy(int index, int price)
     {
         // TODO: do it with strategy pattern
-        if (hasController)
+        if (hasController && coins > price)
         {
+            coins -= price;
+            SetCoins();
+
             if (goods[index].isHandheld)
             {
                 if (controller.rightHandFull)
@@ -44,6 +68,8 @@ public class Shop : MonoBehaviour
 
                 controller.PickUp(obj);
             }
+
+            Close();
         }
     }
 
@@ -81,23 +107,27 @@ public class Shop : MonoBehaviour
 
     private void DrawShop()
     {
+        RectTransform rtOfFirstIndex = firstIndex.GetComponent<RectTransform>();
         int i = 0;
         foreach(ShopGood g in goods)
         {
             if(i == 0)
             {
                 firstIndex.SetImage(g.sprite);
-                firstIndex.SetTxt(g.name_ + " - " + g.price);
+                firstIndex.SetTxt(g.name_ + " - $" + g.price);
                 firstIndex.index = i;
+                firstIndex.good = g;
 
                 panels.Add(firstIndex);
             }
             else
             {
-                GunPanel p = Instantiate(itemPanel, firstIndex.transform.position + firstIndex.GetComponent<RectTransform>().rect.height / 2 * i * Vector3.down, Quaternion.identity, panelParent).GetComponent<GunPanel>();
+                GunPanel p = Instantiate(itemPanel, panelParent).GetComponent<GunPanel>();
+                p.GetComponent<RectTransform>().anchoredPosition = new Vector2(rtOfFirstIndex.anchoredPosition.x, rtOfFirstIndex.anchoredPosition.y + rtOfFirstIndex.sizeDelta.y * -i);
                 p.SetImage(g.sprite);
-                p.SetTxt(g.name_ + " - " + g.price);
+                p.SetTxt(g.name_ + " - $" + g.price);
                 p.index = i;
+                p.good = g;
 
                 panels.Add(p);
             }
