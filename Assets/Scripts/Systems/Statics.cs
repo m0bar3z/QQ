@@ -31,7 +31,7 @@ public class Statics : MonoBehaviour
 
     public int GetScore()
     {
-        return PlayerPrefsManager.GetMasterScore()
+        return PlayerPrefsManager.GetMasterScore();
     }
 
     public void GlitchForS(float duration)
