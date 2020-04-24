@@ -23,6 +23,17 @@ public class Statics : MonoBehaviour
     public event SystemTools.SimpleSystemCB OnGameOver;
     public int score;
 
+    /// 
+    public void SetScore()
+    {
+        PlayerPrefsManager.SetMasterScore(shop.coins);
+    }
+
+    public int GetScore()
+    {
+        return PlayerPrefsManager.GetMasterScore()
+    }
+
     public void GlitchForS(float duration)
     {
         if(!inGlitch)
