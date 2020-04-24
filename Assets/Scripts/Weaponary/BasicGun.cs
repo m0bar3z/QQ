@@ -5,6 +5,9 @@ using DG.Tweening;
 
 public class BasicGun : QQObject
 {
+    [Header("Gun vars")]
+    [Space(20)]
+
     [Range(0, 5)]
     public float betweenBullets = 0.2f;
     [Range(0.01f, 30f)]
@@ -20,13 +23,18 @@ public class BasicGun : QQObject
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
-    public bool dirRecoil = false, shake = false;
+    public bool dirRecoil = false, shake = false, halfVibration;
 
-    public float shakeStrength; public int shakeVibrato;
+    public float shakeStrength; 
+    public int shakeVibrato;
+    public int vibrationDuration = 100;
+
+    [Space(20)]
 
     private float time = 0;
     private bool waiting = false, reloading = false;
     private int mag = 0;
+    private bool vibrate = true;
 
     public override void Trigger(Vector3 dir)
     {
@@ -59,7 +67,24 @@ public class BasicGun : QQObject
         if (shake)
         {
             Camera.main.DOShakePosition(betweenBullets / 2, shakeStrength, shakeVibrato);
-            Camera.main.DOShakeRotation(betweenBullets / 2, shakeStrength, shakeVibrato);
+            Camera.main.DOShakeRotation(betweenBullets / 2, shakeStrength * 4, shakeVibrato);
+
+            if (halfVibration)
+            {
+                if (vibrate)
+                {
+                    vibrate = false;
+                    Vibration.Vibrate(vibrationDuration);
+                }
+                else
+                {
+                    vibrate = true;
+                }
+            }
+            else
+            {
+                Vibration.Vibrate(vibrationDuration);
+            }
         }
 
         PlayShootingSFX();

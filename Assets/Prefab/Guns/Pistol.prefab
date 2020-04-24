@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d2fd8a83352a2004ca0c9e0dd438aca2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4dff58d2cd5d954eaca7801850b02ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,9 +163,11 @@ MonoBehaviour:
   isStatic: 0
   hasHolder: 0
   isBloody: 0
+  dontGlitch: 0
   bloodEffect: {fileID: 0}
   betweenBullets: 0.3
   recoil: 1
+  explosionChanceOfBullets: 0.5
   reloadTime: 1
   chunkSize: 1
   capacity: 8
@@ -176,6 +178,12 @@ MonoBehaviour:
   shootingSFX:
   - {fileID: 8300000, guid: 6c92a9e3a2e352e4191d70ea05f71c9e, type: 3}
   audioSource: {fileID: 1351972933}
+  dirRecoil: 0
+  shake: 1
+  halfVibration: 0
+  shakeStrength: 0.2
+  shakeVibrato: 1
+  vibrationDuration: 100
 --- !u!50 &-1246512055783283428
 Rigidbody2D:
   serializedVersion: 4

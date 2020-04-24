@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : QQObject
 {
+    [Space(20)]
+    [Header("Bullet Vars")]
     public GameObject bulletEffect, explosionFX;
     public int damage = 100;
     public float explosionChance = 0f;

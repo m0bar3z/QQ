@@ -30,6 +30,11 @@ public class Person : QQObject
         }
     }
 
+    public virtual void PickUp(QQObject obj)
+    {
+        obj.GetPickedUp(this);
+    }
+
     public virtual void Throw()
     {
         rightHand.GetThrown(facingRight?Vector2.right:Vector2.left);

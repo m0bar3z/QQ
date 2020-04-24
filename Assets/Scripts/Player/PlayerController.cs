@@ -7,6 +7,11 @@ public class PlayerController : Person
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
     public static bool isAlive = true;
 
+    public void TouchInput()
+    {
+        RightHandTrigger();
+    }
+
     protected override void Start()
     {
         isAlive = true;
@@ -20,6 +25,14 @@ public class PlayerController : Person
         {
             base.Update();
             CheckInput();
+        }
+    }
+
+    protected virtual void CheckInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            RightHandTrigger();
         }
     }
 
@@ -39,14 +52,6 @@ public class PlayerController : Person
     protected void OnHeal()
     {
         Statics.instance.SetHealth(health.amount / 100);
-    }
-
-    private void CheckInput()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            RightHandTrigger();
-        }
     }
 
     private void RightHandTrigger()
