@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 900361911}
   - component: {fileID: 900361910}
   m_Layer: 5
-  m_Name: Back Button
+  m_Name: Save and Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

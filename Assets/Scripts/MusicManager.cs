@@ -6,28 +6,22 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     static MusicManager instance;
-    
-    public AudioClip[] musics;
+
     public AudioSource audioSource;
+    public AudioSource[] audioSourcesOnScene;
 
-    public void PlaySceneMusic(int index)
+    private void FindAuidoSourcesOnScene()
     {
-        audioSource.clip = musics[index];
-        audioSource.Play();
-    }
-
-    public void ChnageVolume(float vol)
-    {
-        audioSource.volume = vol;
+        audioSourcesOnScene = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource Asrc in audioSourcesOnScene)
+        {
+            Asrc.volume = audioSource.volume;
+        }
     }
 
     private void OnLevelWasLoaded(int level)
     {
-        if (level != 3)
-        {
-            PlaySceneMusic(level);
-        }
-
+        FindAuidoSourcesOnScene();
     }
     private void Awake()
     {

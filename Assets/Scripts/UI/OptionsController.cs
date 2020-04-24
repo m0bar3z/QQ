@@ -13,14 +13,13 @@ public class OptionsController : MonoBehaviour
     }
     void Start()
     {
-        print("getmastervolume:   " + PlayerPrefsManager.GetMasterVolume());
         volumeSlide.value = PlayerPrefsManager.GetMasterVolume();
-        musicManager = GameObject.FindObjectOfType<MusicManager>().GetComponent<MusicManager>();
+        musicManager = FindObjectOfType<MusicManager>().GetComponent<MusicManager>();
     }
 
     private void Update()
     {
-        musicManager.ChnageVolume(volumeSlide.value);
+        musicManager.audioSource.volume = volumeSlide.value;
     }
 
 
