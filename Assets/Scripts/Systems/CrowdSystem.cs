@@ -133,11 +133,13 @@ public class CrowdSystem : MonoBehaviour
             arrow = usefulArrow[0];
             usefulArrow.RemoveAt(0);
             arrow.working = true;
+            arrow.SetRendering(true);
         }
         else
         {
             arrow = Instantiate(arrowPref, transform).GetComponent<IndicatorArrow>();
             arrow.working = true;
+            arrow.SetRendering(true);
             usedArrow.Add(arrow);
         }
 

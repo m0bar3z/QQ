@@ -76,7 +76,6 @@ public class QQObject : MonoBehaviour
 
     protected virtual void Start()
     {
-        health = new HealthSystem();
         health.OnDamage += OnDamage;
         health.OnDie += OnDie;
     }
@@ -85,6 +84,8 @@ public class QQObject : MonoBehaviour
     {
         if(!isStatic)
             rb = GetComponent<Rigidbody2D>();
+
+        health = new HealthSystem();
     }
 
     protected virtual void Update() { }

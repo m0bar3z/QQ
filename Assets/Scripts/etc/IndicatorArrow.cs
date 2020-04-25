@@ -21,15 +21,6 @@ public class IndicatorArrow : MonoBehaviour
     {
         if (working)
         {
-            if (rendering)
-            {
-                FindCorners();
-                place = target.transform.position;
-                Vector2 dir = place - center;
-                transform.position = ClampVector2(place) - dir.normalized * margin;
-                transform.up = dir.normalized;
-            }
-
             if (!target.visible)
             {
                 if (!rendering)
@@ -44,6 +35,15 @@ public class IndicatorArrow : MonoBehaviour
                 {
                     SetRendering(false);
                 }
+            }
+
+            if (rendering)
+            {
+                FindCorners();
+                place = target.transform.position;
+                Vector2 dir = place - center;
+                transform.position = ClampVector2(place) - dir.normalized * margin;
+                transform.up = dir.normalized;
             }
         }
     }
