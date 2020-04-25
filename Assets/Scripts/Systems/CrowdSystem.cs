@@ -8,7 +8,7 @@ public class CrowdSystem : MonoBehaviour
 {
     public static int enemiesCount = 0;
 
-    public GameObject enemyPref;
+    public GameObject enemyPref, arrowPref;
     public Transform[] doors;
 
     public float lvlUpRate = 0.2f;
@@ -24,6 +24,9 @@ public class CrowdSystem : MonoBehaviour
     private PlayerController _pc;
 
     private float _time = 0;
+
+    private List<IndicatorArrow> usedArrow = new List<IndicatorArrow>();
+    private List<IndicatorArrow> usefulArrow = new List<IndicatorArrow>();
 
     public virtual void SpeedUp()
     {
@@ -55,6 +58,22 @@ public class CrowdSystem : MonoBehaviour
             _kills = 0;
             LevelUp();
         }
+    }
+
+    public virtual void GotKill(IndicatorArrow arrow)
+    {
+        enemiesCount--;
+        _kills++;
+        if (_kills > _killsTillNext)
+        {
+            _kills = 0;
+            LevelUp();
+        }
+
+        arrow.working = false;
+        arrow.SetRendering(false);
+        usedArrow.Remove(arrow);
+        usefulArrow.Add(arrow);
     }
 
     protected virtual void Start()
@@ -107,5 +126,22 @@ public class CrowdSystem : MonoBehaviour
         enemy.AssignCS(this);
         enemy.timeBetweensteps = _betweenSteps;
         enemiesCount++;
+
+        IndicatorArrow arrow;
+        if (usefulArrow.Count > 0)
+        {
+            arrow = usefulArrow[0];
+            usefulArrow.RemoveAt(0);
+            arrow.working = true;
+        }
+        else
+        {
+            arrow = Instantiate(arrowPref, transform).GetComponent<IndicatorArrow>();
+            arrow.working = true;
+            usedArrow.Add(arrow);
+        }
+
+        arrow.target = enemy;
+        enemy.indicator = arrow;
     }
 }

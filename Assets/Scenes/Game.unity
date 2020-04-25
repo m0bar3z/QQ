@@ -425,6 +425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPref: {fileID: 3297070023406046534, guid: ff055620280357e4485388ef58d2aa77,
     type: 3}
+  arrowPref: {fileID: 4012305482451964834, guid: d950193392c498f44ad68229d10f64a1,
+    type: 3}
   doors:
   - {fileID: 1473431292}
   - {fileID: 1394840999}

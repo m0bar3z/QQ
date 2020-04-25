@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Enemy : Person
 {
-    /*[Range(1, 10)]
-    public float sizeofEachStep;*/
-  
     [Range(0.25f, 5f)]
     public float timeBetweensteps;
     public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
     public int coinSpawnNumber;
     public GameObject coin;
+    public bool visible;
+
+    public IndicatorArrow indicator;
 
     [SerializeField] // for assigning by hand in tests
     private Transform _target; // this will be given to enemy by crowd system
@@ -59,8 +59,10 @@ public class Enemy : Person
 
     protected override void OnDie()
     {
-        if(gotCS)
-            crowdSystem.GotKill();
+        if (gotCS)
+        {
+            crowdSystem.GotKill(indicator);
+        }
 
         for(int i = 0; i < coinSpawnNumber; i++)
         {
@@ -114,5 +116,15 @@ public class Enemy : Person
     {
         targetDistance = (new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f))).normalized;
         ReceiveForce(targetDistance * moveForceMultiplier);
+    }
+
+    private void OnBecameVisible()
+    {
+        visible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        visible = false;
     }
 }
