@@ -52,7 +52,7 @@ public class Shop : MonoBehaviour
     public void Buy(int index, int price)
     {
         // TODO: do it with strategy pattern
-        if (hasController && coins > price)
+        if (hasController && coins >= price)
         {
             coins -= price;
             SetCoins();
