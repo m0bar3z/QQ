@@ -29,8 +29,8 @@ public class MusicManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        //FindAuidoSourcesOnScene();
-        music = GameObject.FindGameObjectWithTag("music");
+        FindAuidoSourcesOnScene();
+        //music = GameObject.FindGameObjectWithTag("music");
         SetMusicVolume();
     }
     private void Awake()
