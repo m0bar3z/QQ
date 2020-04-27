@@ -18,29 +18,33 @@ public class BloodSystem : MonoBehaviour
 
     public void Spill(Vector2 pos, Vector2 dir)
     {
-        dir = dir.normalized;
-        dir = new Vector2(Mathf.RoundToInt(dir.x), Mathf.RoundToInt(dir.y));
-
-        int x = Mathf.FloorToInt(pos.x * scale.x) + xTiles / 2;
-        int y = Mathf.FloorToInt(pos.y * scale.y) + yTiles / 2;
-
-        _bloods[ x  ,  y ].SetActive(true);
-
-        for(int i = 0; i < spillFactor; i++)
+        try
         {
-            x += (int)dir.x;
-            y += (int)dir.y;
+            dir = dir.normalized;
+            dir = new Vector2(Mathf.RoundToInt(dir.x), Mathf.RoundToInt(dir.y));
 
-            // TODO: change this to arithmatic stuff with one cond
-            if(x < 0 || x >= xTiles || y < 0 || y >= yTiles)
+            int x = Mathf.FloorToInt(pos.x * scale.x) + xTiles / 2;
+            int y = Mathf.FloorToInt(pos.y * scale.y) + yTiles / 2;
+
+            _bloods[x, y].SetActive(true);
+
+            for (int i = 0; i < spillFactor; i++)
             {
-                break;
-            }
-            else
-            {
-                _bloods[x, y].SetActive(true);
+                x += (int)dir.x;
+                y += (int)dir.y;
+
+                // TODO: change this to arithmatic stuff with one cond
+                if (x < 0 || x >= xTiles || y < 0 || y >= yTiles)
+                {
+                    break;
+                }
+                else
+                {
+                    _bloods[x, y].SetActive(true);
+                }
             }
         }
+        catch { }
     }
 
     public void Deactivate(int x, int y)
