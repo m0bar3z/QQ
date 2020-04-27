@@ -10,6 +10,7 @@ public class BloodSystem : MonoBehaviour
     public GameObject bloodPrefab;
     public Vector2 size;
     public int xTiles, yTiles, spillFactor = 2;
+    public bool drawGizmo;
 
     private Vector2[,] _bloodPoses;
     private Vector2 scale;
@@ -42,18 +43,27 @@ public class BloodSystem : MonoBehaviour
         }
     }
 
+    public void Deactivate(int x, int y)
+    {
+        _bloods[x, y].GetComponent<Burnable>().StopBurning();
+        _bloods[x, y].SetActive(false);
+    }
+
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, size);
-
-        Vector2 tileSize = new Vector2(size.x / xTiles, size.y / yTiles);
-
-        for (int i = 0; i < xTiles; i++)
+        if (drawGizmo)
         {
-            for (int j = 0; j < yTiles; j++)
+            Gizmos.DrawWireCube(transform.position, size);
+
+            Vector2 tileSize = new Vector2(size.x / xTiles, size.y / yTiles);
+
+            for (int i = 0; i < xTiles; i++)
             {
-                Vector2 pos = transform.position + new Vector3((i * tileSize.x) + (tileSize.x / 2) - (size.x / 2), (j * tileSize.y) + (tileSize.y / 2) - (size.y / 2), 0);
-                Gizmos.DrawWireCube(pos, tileSize);
+                for (int j = 0; j < yTiles; j++)
+                {
+                    Vector2 pos = transform.position + new Vector3((i * tileSize.x) + (tileSize.x / 2) - (size.x / 2), (j * tileSize.y) + (tileSize.y / 2) - (size.y / 2), 0);
+                    Gizmos.DrawWireCube(pos, tileSize);
+                }
             }
         }
     }
@@ -92,6 +102,7 @@ public class BloodSystem : MonoBehaviour
                 _bloodPoses[i, j] = pos;
                 GameObject bld = Instantiate(bloodPrefab, pos, Quaternion.identity, transform);
                 bld.transform.localScale = new Vector3(tileSize.x, tileSize.y, 1);
+                bld.GetComponent<BloodObject>().SetXY(i, j);
                 bld.SetActive(false);
                 _bloods[i, j] = bld;
             }

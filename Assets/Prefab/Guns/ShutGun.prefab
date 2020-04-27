@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 8193200535544986646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8265935, y: 0.8265935, z: 0.8265935}
+  m_LocalScale: {x: 1.3835509, y: 1.3835509, z: 1.3835509}
   m_Children:
   - {fileID: 414100878}
   m_Father: {fileID: 0}
@@ -161,21 +161,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderController: {fileID: 0}
   isStatic: 0
-  betweenBullets: 0.5
+  hasHolder: 0
+  isBloody: 0
+  dontGlitch: 0
+  bloodEffect: {fileID: 0}
+  betweenBullets: 0.4
   recoil: 1.5
-  reloadTime: 2
+  explosionChanceOfBullets: 0.3
+  reloadTime: 1
   chunkSize: 5
   capacity: 6
-  bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
+  bulletPref: {fileID: 6793469649731297349, guid: a3ccd4120eb1fc74f8135b67ef9622c3,
+    type: 3}
+  shellPref: {fileID: 888987847402964985, guid: d2603971028a6b94dae0be90a6074d74,
     type: 3}
   gunHole: {fileID: 1242905122}
-  reloadSFX: {fileID: 8300000, guid: 06f0b9b830a7f4e489fa190630814be8, type: 3}
+  reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: 03cb2b17eeec81446b4666ba08f96dac, type: 3}
-  - {fileID: 8300000, guid: f341cfd9ef42bec479dc71b94621b85b, type: 3}
-  - {fileID: 8300000, guid: 0c1cc8a14336dbe4b83cc6ccf26758b1, type: 3}
-  - {fileID: 8300000, guid: c2ae2a946b599944aa12d904b327db91, type: 3}
+  - {fileID: 8300000, guid: cd5c056e4840e124c860b87ed6b88cfc, type: 3}
   audioSource: {fileID: 1351972933}
+  dirRecoil: 1
+  shake: 1
+  halfVibration: 0
+  shakeStrength: 0.3
+  shakeVibrato: 10
+  vibrationDuration: 200
 --- !u!50 &-1246512055783283428
 Rigidbody2D:
   serializedVersion: 4
@@ -217,10 +227,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
