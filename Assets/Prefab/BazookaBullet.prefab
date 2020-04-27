@@ -112,6 +112,7 @@ MonoBehaviour:
   explosionChance: 0
   bulletSpeed: 5
   testShoot: 0
+  destroyOnTouch: 1
   destroyAfter: 5
 --- !u!96 &6793469649731297346
 TrailRenderer:
@@ -239,7 +240,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6793469649731297471
 BoxCollider2D:
   m_ObjectHideFlags: 0
