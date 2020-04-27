@@ -173,6 +173,8 @@ MonoBehaviour:
   capacity: 8
   bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
     type: 3}
+  shellPref: {fileID: 888987847402964985, guid: d2603971028a6b94dae0be90a6074d74,
+    type: 3}
   gunHole: {fileID: 1242905122}
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
