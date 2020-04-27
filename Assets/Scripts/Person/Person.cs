@@ -24,7 +24,9 @@ public class Person : QQObject
 
                 QQObject o = c.GetComponent<QQObject>();
                 if (o == null || o.hasHolder || o.isStatic) continue;
+
                 o.GetPickedUp(this);
+
                 break;
             }
         }
