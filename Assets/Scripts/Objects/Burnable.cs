@@ -34,7 +34,7 @@ public class Burnable : MonoBehaviour
         OnBurn?.Invoke();
 
         // for test purposes
-        GetComponent<SpriteRenderer>().color = Color.red;
+        //GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public virtual void StopBurning()

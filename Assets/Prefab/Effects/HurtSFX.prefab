@@ -96,5 +96,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr: {fileID: 2831657405071485273}
   peakFade: 0.3
-  duration: 0.05
-  rewindMultiplier: 4
+  duration: 0.1
+  rewindMultiplier: 1

@@ -13,6 +13,8 @@ public class Statics : MonoBehaviour
 
     public GameObject fireFX;
 
+    public AudioSource publicAS;
+
     public Slider healthSlider;
 
     public Shop shop;

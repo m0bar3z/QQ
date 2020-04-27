@@ -10,4 +10,6 @@ public class ShopGood : ScriptableObject
     public string name_;
     public int price;
     public Sprite sprite;
+
+    public virtual void Consume(PlayerController pc) { }
 }

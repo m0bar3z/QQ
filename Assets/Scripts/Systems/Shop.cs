@@ -52,7 +52,7 @@ public class Shop : MonoBehaviour
     public void Buy(int index, int price)
     {
         // TODO: do it with strategy pattern
-        if (hasController && coins > price)
+        if (hasController && coins >= price)
         {
             coins -= price;
             SetCoins();
@@ -67,6 +67,10 @@ public class Shop : MonoBehaviour
                 QQObject obj = Instantiate(goods[index].prefab).GetComponent<QQObject>();
 
                 controller.PickUp(obj);
+            }
+            else
+            {
+                goods[index].Consume(controller);
             }
 
             Close();
