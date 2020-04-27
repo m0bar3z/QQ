@@ -68,6 +68,10 @@ public class Shop : MonoBehaviour
 
                 controller.PickUp(obj);
             }
+            else
+            {
+                goods[index].Consume(controller);
+            }
 
             Close();
         }
