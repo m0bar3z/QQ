@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e64b35c9c8b174469e28a0c114d1f4e, type: 3}
+  m_Name: Water Bottle
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  isHandheld: 0
+  name_: Water Bottle
+  price: 20
+  sprite: {fileID: 21300000, guid: 7f3b6bf27242840409c3ed5d39f99d4b, type: 3}
+  purchaseSFX: {fileID: 8300000, guid: 15b2f44237f6e7642b73e47a823331b6, type: 3}
