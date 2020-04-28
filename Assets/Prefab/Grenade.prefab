@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6793469649731297345}
   - component: {fileID: 6793469649731297344}
-  - component: {fileID: 6793469649731297347}
   - component: {fileID: 6793469649731297346}
   - component: {fileID: 6793469649731297470}
   - component: {fileID: 6793469649731297471}
+  - component: {fileID: 9043042725246158603}
   m_Layer: 9
   m_Name: BazookaBullet
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: -2346302928887187388, guid: ba01570b7d537fa4ba1f7a16c6b2daaa,
     type: 3}
-  m_Color: {r: 0, g: 0.3585701, b: 1, a: 1}
+  m_Color: {r: 0.061434038, g: 0.6226415, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,34 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6793469649731297347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6793469649731297349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d006aefab4f4488488f9dfb12c028e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holderController: {fileID: 0}
-  isStatic: 0
-  hasHolder: 0
-  isBloody: 0
-  dontGlitch: 0
-  bloodEffect: {fileID: 0}
-  bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
-    type: 3}
-  explosionFX: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
-    type: 3}
-  damage: 200
-  explosionChance: 0
-  bulletSpeed: 5
-  testShoot: 0
-  destroyOnTouch: 1
-  destroyAfter: 5
 --- !u!96 &6793469649731297346
 TrailRenderer:
   serializedVersion: 2
@@ -122,7 +94,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6793469649731297349}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -233,7 +205,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -267,3 +239,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.125, y: 0.234375}
   m_EdgeRadius: 0
+--- !u!114 &9043042725246158603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6793469649731297349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90560f33171eeb4d84f0512cd60e51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holderController: {fileID: 0}
+  isStatic: 0
+  hasHolder: 0
+  isBloody: 0
+  dontGlitch: 0
+  playerHeld: 0
+  bloodEffect: {fileID: 0}
+  bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
+    type: 3}
+  explosionFX: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
+    type: 3}
+  damage: 200
+  explosionChance: 1
+  bulletSpeed: 20
+  testShoot: 0
+  destroyOnTouch: 1
+  destroyAfter: 5
+  blowUpAfter: 0.6
+  explosionRange: 1
+  betweenExplosions: 0.1
+  explosionChunck: 4
