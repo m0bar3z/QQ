@@ -21,6 +21,8 @@ public class Statics : MonoBehaviour
 
     public Shop shop;
 
+    public Image ReloadBar;
+
     private bool healthSliderSet = false, inGlitch = false;
 
     // Game Over Stuff

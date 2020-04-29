@@ -134,6 +134,16 @@ public class BasicGun : QQObject
 
     private void Reload()
     {
+        if (playerHeld)
+        {
+            try
+            {
+                Statics.instance.ReloadBar.fillAmount = 1;
+                Statics.instance.ReloadBar.DOFillAmount(0, reloadTime);
+            }
+            catch { }
+        }
+
         transform.DOPunchRotation(new Vector3(0, 0, 270), reloadTime, vibrato: 0).OnComplete(
             () =>
             {

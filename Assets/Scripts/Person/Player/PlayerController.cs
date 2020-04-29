@@ -12,6 +12,11 @@ public class PlayerController : Person
         RightHandTrigger();
     }
 
+    public override void PickUp(QQObject obj)
+    {
+        obj.GetPickedUp(this);
+    }
+
     protected override void Start()
     {
         isAlive = true;
