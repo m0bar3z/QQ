@@ -17,17 +17,19 @@ public class Statics : MonoBehaviour
 
     public Slider healthSlider;
 
+    public MessageSystem messageSystem;
+
     public BulletCounter bulletCounter;
 
     public Shop shop;
 
     public Image ReloadBar;
 
-    private bool healthSliderSet = false, inGlitch = false;
-
     // Game Over Stuff
     public event SystemTools.SimpleSystemCB OnGameOver;
     public int score;
+
+    private bool healthSliderSet = false, inGlitch = false;
 
     /// 
     public void SetScore()

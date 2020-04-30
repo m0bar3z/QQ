@@ -80,6 +80,8 @@ public class CrowdSystem : MonoBehaviour
     {
         enemiesCount = 0;
         AssignTarget();
+
+        Statics.instance.messageSystem.ShowMessage("Wave 1");
     }
 
     protected virtual void Update()
