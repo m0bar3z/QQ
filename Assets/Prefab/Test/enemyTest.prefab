@@ -139,7 +139,8 @@ MonoBehaviour:
   timeMultiplier: 1
   reach: 5
   coinSpawnNumber: 10
-  coinPref: {fileID: 0}
+  coinPref: {fileID: 2908427190590912309, guid: 3d62c6a47f402a2489de569289bbafbf,
+    type: 3}
   preSpawnPref: {fileID: 1295796832535611125, guid: d379920e2b0a51d41805229c012c8197,
     type: 3}
   visible: 0
