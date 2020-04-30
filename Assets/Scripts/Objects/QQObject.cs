@@ -5,7 +5,6 @@ using UnityEngine;
 public class QQObject : MonoBehaviour
 {
     [Header("QQObject vars")]
-    [Space(20)]
 
     public Person holderController;
     public HealthSystem health;

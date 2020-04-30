@@ -125,6 +125,7 @@ MonoBehaviour:
   hasHolder: 0
   isBloody: 1
   dontGlitch: 0
+  playerHeld: 0
   bloodEffect: {fileID: 6206904238022313651, guid: 11edf4b893fbd3840ba070351be1fc67,
     type: 3}
   rightHand: {fileID: 8193200535045595342}
@@ -138,7 +139,11 @@ MonoBehaviour:
   timeMultiplier: 1
   reach: 5
   coinSpawnNumber: 10
-  coin: {fileID: 2908427190590912309, guid: 3d62c6a47f402a2489de569289bbafbf, type: 3}
+  coinPref: {fileID: 0}
+  preSpawnPref: {fileID: 1295796832535611125, guid: d379920e2b0a51d41805229c012c8197,
+    type: 3}
+  visible: 0
+  indicator: {fileID: 0}
   _target: {fileID: 0}
   targetDistance: {x: 0, y: 0}
 --- !u!61 &7369432519603459303

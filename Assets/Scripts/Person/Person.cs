@@ -5,6 +5,9 @@ using UnityEngine;
 // Author : Mh
 public class Person : QQObject
 {
+    [Header("Person Vars")]
+    [Space(20)]
+
     public QQObject rightHand;
     public bool rightHandFull, facingRight = true;
     public float handsReach = 2;
