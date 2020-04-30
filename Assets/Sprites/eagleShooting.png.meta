@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: 85af33390ec03f940b2528c92ad7e22d
+guid: 9ba8bd91d80e39346a2bcf354749c925
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5341642915886989876
-    second: gunWalkr_0
+      213: -2319685867219738688
+    second: eagleShooting_0
   - first:
-      213: 226880535514317164
-    second: gunWalkr_1
+      213: 1003907714119318140
+    second: eagleShooting_1
   - first:
-      213: -3917099888949129656
-    second: gunWalkr_2
+      213: -1991621754627133138
+    second: eagleShooting_2
   - first:
-      213: -8946658297157345224
-    second: gunWalkr_3
+      213: 4306028118236150702
+    second: eagleShooting_3
+  - first:
+      213: 151702334952953222
+    second: eagleShooting_4
+  - first:
+      213: 1876655326234148339
+    second: eagleShooting_5
+  - first:
+      213: 7249640944938702072
+    second: eagleShooting_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -43,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -57,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,13 +120,139 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gunWalkr_0
+      name: eagleShooting_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 57.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf9fd57ef1decfd0800000000000000
+      internalID: -2319685867219738688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eagleShooting_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 96
+        width: 57.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a3b5f3fb89eed00800000000000000
+      internalID: 1003907714119318140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eagleShooting_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 57.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e217284f0965c54e0800000000000000
+      internalID: -1991621754627133138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eagleShooting_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 64
+        width: 57.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab3f4c52c512cb30800000000000000
+      internalID: 4306028118236150702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eagleShooting_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 57.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 685d77a4874fa1200800000000000000
+      internalID: 151702334952953222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eagleShooting_5
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 32
+        width: 57.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fdf70683183b0a10800000000000000
+      internalID: 1876655326234148339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eagleShooting_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 65
+        width: 57.5
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,71 +260,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4320d664ee3512a40800000000000000
-      internalID: 5341642915886989876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gunWalkr_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6108cd15aa062300800000000000000
-      internalID: 226880535514317164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gunWalkr_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84e0779976aa3a9c0800000000000000
-      internalID: -3917099888949129656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gunWalkr_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 830a22f1ea517d380800000000000000
-      internalID: -8946658297157345224
+      spriteID: 8f4d2387706eb9460800000000000000
+      internalID: 7249640944938702072
       vertices: []
       indices: 
       edges: []

@@ -19,6 +19,7 @@ public class BasicGun : QQObject
     public int chunkSize = 3;
     public int capacity = 7;
     public GameObject bulletPref;
+    public GameObject shellPref;
     public Transform gunHole;
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
@@ -86,6 +87,8 @@ public class BasicGun : QQObject
                 Vibration.Vibrate(vibrationDuration);
             }
         }
+
+        Instantiate(shellPref, transform.position, Quaternion.identity);
 
         PlayShootingSFX();
         holderController.ReceiveForce(-dir * recoil * 10); // recoil

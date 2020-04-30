@@ -4071,7 +4071,7 @@ GameObject:
   - component: {fileID: 400155764}
   m_Layer: 5
   m_Name: GameOverMenu
-  m_TagString: Untagged
+  m_TagString: restartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6042,8 +6042,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 400155764}
-        m_MethodName: Restart
+      - m_Target: {fileID: 7357210610895935170, guid: f122a9065357e4040b7a0c1a4a20eba5,
+          type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

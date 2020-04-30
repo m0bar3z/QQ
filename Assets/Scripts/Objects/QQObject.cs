@@ -107,7 +107,7 @@ public class QQObject : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         // layer 9 is bullet
-        if(collision.gameObject.layer == 9)
+        if(collision.gameObject.layer == 9 || collision.gameObject.layer == 15)
         {
             Bullet b = collision.gameObject.GetComponent<Bullet>();
             Hurt(b.damage, (Vector2)transform.position - (Vector2)collision.transform.position);

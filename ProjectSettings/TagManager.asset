@@ -6,6 +6,8 @@ TagManager:
   tags:
   - gun
   - coin
+  - startButton
+  - restartButton
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Collectible
   - Enemy
   - TouchBar
-  - 
+  - EnemyBullet
   - 
   - 
   - 
