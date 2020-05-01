@@ -4,37 +4,40 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class LoadingBar : MonoBehaviour
+public class SceneManage : MonoBehaviour
 {
-    static LoadingBar instance;
-
-    public int nextSceneIndex;
+    static SceneManage instance;
+    public GameObject loadingWindowPref;
+    public GameObject LWInstance;
+    public Canvas mainCanvas;
 
     [SerializeField]
     private Button startButton = null;
     [SerializeField]
     private Button restartButton = null;
 
-    public void StartLoading(string levelName)
+    public void LoadNext(int index)
     {
-        SceneManager.LoadScene("Loading");
-        StartCoroutine(LoadScene(levelName));
+        mainCanvas.gameObject.SetActive(false);
+        LWInstance = Instantiate(loadingWindowPref, transform.position, Quaternion.identity);
+        StartCoroutine(LoadScene(index));
     }
 
-    IEnumerator LoadScene(string levelName)
+    IEnumerator LoadScene(int index)
     {
         yield return null;
 
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(levelName);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index + 1);
         asyncOperation.allowSceneActivation = false;
 
         while (!asyncOperation.isDone)
         {
-            if(asyncOperation.progress >= 0.9f)
+            if (asyncOperation.progress >= 0.9f)
             {
                 asyncOperation.allowSceneActivation = true;
+                Destroy(LWInstance);
             }
-            yield return null; 
+            yield return null;
         }
     }
 
@@ -58,10 +61,11 @@ public class LoadingBar : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if(level == 2)
+        mainCanvas = FindObjectOfType<Canvas>();
+        if (level == 1)
         {
             startButton = GameObject.FindWithTag("startButton").GetComponent<Button>();
+            startButton.onClick.AddListener(() => { LoadScene(SceneManager.GetActiveScene().buildIndex); });
         }
 
         /*if(level == 3)
@@ -69,14 +73,12 @@ public class LoadingBar : MonoBehaviour
             restartButton = GameObject.FindWithTag("restartButton").GetComponent<Button>();
         }*/
 
-        if(startButton != null)
-        { 
-            startButton.onClick.AddListener(() => {StartLoading("Game"); });
-        }
+        /* if(restartButton != null)
+         {
+             restartButton.onClick.AddListener(() => { StartLoading(2); });
+         }
+     }*/
 
-        if(restartButton != null)
-        {
-            restartButton.onClick.AddListener(() => { StartLoading("Game"); });
-        }
     }
 }
+    

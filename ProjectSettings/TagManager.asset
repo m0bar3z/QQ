@@ -8,6 +8,7 @@ TagManager:
   - coin
   - startButton
   - restartButton
+  - quitButton
   layers:
   - Default
   - TransparentFX

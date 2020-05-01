@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 900361910}
   m_Layer: 5
   m_Name: Quit Button
-  m_TagString: Untagged
+  m_TagString: quitButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5952,7 +5952,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7357210610895935170, guid: f122a9065357e4040b7a0c1a4a20eba5,
+      - m_Target: {fileID: 2929585252054973414, guid: f122a9065357e4040b7a0c1a4a20eba5,
           type: 3}
         m_MethodName: 
         m_Mode: 5
