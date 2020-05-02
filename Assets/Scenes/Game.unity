@@ -536,7 +536,8 @@ MonoBehaviour:
   - {fileID: 320578144}
   - {fileID: 1173023544}
   lvlUpRate: 0.3
-  _chunckSize: 1
+  timeBetweenWaves: 5
+  _chunckSize: 2
   _betweenSpawns: 5
   _betweenSteps: 0.5
 --- !u!114 &241763508
@@ -8495,6 +8496,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 433948687}
     m_Modifications:
+    - target: {fileID: 651105010640025682, guid: 7d4ea92f1b7ba6d4989098703175388c,
+        type: 3}
+      propertyPath: showTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 651105010640025692, guid: 7d4ea92f1b7ba6d4989098703175388c,
         type: 3}
       propertyPath: m_Color.a

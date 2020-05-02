@@ -12,8 +12,11 @@ public class MessageSystem : MonoBehaviour
     public void ShowMessage(string mssg)
     {
         text.text = mssg;
-        text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
-
-        text.DOFade(0, showTime);
+        text.DOFade(1, showTime).OnComplete(
+            () =>
+            {
+                text.DOFade(0, showTime);
+            }    
+        );
     }
 }
