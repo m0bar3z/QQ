@@ -18,57 +18,45 @@ public class EnemyController : Person
 
     public Vector2[] GetSensorsData()
     {
-        //List<Vector2> hitPoints = new List<Vector2>();
+        List<Vector2> hitPoints = new List<Vector2>();
 
-        //// dont touch these!
-        //float fullangle = 360;
-        //float angle = 0;
+        // dont touch these!
+        float fullangle = 360;
+        float angle = 0;
 
-        //Color c = Color.white;
+        Color c = Color.white;
 
-        //int iterations = 36;
+        int iterations = 36;
 
-        //for (int i = 0; i < iterations; i++)
-        //{
-        //    c.g = angle / fullangle;
-        //    c.b = 1 - angle / fullangle;
+        for (int i = 0; i < iterations; i++)
+        {
+            c.g = angle / fullangle;
+            c.b = 1 - angle / fullangle;
 
-        //    Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector3.right;
+            Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector3.right;
 
-        //    RaycastHit2D[] hits;
-        //    hits = Physics2D.RaycastAll(transform.position, dir, 10);
+            RaycastHit2D[] hits;
+            hits = Physics2D.RaycastAll(transform.position, dir, 10);
 
-        //    RaycastHit2D hit = new RaycastHit2D();
-        //    bool hasPoint = false;
-        //    foreach(RaycastHit2D h in hits)
-        //    {
-        //        if (h.collider.gameObject == gameObject || h.collider.gameObject == rightHand.gameObject) continue;
+            RaycastHit2D hit = new RaycastHit2D();
+            bool hasPoint = false;
+            foreach (RaycastHit2D h in hits)
+            {
+                if (h.collider.gameObject == gameObject || h.collider.gameObject == rightHand.gameObject) continue;
 
-        //        hit = h;
-        //        hasPoint = true;
-        //        break;
-        //    }
+                hit = h;
+                hasPoint = true;
+                break;
+            }
 
-        //    Vector2 hitP = hasPoint ? hit.point : dir * 3 + (Vector2)transform.position;
-        //    hitPoints.Add(hitP);
-        //    Debug.DrawLine(transform.position, hitP, c);
+            Vector2 hitP = hasPoint ? hit.point : dir * 3 + (Vector2)transform.position;
+            hitPoints.Add(hitP);
+            Debug.DrawLine(transform.position, hitP, c);
 
-        //    angle += fullangle / iterations;
-        //}
+            angle += fullangle / iterations;
+        }
 
-        return null;
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        health.amount = 1000;
-    }
-
-    protected override void Update()
-    {
-
+        return hitPoints.ToArray();
     }
 
     protected override void OnDie()

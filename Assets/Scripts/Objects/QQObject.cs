@@ -9,7 +9,7 @@ public class QQObject : MonoBehaviour
     public Person holderController;
     public HealthSystem health;
     public bool isStatic, hasHolder, isBloody;
-    public bool dontGlitch = false, playerHeld = false;
+    public bool dontGlitch = false, playerHeld = false, reallyDie = true;
 
     public GameObject bloodEffect;
 
@@ -109,8 +109,11 @@ public class QQObject : MonoBehaviour
 
     protected virtual void OnDie()
     {
-        Statics.instance.GlitchForS(0.1f);
-        Destroy(gameObject);
+        if (reallyDie)
+        {
+            Statics.instance.GlitchForS(0.1f);
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)

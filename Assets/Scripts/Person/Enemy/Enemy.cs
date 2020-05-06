@@ -12,7 +12,7 @@ public class Enemy : Person
     public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
     public int coinSpawnNumber;
     public GameObject coinPref, preSpawnPref;
-    public bool visible;
+    public bool visible, doPrespawn = true;
 
     public IndicatorArrow indicator;
 
@@ -40,8 +40,12 @@ public class Enemy : Person
     protected override void Start()
     {
         base.Start();
-        Instantiate(preSpawnPref, transform.position, Quaternion.identity).GetComponent<PreSpawn>().AddGOActivation(gameObject);
-        gameObject.SetActive(false);
+
+        if (doPrespawn)
+        {
+            Instantiate(preSpawnPref, transform.position, Quaternion.identity).GetComponent<PreSpawn>().AddGOActivation(gameObject);
+            gameObject.SetActive(false);
+        }
     }
 
     protected override void Update()
