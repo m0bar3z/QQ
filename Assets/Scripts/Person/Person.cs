@@ -87,8 +87,11 @@ public class Person : QQObject
 
     protected override void OnDie()
     {
-        _burnable.StopBurning();
-        base.OnDie();
+        if (reallyDie)
+        {
+            _burnable.StopBurning();
+            base.OnDie();
+        }
     }
 
     protected virtual void OnBurn()

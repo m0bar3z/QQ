@@ -7,6 +7,11 @@ public class Agent : MonoBehaviour
     public int input, output, hL, hN;
     public bool repeating = true;
 
+    public float fixedDeltaTime = 0.05f;
+
+    private float _time = 0;
+    private bool resting = false;
+
     private NN network;
     private bool processing;
 
@@ -17,9 +22,15 @@ public class Agent : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!processing)
+        if (!resting)
         {
-            ProcessInput();
+            _time += Time.deltaTime;
+            if(_time > fixedDeltaTime && !processing)
+            {
+                _time = 0;
+                resting = true;
+                ProcessInput();
+            }
         }
     }
 
@@ -54,7 +65,6 @@ public class Agent : MonoBehaviour
     {
         network = new NN(input, output, hL, hN, OnReceivedOutput);
         network.Initialize();
-        network.Randomize();        
     }
 
     private void ProcessInput()
@@ -62,12 +72,12 @@ public class Agent : MonoBehaviour
         processing = true;
         float[] inputs = new float[input];
         SetInputs(inputs);
+        print("input");
         network.SetInput(inputs);
     }
 
     private void OnReceivedOutput(float[] outputs)
     {
-        print(outputs[0] + "," + outputs[1]);
         OnActions(outputs);
         processing = false;
     }

@@ -68,18 +68,21 @@ public class Enemy : Person
 
     protected override void OnDie()
     {
-        if (gotCS)
+        if (reallyDie)
         {
-            crowdSystem.GotKill(indicator);
-        }
+            if (gotCS)
+            {
+                crowdSystem.GotKill(indicator);
+            }
 
-        for(int i = 0; i < coinSpawnNumber; i++)
-        {
-            GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
-            c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
-        }
+            for (int i = 0; i < coinSpawnNumber; i++)
+            {
+                GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
+                c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+            }
 
-        base.OnDie();
+            base.OnDie();
+        }
     }
 
     protected override void OnBurn()

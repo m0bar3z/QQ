@@ -52,13 +52,18 @@ public class EnemyAgents : Agent
     // if you changed these settings after you trained the model - delete your model
     protected override void OnActions(float[] actions)
     {
-        controller.rightHand.Trigger(
-            new Vector3(
+        Vector3 dir = new Vector3(
                 Mathf.Clamp((actions[0] - 0.5f) * 3, -1, 1),
-                Mathf.Clamp((actions[1] - 0.5f) * 3, -1, 1), 
+                Mathf.Clamp((actions[1] - 0.5f) * 3, -1, 1),
                 0
-            ).normalized
-        );
+            ).normalized;
+
+        if(dir.x == 0 && dir.y == 0)
+        {
+            return;
+        }
+
+        controller.rightHand.Trigger(dir);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

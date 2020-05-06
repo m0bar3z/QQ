@@ -59,6 +59,8 @@ public class NN
             AllZero();
             SetInput(testInput);
         }
+
+        PrintTheWeights();
     }
 
     public void SetInput(float[] inputs)
