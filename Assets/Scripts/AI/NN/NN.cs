@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MathNet.Numerics.LinearAlgebra;
 using System;
+using MathNet.Numerics.LinearAlgebra;
 
 public class NN
 {
@@ -59,8 +59,6 @@ public class NN
             AllZero();
             SetInput(testInput);
         }
-
-        PrintTheWeights();
     }
 
     public void SetInput(float[] inputs)

@@ -18,6 +18,7 @@ public class Agent : MonoBehaviour
     protected virtual void Start()
     {
         InitializeNN();
+        OnEpisodeBegin();
     }
 
     protected virtual void Update()
@@ -25,10 +26,17 @@ public class Agent : MonoBehaviour
         if (!resting)
         {
             _time += Time.deltaTime;
-            if(_time > fixedDeltaTime && !processing)
+            if(_time > fixedDeltaTime)
             {
-                _time = 0;
                 resting = true;
+                _time = 0;
+            }
+        }
+        else
+        {
+            if (!processing)
+            {
+                resting = false;
                 ProcessInput();
             }
         }
@@ -72,7 +80,6 @@ public class Agent : MonoBehaviour
         processing = true;
         float[] inputs = new float[input];
         SetInputs(inputs);
-        print("input");
         network.SetInput(inputs);
     }
 

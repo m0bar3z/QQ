@@ -44,8 +44,8 @@ public class EnemyAgents : Agent
             inputs[i++] = v.magnitude;
         }
 
-        inputs[0] = diff.x;
-        inputs[1] = diff.y;
+        inputs[0] = diff.normalized.x;
+        inputs[1] = diff.normalized.y;
         inputs[2] = diff.magnitude;
     }
 
