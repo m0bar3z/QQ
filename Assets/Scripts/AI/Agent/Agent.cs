@@ -73,6 +73,7 @@ public class Agent : MonoBehaviour
     {
         network = new NN(input, output, hL, hN, OnReceivedOutput);
         network.Initialize();
+        network.Randomize();
     }
 
     private void ProcessInput()

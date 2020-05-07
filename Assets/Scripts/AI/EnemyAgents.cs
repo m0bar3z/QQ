@@ -41,12 +41,12 @@ public class EnemyAgents : Agent
         int i = 0;
         foreach(Vector2 v in controller.GetSensorsData())
         {
-            inputs[i++] = v.magnitude;
+            inputs[i++] = (v - (Vector2)transform.position).magnitude;
         }
 
-        inputs[0] = diff.normalized.x;
-        inputs[1] = diff.normalized.y;
-        inputs[2] = diff.magnitude;
+        inputs[i++] = diff.normalized.x;
+        inputs[i++] = diff.normalized.y;
+        inputs[i++] = diff.magnitude;
     }
 
     // if you changed these settings after you trained the model - delete your model

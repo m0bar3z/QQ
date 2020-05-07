@@ -49,7 +49,7 @@ public class EnemyController : Person
                 break;
             }
 
-            Vector2 hitP = hasPoint ? hit.point : dir * 3 + (Vector2)transform.position;
+            Vector2 hitP = hasPoint ? hit.point : dir * 10 + (Vector2)transform.position;
             hitPoints.Add(hitP);
             Debug.DrawLine(transform.position, hitP, c);
 

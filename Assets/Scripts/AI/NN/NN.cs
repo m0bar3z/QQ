@@ -9,8 +9,8 @@ public class NN
     // Statics
     public static float Sigmoid(float value)
     {
-        float k = (float)Math.Exp(value);
-        return k / (1.0f + k);
+        float ee = (float)Math.Exp(-value);
+        return 1.0f / (1.0f + ee);
     }
 
     public static NN MakeChild(NN dad, NN mom)
@@ -86,12 +86,18 @@ public class NN
 
     public void Randomize()
     {
-        for (int i = 0; i < weights.Count - 1; i++)
+        for (int i = 0; i < weights.Count; i++)
         {
-            weights[i] = Matrix<float>.Build.Random(hiddenNodes, i == 0 ? input : hiddenNodes);
+            for (int j = 0; j < weights[i].RowCount; j++)
+            {
+                for(int k = 0; k < weights[i].ColumnCount; k++)
+                {
+                    weights[i][j, k] = UnityEngine.Random.Range(-2f, 2f);
+                }
+            }
         }
-        weights[weights.Count - 1] = Matrix<float>.Build.Random(output, hiddenNodes);
 
+        // randomize biases
         for (int i = 0; i < b.Count - 1; i++)
         {
             b[i] = (Matrix<float>.Build.Random(hiddenNodes, 1));
