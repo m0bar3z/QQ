@@ -12,10 +12,10 @@ public class Agent : MonoBehaviour
     public event SystemTools.SimpleSystemCB OnEpisodeBegan;
     public event SystemTools.SimpleSystemCB OnEpisodeEnded;
 
+    public NN network;
+
     private float _time = 0;
     private bool resting = false;
-
-    private NN network;
     private bool processing, active;
 
     public void InitializeNN()
@@ -30,12 +30,28 @@ public class Agent : MonoBehaviour
         network.Randomize();
     }
 
+    public float GetFitness()
+    {
+        return network.fitness;
+    }
+
+    public void Activate()
+    {
+        active = true;
+    }
+
+    public void StartEpisode()
+    {
+        OnEpisodeBegin();
+    }
+
     protected virtual void Start()
     {
         //InitializeNN();
         //OnEpisodeBegin();
     }
 
+    // TODO: optimize this shit!
     protected virtual void Update()
     {
         if (active)
@@ -76,6 +92,11 @@ public class Agent : MonoBehaviour
 
     }
 
+    protected virtual void BeforeEndingEpisode()
+    {
+
+    }
+
     protected void SetReward(float reward)
     {
         network.fitness += reward;
@@ -83,11 +104,16 @@ public class Agent : MonoBehaviour
 
     protected void EndEpisode()
     {
-        OnEpisodeEnded?.Invoke();
+        BeforeEndingEpisode();
         if (repeating)
         {
             OnEpisodeBegin();
         }
+        else
+        {
+            active = false;
+        }
+        OnEpisodeEnded?.Invoke();
     }
 
     private void ProcessInput()

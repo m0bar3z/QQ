@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MathNet.Numerics.LinearAlgebra;
+using UnityEngine.Windows;
 
 public class NN
 {
@@ -15,8 +16,41 @@ public class NN
 
     public static NN MakeChild(NN dad, NN mom)
     {
+        if(dad.input != mom.input || dad.output != mom.output || dad.hiddenLayers != mom.hiddenLayers || dad.hiddenNodes != mom.hiddenNodes)
+        {
+            Debug.LogError("You are trying to make a child from the marriage of a donkey to a an angle, they cant make a child :|");
+            return null;
+        }
 
-        return null;
+        for(int k = 0; k < dad.weights.Count; k++)
+        {
+            Matrix<float> w1 = dad.weights[k];
+            for(int i = 0; i < w1.RowCount; i++)
+            {
+                for(int j = 0; j < w1.ColumnCount; j++)
+                {
+                    float rnd = UnityEngine.Random.Range(0f, 1f);
+                    if(rnd < 0.6f)
+                    {
+                        rnd = UnityEngine.Random.Range(0f, 1f);
+                        if(rnd > 0.5f)
+                        {
+                            w1[i, j] = mom.weights[k][i, j];
+                        }
+                    }
+                    else if(rnd < 0.97f)
+                    {
+                        w1[i, j] = (mom.weights[k][i, j] + dad.weights[k][i, j]) / 2f;
+                    }
+                    else
+                    {
+                        w1[i, j] = UnityEngine.Random.Range(-2f, 2f);
+                    }
+                }
+            }
+        }
+
+        return dad;
     }
 
     public delegate void NNCB(float[] outputs);
@@ -59,6 +93,35 @@ public class NN
             AllZero();
             SetInput(testInput);
         }
+    }
+
+    public void SaveNN()
+    {
+        List<string> lines = new List<string>();
+
+        for(int i = 0; i < weights.Count; i++)
+        {
+            for(int j = 0; j < weights[i].RowCount; j++)
+            {
+                for(int k = 0; k < weights[i].ColumnCount; k++)
+                {
+                    lines.Add(weights[i][j, k] + "");
+                }
+            }
+        }
+
+        lines.Add(",");
+
+        for (int i = 0; i < b.Count; i++)
+        {
+            for(int j = 0; j < b[i].RowCount; j++)
+            {
+                lines.Add(b[i][j, 0] + "");
+            }
+        }
+
+        string path = System.IO.Directory.GetCurrentDirectory();
+        System.IO.File.WriteAllLines(System.IO.Directory.GetCurrentDirectory() + @"\brain.txt", lines);
     }
 
     public void SetInput(float[] inputs)

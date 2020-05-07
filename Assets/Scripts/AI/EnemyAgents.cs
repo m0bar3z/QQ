@@ -11,6 +11,9 @@ public class EnemyAgents : Agent
     public Person enemy;
 
     public Transform[] doors;
+    public float timeout = 30f;
+
+    private int wallCollisions = 0;
 
     protected override void Start()
     {
@@ -20,6 +23,18 @@ public class EnemyAgents : Agent
         controller.health.OnDie += OnDied;
 
         enemy.health.OnDie += OnKilled;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if(wallCollisions > 0)
+        {
+            SetReward(-Time.deltaTime);
+        }
+
+        SetReward(-Time.deltaTime);
     }
 
     protected override void OnEpisodeBegin()
@@ -39,6 +54,8 @@ public class EnemyAgents : Agent
 
         enemy.health.amount = 100;
         enemy.health.isDead = false;
+
+        Invoke(nameof(Timeout), timeout);
     }
 
     protected override void SetInputs(float[] inputs)
@@ -70,30 +87,51 @@ public class EnemyAgents : Agent
             return;
         }
 
+        controller.CheckFacingAgent(dir);
         controller.rightHand.Trigger(dir);
+    }
+
+    protected override void BeforeEndingEpisode()
+    {
+        CancelInvoke(nameof(Timeout));
+    }
+
+    private void Timeout()
+    {
+        SetReward(-2);
+        EndEpisode();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Wall")
         {
-            SetReward(-1);
-            EndEpisode();
+            wallCollisions++;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            wallCollisions--;
         }
     }
 
     private void OnDamaged()
     {
-
+        SetReward(-0.5f);
     }
 
     private void OnDied()
     {
-
+        SetReward(-2);
+        EndEpisode();
     }
 
     private void OnKilled()
     {
-
+        SetReward(10);
+        EndEpisode();
     }
 }

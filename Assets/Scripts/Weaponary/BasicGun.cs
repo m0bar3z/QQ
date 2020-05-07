@@ -24,7 +24,7 @@ public class BasicGun : QQObject
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
-    public bool dirRecoil = false, shake = false, halfVibration;
+    public bool dirRecoil = false, shake = false, halfVibration, hasShells = true;
 
     public float shakeStrength; 
     public int shakeVibrato;
@@ -88,7 +88,8 @@ public class BasicGun : QQObject
             }
         }
 
-        Instantiate(shellPref, transform.position, Quaternion.identity);
+        if(hasShells)
+            Instantiate(shellPref, transform.position, Quaternion.identity);
 
         if (playerHeld)
             SetCount();

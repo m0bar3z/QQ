@@ -5,25 +5,40 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public float fitness;
+    public bool trainingDone, inTraining;
 
-    private Agent _agent;
+    public Agent agent;
 
-    public void InitializeUnit()
+    private Trainer _trainer;
+
+    public void InitializeUnit(Trainer t)
     {
-        _agent.OnEpisodeBegan += OnTrainStart;
-        _agent.OnEpisodeEnded += OnTrainEnd;
+        agent.OnEpisodeBegan += OnTrainStart;
+        agent.OnEpisodeEnded += OnTrainEnd;
 
-        _agent.InitializeNN();
-        _agent.RandomizeNN();
+        _trainer = t;
+
+        agent.InitializeNN();
+        agent.RandomizeNN();
+    }
+
+    public void StartUnit()
+    {
+        agent.StartEpisode();
+        agent.Activate();
     }
 
     private void OnTrainStart()
     {
-
+        trainingDone = false;
+        inTraining = true;
     }
 
     private void OnTrainEnd()
     {
-
+        fitness = agent.GetFitness();
+        inTraining = false;
+        trainingDone = true;
+        _trainer.TrainingDone();
     }
 }
