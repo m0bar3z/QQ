@@ -9,35 +9,53 @@ public class Agent : MonoBehaviour
 
     public float fixedDeltaTime = 0.05f;
 
+    public event SystemTools.SimpleSystemCB OnEpisodeBegan;
+    public event SystemTools.SimpleSystemCB OnEpisodeEnded;
+
     private float _time = 0;
     private bool resting = false;
 
     private NN network;
-    private bool processing;
+    private bool processing, active;
+
+    public void InitializeNN()
+    {
+        network = new NN(input, output, hL, hN, OnReceivedOutput);
+        network.Initialize();
+        //network.Randomize();
+    }
+
+    public void RandomizeNN()
+    {
+        network.Randomize();
+    }
 
     protected virtual void Start()
     {
-        InitializeNN();
-        OnEpisodeBegin();
+        //InitializeNN();
+        //OnEpisodeBegin();
     }
 
     protected virtual void Update()
     {
-        if (!resting)
+        if (active)
         {
-            _time += Time.deltaTime;
-            if(_time > fixedDeltaTime)
+            if (!resting)
             {
-                resting = true;
-                _time = 0;
+                _time += Time.deltaTime;
+                if (_time > fixedDeltaTime)
+                {
+                    resting = true;
+                    _time = 0;
+                }
             }
-        }
-        else
-        {
-            if (!processing)
+            else
             {
-                resting = false;
-                ProcessInput();
+                if (!processing)
+                {
+                    resting = false;
+                    ProcessInput();
+                }
             }
         }
     }
@@ -45,7 +63,7 @@ public class Agent : MonoBehaviour
     // implemented by agent
     protected virtual void OnEpisodeBegin()
     {
-
+        OnEpisodeBegan?.Invoke();
     }
 
     protected virtual void SetInputs(float[] inputs)
@@ -65,15 +83,11 @@ public class Agent : MonoBehaviour
 
     protected void EndEpisode()
     {
+        OnEpisodeEnded?.Invoke();
         if (repeating)
+        {
             OnEpisodeBegin();
-    }
-
-    private void InitializeNN()
-    {
-        network = new NN(input, output, hL, hN, OnReceivedOutput);
-        network.Initialize();
-        network.Randomize();
+        }
     }
 
     private void ProcessInput()

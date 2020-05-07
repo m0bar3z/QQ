@@ -24,6 +24,13 @@ public class EnemyAgents : Agent
 
     protected override void OnEpisodeBegin()
     {
+        base.OnEpisodeBegin();
+
+        foreach(Bullet b in FindObjectsOfType<Bullet>())
+        {
+            Destroy(b.gameObject);
+        }
+
         controller.transform.position = doors[Random.Range(0, doors.Length)].transform.position;
         enemy.transform.position = doors[Random.Range(0, doors.Length)].transform.position;
 
