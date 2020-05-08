@@ -10,6 +10,7 @@ public class Trainer : MonoBehaviour
     public int inTrainingCount = 0, unitsCount, gen;
 
     public List<float> bestFitnesses = new List<float>();
+    public List<NN> bestNNs = new List<NN>();
 
     private void Start()
     {
@@ -28,7 +29,6 @@ public class Trainer : MonoBehaviour
         {
             u.InitializeUnit(this);
         }
-        print("units initialized");
     }
 
     public void StartTraining()
@@ -40,7 +40,6 @@ public class Trainer : MonoBehaviour
             inTrainingCount++;
             u.StartUnit();
         }
-        print("units started");
     }
 
     public void TrainingDone()
@@ -51,7 +50,6 @@ public class Trainer : MonoBehaviour
             inTrainingCount = 0;
 
             // marriage season begins
-            print("training done! new gen in progress");
             MakeNewGeneration();
         }
     }
@@ -81,41 +79,73 @@ public class Trainer : MonoBehaviour
         // sort by fitness
         SortUnits();
 
-        float[] fitnesses = new float[testUnits.Count];
+        float[] fitnesses = new float[testUnits.Count + bestNNs.Count];
         int i = 0;
         foreach(Unit u in testUnits)
         {
             fitnesses[i++] = u.fitness;
         }
+        if (bestNNs.Count > 1)
+        {
+            fitnesses[i++] = bestNNs[0].fitness;
+            fitnesses[i++] = bestNNs[1].fitness;
+        }
 
-        bestFitnesses.Add(fitnesses[0]);
+        if (bestFitnesses.Count > 0)
+        {
+            if (fitnesses[0] > bestFitnesses[bestFitnesses.Count - 1])
+            {
+                bestFitnesses.Add(fitnesses[0]);
+                bestNNs.Add(testUnits[0].agent.network);
+                testUnits[0].agent.network.SaveNN();
+            }
+        }
+        else
+        {
+            bestFitnesses.Add(fitnesses[0]);
+            bestNNs.Add(testUnits[0].agent.network);
+            bestNNs.Add(testUnits[1].agent.network);
+            testUnits[0].agent.network.SaveNN();
+        }
+
         List<NN> newGen = new List<NN>();
-
-        print("sorted");
-
-        // save the best of last generation
-        testUnits[0].agent.network.SaveNN();
-
         // make a new generation
-        for(int j = 0; j < testUnits.Count; j++)
+        for(int j = 0; j < testUnits.Count - 1; j++)
         {
             int i1 = WeightedRandomizer.WeightsArray(fitnesses);
             fitnesses[i1] = -1000;
 
             int i2 = WeightedRandomizer.WeightsArray(fitnesses);
-            while(i2 == i1) i2 = WeightedRandomizer.WeightsArray(fitnesses);
+            if(i2 == i1) i2 = WeightedRandomizer.WeightsArray(fitnesses);
 
-            newGen.Add(NN.MakeChild(testUnits[i1].agent.network, testUnits[i2].agent.network));
+            NN dad, mom;
+            if(i1 < testUnits.Count)
+            {
+                dad = testUnits[i1].agent.network;
+            }
+            else
+            {
+                dad = bestNNs[i1 - testUnits.Count];
+            }
+
+            if (i2 < testUnits.Count)
+            {
+                mom = testUnits[i2].agent.network;
+            }
+            else
+            {
+                mom = bestNNs[i2 - testUnits.Count];
+            }
+
+            newGen.Add(NN.MakeChild(dad, mom));
         }
 
-        print("made children");
-
-        for (int j = 0; j < testUnits.Count; j++)
+        for (int j = 0; j < testUnits.Count - 1; j++)
         {
             testUnits[j].agent.network = newGen[j];
         }
 
-        print("assigned children");
+        testUnits[testUnits.Count - 1].agent.network.Randomize();
         // Start training again
         StartTraining();
     }

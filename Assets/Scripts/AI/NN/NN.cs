@@ -30,17 +30,13 @@ public class NN
                 for(int j = 0; j < w1.ColumnCount; j++)
                 {
                     float rnd = UnityEngine.Random.Range(0f, 1f);
-                    if(rnd < 0.6f)
+                    if(rnd < 0.95f)
                     {
                         rnd = UnityEngine.Random.Range(0f, 1f);
                         if(rnd > 0.5f)
                         {
                             w1[i, j] = mom.weights[k][i, j];
                         }
-                    }
-                    else if(rnd < 0.97f)
-                    {
-                        w1[i, j] = (mom.weights[k][i, j] + dad.weights[k][i, j]) / 2f;
                     }
                     else
                     {

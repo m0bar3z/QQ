@@ -87,7 +87,7 @@ public class EnemyAgents : Agent
             return;
         }
 
-        controller.CheckFacingAgent(dir);
+        controller.CheckFacingAgent(transform.position + dir);
         controller.rightHand.Trigger(dir);
     }
 

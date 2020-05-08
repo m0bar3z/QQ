@@ -16,6 +16,8 @@ public class Agent : MonoBehaviour
 
     private float _time = 0;
     private bool resting = false;
+
+    [SerializeField]
     private bool processing, active;
 
     public void InitializeNN()
@@ -38,10 +40,12 @@ public class Agent : MonoBehaviour
     public void Activate()
     {
         active = true;
+        processing = false;
     }
 
     public void StartEpisode()
     {
+        network.fitness = 0;
         OnEpisodeBegin();
     }
 
@@ -67,11 +71,11 @@ public class Agent : MonoBehaviour
             }
             else
             {
-                if (!processing)
-                {
+                //if (!processing)
+                //{
                     resting = false;
                     ProcessInput();
-                }
+                //}
             }
         }
     }
@@ -99,7 +103,8 @@ public class Agent : MonoBehaviour
 
     protected void SetReward(float reward)
     {
-        network.fitness += reward;
+        if(active)
+            network.fitness += reward;
     }
 
     protected void EndEpisode()

@@ -24,8 +24,8 @@ public class Unit : MonoBehaviour
 
     public void StartUnit()
     {
-        agent.StartEpisode();
         agent.Activate();
+        agent.StartEpisode();
     }
 
     private void OnTrainStart()
