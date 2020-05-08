@@ -85,6 +85,7 @@ public class CrowdSystem : MonoBehaviour
     protected virtual void Start()
     {
         enemiesCount = 0;
+        waveNumber = 0;
         AssignTarget();
 
         Invoke(nameof(Spawn), 2);
