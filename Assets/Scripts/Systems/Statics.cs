@@ -17,13 +17,30 @@ public class Statics : MonoBehaviour
 
     public Slider healthSlider;
 
+    public MessageSystem messageSystem;
+
+    public BulletCounter bulletCounter;
+
     public Shop shop;
 
-    private bool healthSliderSet = false, inGlitch = false;
+    public Image ReloadBar;
 
     // Game Over Stuff
     public event SystemTools.SimpleSystemCB OnGameOver;
     public int score;
+
+    private bool healthSliderSet = false, inGlitch = false;
+
+    /// 
+    public void SetScore()
+    {
+        PlayerPrefsManager.SetMasterScore(shop.coins);
+    }
+
+    public int GetScore()
+    {
+        return PlayerPrefsManager.GetMasterScore();
+    }
 
     public void GlitchForS(float duration)
     {

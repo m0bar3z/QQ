@@ -7,21 +7,31 @@ public class MusicManager : MonoBehaviour
 {
     static MusicManager instance;
 
+    public GameObject music;
     public AudioSource audioSource;
     public AudioSource[] audioSourcesOnScene;
 
+    public void SetMusicVolume()
+    {
+        music.GetComponent<AudioSource>().volume = PlayerPrefsManager.GetMasterVolume();
+    }
     private void FindAuidoSourcesOnScene()
     {
         audioSourcesOnScene = FindObjectsOfType<AudioSource>();
         foreach (AudioSource Asrc in audioSourcesOnScene)
         {
-            Asrc.volume = audioSource.volume;
+            if(Asrc.volume == 1)
+            {
+                Asrc.volume = audioSource.volume;
+            }
         }
     }
 
     private void OnLevelWasLoaded(int level)
     {
         FindAuidoSourcesOnScene();
+        //music = GameObject.FindGameObjectWithTag("music");
+        SetMusicVolume();
     }
     private void Awake()
     {

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - gun
   - coin
+  - startButton
+  - restartButton
+  - quitButton
   layers:
   - Default
   - TransparentFX

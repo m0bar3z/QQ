@@ -6,12 +6,14 @@ using UnityEngine;
 // This manages spawning of enemies
 public class CrowdSystem : MonoBehaviour
 {
-    public static int enemiesCount = 0;
+    public static int enemiesCount = 0, waveNumber = 1;
 
     public GameObject enemyPref, arrowPref;
+    public GameObject[] enemyPrefs;
     public Transform[] doors;
 
     public float lvlUpRate = 0.2f;
+    public float timeBetweenWaves = 5f;
 
     [SerializeField]
     private float _chunckSize = 1, _betweenSpawns = 5, _betweenSteps = 0.5f;
@@ -27,6 +29,8 @@ public class CrowdSystem : MonoBehaviour
 
     private List<IndicatorArrow> usedArrow = new List<IndicatorArrow>();
     private List<IndicatorArrow> usefulArrow = new List<IndicatorArrow>();
+
+    private bool restingBetweenWaves = false;
 
     public virtual void SpeedUp()
     {
@@ -46,29 +50,32 @@ public class CrowdSystem : MonoBehaviour
     {
         _lvl++;
         _killsTillNext *= _killsTillNext;
+        _chunckSize *= 1.2f;
         SpeedUp();
     }
 
     public virtual void GotKill()
     {
         enemiesCount--;
-        _kills++;
-        if(_kills > _killsTillNext)
+
+        if(enemiesCount <= 0)
         {
-            _kills = 0;
+            enemiesCount = 0;
+            restingBetweenWaves = true;
             LevelUp();
         }
+
+        //_kills++;
+        //if(_kills > _killsTillNext)
+        //{
+        //    _kills = 0;
+        //    LevelUp();
+        //}
     }
 
     public virtual void GotKill(IndicatorArrow arrow)
     {
-        enemiesCount--;
-        _kills++;
-        if (_kills > _killsTillNext)
-        {
-            _kills = 0;
-            LevelUp();
-        }
+        GotKill();
 
         arrow.working = false;
         arrow.SetRendering(false);
@@ -79,19 +86,33 @@ public class CrowdSystem : MonoBehaviour
     protected virtual void Start()
     {
         enemiesCount = 0;
+        waveNumber = 0;
         AssignTarget();
+
+        Invoke(nameof(Spawn), 2);
     }
 
     protected virtual void Update()
     {
-        TimerTick();
+        if (restingBetweenWaves)
+        {
+            TimerTick();
+        }
     }
 
     private void TimerTick()
     {
+        //_time += Time.deltaTime;
+        //if (_time >= _betweenSpawns && enemiesCount < _maxEnemies)
+        //{
+        //    _time = 0;
+        //    Spawn();
+        //}
+
         _time += Time.deltaTime;
-        if (_time >= _betweenSpawns && enemiesCount < _maxEnemies)
+        if (_time >= timeBetweenWaves)
         {
+            restingBetweenWaves = false;
             _time = 0;
             Spawn();
         }
@@ -112,6 +133,7 @@ public class CrowdSystem : MonoBehaviour
 
     private void Spawn()
     {
+        Statics.instance.messageSystem.ShowMessage("Wave " + waveNumber++);
         for(int i = 0; i < _chunckSize; i++)
         {
             SpawnOne();

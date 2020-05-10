@@ -66,6 +66,7 @@ public class Shop : MonoBehaviour
 
                 QQObject obj = Instantiate(goods[index].prefab).GetComponent<QQObject>();
                 if (!controller.facingRight) obj.gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                if(!controller.facingRight) obj.gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
                 controller.PickUp(obj);
             }
             else

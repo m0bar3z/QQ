@@ -36,6 +36,27 @@ public class Bullet : QQObject
         Destroy(gameObject, destroyAfter);
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(explosionChance > 0)
+            BlowUp();
+
+        if (destroyOnTouch)
+            Destroy(gameObject);
+    }
+
+    protected virtual void BlowUp()
+    {
+        if (Random.Range(0, 0.99f) < explosionChance)
+        {
+            Instantiate(explosionFX, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+        }        
+    }
+
     private void CheckBulletLimit()
     {
         bullets.Add(this);
@@ -61,23 +82,5 @@ public class Bullet : QQObject
         transform.up = dir;
         Vector2 recoil_ = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)) * bulletSpeed / 5;
         rb.velocity = dir * bulletSpeed + (Vector3)recoil_;
-    }
-
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer != 9)
-        {
-            if (Random.Range(0, 0.99f) < explosionChance)
-            {
-                Instantiate(explosionFX, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(bulletEffect, transform.position, Quaternion.identity);
-            }
-
-            if(destroyOnTouch)
-                Destroy(gameObject);
-        }
     }
 }
