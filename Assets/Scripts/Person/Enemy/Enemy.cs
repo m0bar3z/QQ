@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy : Person
 {
+    [Header("Enemy Vars")]
+    [Space(20)]
+
     [Range(0.25f, 5f)]
     public float timeBetweensteps;
     public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
     public int coinSpawnNumber;
-    public GameObject coin;
+    public GameObject coinPref, preSpawnPref;
     public bool visible;
 
     public IndicatorArrow indicator;
@@ -37,6 +40,8 @@ public class Enemy : Person
     protected override void Start()
     {
         base.Start();
+        Instantiate(preSpawnPref, transform.position, Quaternion.identity).GetComponent<PreSpawn>().AddGOActivation(gameObject);
+        gameObject.SetActive(false);
     }
 
     protected override void Update()
@@ -66,7 +71,7 @@ public class Enemy : Person
 
         for(int i = 0; i < coinSpawnNumber; i++)
         {
-            GameObject c = Instantiate(coin, transform.position, Quaternion.identity);
+            GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
             c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
         }
 
@@ -108,7 +113,7 @@ public class Enemy : Person
         targetDistance = _target.position - transform.position;
         if (targetDistance.magnitude > stopAtRange)
         {
-            ReceiveForce(targetDistance.normalized * moveForceMultiplier);
+            ReceiveForce((targetDistance.normalized + new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f))) * moveForceMultiplier);
         }
     }
 

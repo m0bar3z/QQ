@@ -90,8 +90,29 @@ public class BasicGun : QQObject
 
         Instantiate(shellPref, transform.position, Quaternion.identity);
 
+        if (playerHeld)
+            SetCount();
+
         PlayShootingSFX();
         holderController.ReceiveForce(-dir * recoil * 10); // recoil
+    }
+
+    protected virtual void SetCount()
+    {
+        try
+        {
+            Statics.instance.bulletCounter.SetNumber(mag);
+        }
+        catch
+        {
+            print("Can't find bullet counter");
+        }
+    }
+
+    protected override void Start()
+    {
+        base.Start(); 
+        ResetMagToFull();
     }
 
     private void PlayShootingSFX()
@@ -99,14 +120,6 @@ public class BasicGun : QQObject
         audioSource.PlayOneShot(shootingSFX[
             Random.Range(0, shootingSFX.Length)
         ]);
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        // set mag to full capacity
-        ResetMagToFull();
     }
 
     private void CheckForReload()
@@ -121,6 +134,16 @@ public class BasicGun : QQObject
 
     private void Reload()
     {
+        if (playerHeld)
+        {
+            try
+            {
+                Statics.instance.ReloadBar.fillAmount = 1;
+                Statics.instance.ReloadBar.DOFillAmount(0, reloadTime);
+            }
+            catch { }
+        }
+
         transform.DOPunchRotation(new Vector3(0, 0, 270), reloadTime, vibrato: 0).OnComplete(
             () =>
             {
@@ -134,6 +157,9 @@ public class BasicGun : QQObject
     private void ResetMagToFull()
     {
         mag = capacity;
+
+        if (playerHeld)
+            SetCount();
     }
 
     protected override void Update()

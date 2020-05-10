@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class QQObject : MonoBehaviour
 {
+    [Header("QQObject vars")]
+    public float baseHealth = 100;
+
     public Person holderController;
     public HealthSystem health;
     public bool isStatic, hasHolder, isBloody;
-    public bool dontGlitch = false;
+    public bool dontGlitch = false, playerHeld = false;
 
     public GameObject bloodEffect;
 
@@ -27,10 +30,17 @@ public class QQObject : MonoBehaviour
         transform.localPosition = Vector3.zero;
     }
 
+    public virtual void GetPickedUp(PlayerController picker)
+    {
+        playerHeld = true;
+        GetPickedUp((Person)picker);
+    }
+
     public virtual void GetThrown(Vector2 dir)
     {
         holderController = null;
         hasHolder = false;
+        playerHeld = false;
 
         rb.bodyType = RigidbodyType2D.Dynamic;
         transform.parent = null;
@@ -85,7 +95,7 @@ public class QQObject : MonoBehaviour
         if(!isStatic)
             rb = GetComponent<Rigidbody2D>();
 
-        health = new HealthSystem();
+        health = new HealthSystem(baseHealth);
     }
 
     protected virtual void Update() { }
