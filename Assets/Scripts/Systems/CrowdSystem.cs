@@ -8,16 +8,16 @@ public class CrowdSystem : MonoBehaviour
 {
     public static int enemiesCount = 0, waveNumber = 1;
 
-    public GameObject enemyPref, arrowPref;
+    public GameObject SimpleEnemyPref, arrowPref;
     public GameObject[] enemyPrefs;
     public Transform[] doors;
 
-    public float lvlUpRate = 0.2f;
+    public float lvlUpRate = 0.1f;  
     public float timeBetweenWaves = 5f;
 
     [SerializeField]
-    private float _chunckSize = 1, _betweenSpawns = 5, _betweenSteps = 0.5f;
-    private int _lvl, _maxEnemies = 10, _kills, _killsTillNext = 3;
+    private float _chunckSize = 1, _betweenSpawns = 5, _betweenSteps = 0.5f, _hardEnemyProbability = 0.1f;
+    private int _lvl, _kills, _killsTillNext = 3;
 
     private float _lvlSpeedDiff = 10;
     private float _temperatureMultiplier = 1;
@@ -34,15 +34,18 @@ public class CrowdSystem : MonoBehaviour
 
     public virtual void SpeedUp()
     {
+        _hardEnemyProbability += _hardEnemyProbability * lvlUpRate;
+        if (_hardEnemyProbability > 100) _hardEnemyProbability = 100;
+
         _betweenSpawns -= lvlUpRate * _betweenSpawns;
         _betweenSteps -= lvlUpRate * _betweenSteps;
         if (_betweenSpawns < 0.01f)
         {
             _betweenSpawns = 0.01f;
         }
-        if(_betweenSteps < 0.05f)
+        if(_betweenSteps < 0.1f)
         {
-            _betweenSteps = 0.05f;
+            _betweenSteps = 0.1f;
         }
     }
 
@@ -143,7 +146,15 @@ public class CrowdSystem : MonoBehaviour
     private void SpawnOne()
     {
         Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
-        Enemy enemy = Instantiate(enemyPref, spawnPos, Quaternion.identity).GetComponent<Enemy>();
+
+        GameObject enemyType = SimpleEnemyPref;
+
+        if(Random.Range(0f, 100f) < _hardEnemyProbability)
+        {
+            enemyType = enemyPrefs[Random.Range(0, enemyPrefs.Length)];
+        }
+
+        Enemy enemy = Instantiate(enemyType, spawnPos, Quaternion.identity).GetComponent<Enemy>();
         enemy.AssignTarget(_target);
         enemy.AssignCS(this);
         enemy.timeBetweensteps = _betweenSteps;

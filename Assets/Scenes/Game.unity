@@ -959,11 +959,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e270d45cd91b44a2ad3fdeaf9e646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPref: {fileID: 3297070023406046534, guid: ff055620280357e4485388ef58d2aa77,
+  SimpleEnemyPref: {fileID: 3297070023406046534, guid: ff055620280357e4485388ef58d2aa77,
     type: 3}
   arrowPref: {fileID: 4012305482451964834, guid: d950193392c498f44ad68229d10f64a1,
     type: 3}
-  enemyPrefs: []
+  enemyPrefs:
+  - {fileID: 3297070023406046534, guid: bae31097943dffc4b8c81c46c4b3a774, type: 3}
+  - {fileID: 3297070023406046534, guid: 4c31c06826320ab48a46c4429a6a710f, type: 3}
   doors:
   - {fileID: 1473431292}
   - {fileID: 1394840999}
@@ -4701,7 +4703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuItems: {fileID: 1688792497}
-  sceneManager: {fileID: 2055727357}
+  sceneManager: {fileID: 0}
   canvas: {fileID: 433948686}
 --- !u!1 &417366324
 GameObject:
@@ -4749,7 +4751,7 @@ Transform:
   - {fileID: 1349893126}
   - {fileID: 28975617}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &433948683
 GameObject:
@@ -4851,7 +4853,7 @@ RectTransform:
   - {fileID: 230753956}
   - {fileID: 181120597}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5950,7 +5952,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7373457217545d34cb81d9c0b013b3a7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 926e34bc8e8b85643a9016f3758e8d61, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
@@ -7189,7 +7191,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688792497
 GameObject:
@@ -9674,7 +9676,7 @@ PrefabInstance:
     - target: {fileID: 657022545773299427, guid: c01471989a2d9cf4aaf30fc726cfed78,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 657022545773299427, guid: c01471989a2d9cf4aaf30fc726cfed78,
         type: 3}

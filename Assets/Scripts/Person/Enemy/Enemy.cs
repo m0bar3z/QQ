@@ -113,7 +113,7 @@ public class Enemy : Person
         targetDistance = _target.position - transform.position;
         if (targetDistance.magnitude > stopAtRange)
         {
-            ReceiveForce(targetDistance.normalized * moveForceMultiplier);
+            ReceiveForce((targetDistance.normalized + new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f))) * moveForceMultiplier);
         }
     }
 
