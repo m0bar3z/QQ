@@ -5,6 +5,7 @@ using UnityEngine;
 public class QQObject : MonoBehaviour
 {
     [Header("QQObject vars")]
+    public float baseHealth = 100;
 
     public Person holderController;
     public HealthSystem health;
@@ -94,7 +95,7 @@ public class QQObject : MonoBehaviour
         if(!isStatic)
             rb = GetComponent<Rigidbody2D>();
 
-        health = new HealthSystem();
+        health = new HealthSystem(baseHealth);
     }
 
     protected virtual void Update() { }

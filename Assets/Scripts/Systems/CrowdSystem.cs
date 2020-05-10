@@ -9,6 +9,7 @@ public class CrowdSystem : MonoBehaviour
     public static int enemiesCount = 0, waveNumber = 1;
 
     public GameObject enemyPref, arrowPref;
+    public GameObject[] enemyPrefs;
     public Transform[] doors;
 
     public float lvlUpRate = 0.2f;

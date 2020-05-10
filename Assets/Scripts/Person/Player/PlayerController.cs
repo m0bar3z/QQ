@@ -50,13 +50,13 @@ public class PlayerController : Person
 
     protected override void OnDamage()
     {
-        Statics.instance.SetHealth(health.amount / 100);
+        Statics.instance.SetHealth(health.Amount / 100);
         base.OnDamage();
     }
 
     protected void OnHeal()
     {
-        Statics.instance.SetHealth(health.amount / 100);
+        Statics.instance.SetHealth(health.Amount / 100);
     }
 
     private void RightHandTrigger()

@@ -38,7 +38,11 @@ public class Bullet : QQObject
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        BlowUp();
+        if(explosionChance > 0)
+            BlowUp();
+
+        if (destroyOnTouch)
+            Destroy(gameObject);
     }
 
     protected virtual void BlowUp()
@@ -50,10 +54,7 @@ public class Bullet : QQObject
         else
         {
             Instantiate(bulletEffect, transform.position, Quaternion.identity);
-        }
-
-        if (destroyOnTouch)
-            Destroy(gameObject);
+        }        
     }
 
     private void CheckBulletLimit()

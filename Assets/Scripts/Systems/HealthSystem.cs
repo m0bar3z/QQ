@@ -1,14 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class HealthSystem
 {
-    public float amount = 100;
+    private float amount;
 
     public event SystemTools.SimpleSystemCB OnDie, OnHeal;
     public event SystemTools.SimpleSystemCB OnDamage;
     public bool isDead = false;
+
+    public HealthSystem(float baseAmount)
+    {
+        amount = baseAmount;
+    }
+
+    public float Amount
+    {
+        get
+        {
+            return amount;
+        }
+    }
 
     public virtual void Healt(float amount)
     {
