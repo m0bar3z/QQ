@@ -6,20 +6,12 @@ using UnityEngine;
 public class SplashSC : MonoBehaviour
 {
     public float time;
+    public int startMenuIndex;
+    public SceneManage sceneManager;
 
     public void LoadingStartMenu()
     {
-        SceneManager.LoadScene("StartMenu");
-    }
-
-    public void LoadLevel(string name)
-    {
-        SceneManager.LoadScene(name);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
+        sceneManager.ActiveLoadingWindow(startMenuIndex);
     }
 
     private void Start()
