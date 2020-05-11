@@ -984,6 +984,7 @@ MonoBehaviour:
   - {fileID: 1173023544}
   lvlUpRate: 0.3
   timeBetweenWaves: 5
+  comboReset: 1
   _chunckSize: 2
   _betweenSpawns: 5
   _betweenSteps: 0.5
@@ -1001,6 +1002,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireFX: {fileID: 1122974839698170129, guid: e8c3e40d2417b5b4a97575f63ee3dfc6, type: 3}
+  scoreText: {fileID: 5525192180344409654, guid: 8c09ddec2cb353644945d7ef27414682,
+    type: 3}
   publicAS: {fileID: 241763509}
   healthSlider: {fileID: 1852597735}
   messageSystem: {fileID: 181120600}

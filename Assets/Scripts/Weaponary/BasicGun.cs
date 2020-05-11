@@ -21,6 +21,7 @@ public class BasicGun : QQObject
     public GameObject bulletPref;
     public GameObject shellPref;
     public Transform gunHole;
+    public bool plyReloadSFX = true;
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
@@ -151,7 +152,9 @@ public class BasicGun : QQObject
                 reloading = false;
             }
         );
-        audioSource.PlayOneShot(reloadSFX);
+
+        if(plyReloadSFX)
+            audioSource.PlayOneShot(reloadSFX);
     }
 
     private void ResetMagToFull()

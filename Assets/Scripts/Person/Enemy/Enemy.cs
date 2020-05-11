@@ -69,7 +69,9 @@ public class Enemy : Person
             crowdSystem.GotKill(indicator);
         }
 
-        for(int i = 0; i < coinSpawnNumber; i++)
+        Instantiate(Statics.instance.scoreText, transform.position, Quaternion.identity).GetComponent<TextMesh>().text = coinSpawnNumber * CrowdSystem.combo + "";
+
+        for(int i = 0; i < coinSpawnNumber * CrowdSystem.combo; i++)
         {
             GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
             c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
