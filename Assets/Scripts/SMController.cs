@@ -8,11 +8,16 @@ public class SMController : MonoBehaviour
 {
     public Canvas canvas;
     public int gameSceneIndex;
+    public int helpSceneIndex;
     //public int optionSceneIndex;
     //public int shopSceneIndex;
 
     public SceneManage scenesManager;
     
+    public void LoadHelpScene()
+    {
+        scenesManager.ActiveLoadingWindow(helpSceneIndex);
+    }
     public void LoadGameScene()
     {
         scenesManager.ActiveLoadingWindow(gameSceneIndex);
