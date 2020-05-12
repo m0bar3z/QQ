@@ -115,7 +115,19 @@ public class Enemy : Person
         targetDistance = _target.position - transform.position;
         if (targetDistance.magnitude > stopAtRange)
         {
-            ReceiveForce((targetDistance.normalized + new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f))) * moveForceMultiplier);
+            Vector2 moveDir = (targetDistance.normalized + new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f)));
+
+            RaycastHit2D[] hits;
+            hits = Physics2D.RaycastAll(transform.position, moveDir, 1);            
+            foreach(RaycastHit2D hit in hits)
+            {
+                if(hit.collider.gameObject.tag == "Wall")
+                {
+                    moveDir = Quaternion.Euler(0, 0, 90) * moveDir;
+                }
+            }
+
+            ReceiveForce(moveDir * moveForceMultiplier);
         }
     }
 

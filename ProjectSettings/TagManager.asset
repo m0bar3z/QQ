@@ -9,6 +9,7 @@ TagManager:
   - startButton
   - restartButton
   - quitButton
+  - Wall
   layers:
   - Default
   - TransparentFX
