@@ -13,7 +13,7 @@ public class CrowdSystem : MonoBehaviour
     public GameObject[] enemyPrefs;
     public Transform[] doors;
 
-    public float lvlUpRate = 0.1f;  
+    public float lvlUpRate = 0.1f;
     public float timeBetweenWaves = 5f, comboReset = 3f;
 
     [SerializeField]
@@ -160,16 +160,17 @@ public class CrowdSystem : MonoBehaviour
         Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
 
         GameObject enemyType = SimpleEnemyPref;
-
+        float betweenstps = _betweenSteps;
         if(Random.Range(0f, 100f) < _hardEnemyProbability)
         {
             enemyType = enemyPrefs[Random.Range(0, enemyPrefs.Length)];
+            betweenstps *= 2;
         }
 
         Enemy enemy = Instantiate(enemyType, spawnPos, Quaternion.identity).GetComponent<Enemy>();
         enemy.AssignTarget(_target);
         enemy.AssignCS(this);
-        enemy.timeBetweensteps = _betweenSteps;
+        enemy.timeBetweensteps = betweenstps;
         enemiesCount++;
 
         IndicatorArrow arrow;

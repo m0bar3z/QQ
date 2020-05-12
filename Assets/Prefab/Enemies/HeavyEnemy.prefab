@@ -262,6 +262,11 @@ PrefabInstance:
       propertyPath: explosionChanceOfBullets
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
       propertyPath: m_Name
