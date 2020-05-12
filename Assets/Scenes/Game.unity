@@ -5273,7 +5273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc856b823a1d70e479cd6187c0dd7ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 300
+  coins: 0
   coinsText: {fileID: 1738542143}
   panel: {fileID: 714607635}
   itemPanel: {fileID: 7622362858360462409, guid: 2429b9ccba1a73e4891d59aca6f7cbd9,
