@@ -11,7 +11,7 @@ public class Statics : MonoBehaviour
     public static float pitchShift = 0;
     public static float resetIn = 1f;
 
-    public GameObject fireFX;
+    public GameObject fireFX, scoreText;
 
     public AudioSource publicAS;
 

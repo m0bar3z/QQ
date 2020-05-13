@@ -257,6 +257,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6793469649731297349, guid: 561f002a74808c248989458e540a4e25,
         type: 3}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: explosionChanceOfBullets
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193200535544986640, guid: f9b4e3485117e36438c2b5aa3085c39c,
+        type: 3}
+      propertyPath: shake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8193200535544986646, guid: f9b4e3485117e36438c2b5aa3085c39c,
         type: 3}
       propertyPath: m_Name

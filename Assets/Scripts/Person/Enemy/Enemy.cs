@@ -69,7 +69,9 @@ public class Enemy : Person
             crowdSystem.GotKill(indicator);
         }
 
-        for(int i = 0; i < coinSpawnNumber; i++)
+        Instantiate(Statics.instance.scoreText, transform.position, Quaternion.identity).GetComponent<TextMesh>().text = coinSpawnNumber * CrowdSystem.combo + "";
+
+        for(int i = 0; i < coinSpawnNumber * CrowdSystem.combo; i++)
         {
             GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
             c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
@@ -113,7 +115,19 @@ public class Enemy : Person
         targetDistance = _target.position - transform.position;
         if (targetDistance.magnitude > stopAtRange)
         {
-            ReceiveForce((targetDistance.normalized + new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f))) * moveForceMultiplier);
+            Vector2 moveDir = (targetDistance.normalized + new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f)));
+
+            RaycastHit2D[] hits;
+            hits = Physics2D.RaycastAll(transform.position, moveDir, 1);            
+            foreach(RaycastHit2D hit in hits)
+            {
+                if(hit.collider.gameObject.tag == "Wall")
+                {
+                    moveDir = Quaternion.Euler(0, 0, 90) * moveDir;
+                }
+            }
+
+            ReceiveForce(moveDir * moveForceMultiplier);
         }
     }
 

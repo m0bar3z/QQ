@@ -21,12 +21,13 @@ public class BasicGun : QQObject
     public GameObject bulletPref;
     public GameObject shellPref;
     public Transform gunHole;
+    public bool plyReloadSFX = true;
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
     public bool dirRecoil = false, shake = false, halfVibration;
 
-    public float shakeStrength; 
+    public float shakeStrength, recoilStrength = 1;
     public int shakeVibrato;
     public int vibrationDuration = 100;
 
@@ -59,7 +60,7 @@ public class BasicGun : QQObject
 
             Bullet b = Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>();
             b.explosionChance = explosionChanceOfBullets;
-            b.Shoot(tempDir, dirRecoil);
+            b.Shoot(tempDir, dirRecoil, recoilStrength);
         }
 
         mag--;
@@ -117,6 +118,7 @@ public class BasicGun : QQObject
 
     private void PlayShootingSFX()
     {
+        audioSource.pitch = 1 + Random.Range(-0.2f, 0.2f);
         audioSource.PlayOneShot(shootingSFX[
             Random.Range(0, shootingSFX.Length)
         ]);
@@ -151,7 +153,12 @@ public class BasicGun : QQObject
                 reloading = false;
             }
         );
-        audioSource.PlayOneShot(reloadSFX);
+
+        if (plyReloadSFX)
+        {
+            audioSource.pitch = 1 + Random.Range(-0.2f, 0.2f);
+            audioSource.PlayOneShot(reloadSFX);
+        }
     }
 
     private void ResetMagToFull()
