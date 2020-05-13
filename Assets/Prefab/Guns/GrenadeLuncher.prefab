@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3047342746118822868}
   - component: {fileID: 3047342746118822870}
   m_Layer: 8
-  m_Name: Bazuka
+  m_Name: GrenadeLuncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,11 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb18dee4a12f72b4a80d5c1e03958600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHealth: 100
   holderController: {fileID: 0}
+  health:
+    isDead: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 0
   dontGlitch: 0
+  playerHeld: 0
   bloodEffect: {fileID: 0}
   betweenBullets: 1
   recoil: 3
@@ -176,9 +180,10 @@ MonoBehaviour:
   shellPref: {fileID: 888987847402964985, guid: d2603971028a6b94dae0be90a6074d74,
     type: 3}
   gunHole: {fileID: 3047342746496326067}
+  plyReloadSFX: 0
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: d9b1cf0b23f9c2d46808598dbc0f1258, type: 3}
+  - {fileID: 8300000, guid: 5342c4611a937904a8fbe6ed51a1e388, type: 3}
   audioSource: {fileID: 3047342746118822868}
   dirRecoil: 0
   shake: 1
@@ -310,7 +315,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6628821940542971783}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

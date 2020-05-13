@@ -159,11 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb18dee4a12f72b4a80d5c1e03958600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHealth: 100
   holderController: {fileID: 0}
+  health:
+    isDead: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 0
   dontGlitch: 0
+  playerHeld: 0
   bloodEffect: {fileID: 0}
   betweenBullets: 0.3
   recoil: 1
@@ -178,7 +182,15 @@ MonoBehaviour:
   gunHole: {fileID: 1242905122}
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: 6c92a9e3a2e352e4191d70ea05f71c9e, type: 3}
+  - {fileID: 8300000, guid: c189e6f470a42eb43b31153af7746baa, type: 3}
+  - {fileID: 8300000, guid: 2b9ee60b40cb07c4da090e8e52362465, type: 3}
+  - {fileID: 8300000, guid: c70874880176bec4f9d6c5ab5d8e4572, type: 3}
+  - {fileID: 8300000, guid: ebd3d2172f56f324db4d12601ea08dae, type: 3}
+  - {fileID: 8300000, guid: 9f47320eac5afd64bbf90f2f5942c54a, type: 3}
+  - {fileID: 8300000, guid: 42fdc14156c58a246abce735172f87e4, type: 3}
+  - {fileID: 8300000, guid: 2933fdd6a0d8c0e448fa12792e9b877e, type: 3}
+  - {fileID: 8300000, guid: 95f0194963d250a4392e5981562788f6, type: 3}
+  - {fileID: 8300000, guid: 5aa6151633f15c746a9ff18d4fd01b28, type: 3}
   audioSource: {fileID: 1351972933}
   dirRecoil: 0
   shake: 1
@@ -310,7 +322,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8193200535544986646}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
