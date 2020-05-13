@@ -6,8 +6,17 @@ public class HelpController : MonoBehaviour
 {
     public Canvas canvas;
     public SceneManage sceneManager;
+    public IBackButton backToMenuAction;
 
     public int startMenuIndex;
+
+    public void BackButtonFunction()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            backToMenuAction.BackButton();
+        }
+    }
 
     public void LoadStartMenuScene()
     {
@@ -15,7 +24,13 @@ public class HelpController : MonoBehaviour
     }
     void Start()
     {
+        backToMenuAction = gameObject.GetComponent<BackToStartMenu>();
         sceneManager = FindObjectOfType<SceneManage>();
         sceneManager.mainCanvas = canvas;
+    }
+
+    private void Update()
+    {
+        BackButtonFunction();
     }
 }

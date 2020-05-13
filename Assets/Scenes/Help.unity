@@ -10488,6 +10488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2138152590}
   - component: {fileID: 2138152591}
+  - component: {fileID: 2138152592}
   m_Layer: 0
   m_Name: Help Controller
   m_TagString: Untagged
@@ -10524,6 +10525,19 @@ MonoBehaviour:
   canvas: {fileID: 1737691587}
   sceneManager: {fileID: 1746408545}
   startMenuIndex: 1
+--- !u!114 &2138152592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138152589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1c356ff000ce4499d8172138492d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpController: {fileID: 2138152591}
 --- !u!4 &8335789317744466144
 Transform:
   m_ObjectHideFlags: 0
