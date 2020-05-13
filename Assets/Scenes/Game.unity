@@ -5197,6 +5197,9 @@ GameObject:
   - component: {fileID: 714607637}
   - component: {fileID: 714607636}
   - component: {fileID: 714607638}
+  - component: {fileID: 714607640}
+  - component: {fileID: 714607641}
+  - component: {fileID: 714607639}
   m_Layer: 5
   m_Name: InGameShop
   m_TagString: Untagged
@@ -5287,6 +5290,44 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79a55cd773f1e5b40a7ec073146cc391, type: 2}
   - {fileID: 11400000, guid: 9d91662a04d2e3b4a871279bf2232884, type: 2}
   panelParent: {fileID: 61350183}
+--- !u!114 &714607639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714607634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8325f37bb5d40184481547ac3489c266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &714607640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714607634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30bdd62f269c60c478b5c92de665988f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shop: {fileID: 714607638}
+--- !u!114 &714607641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714607634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6509dab940951df409addad818d6b428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shop: {fileID: 714607638}
 --- !u!1 &719077897
 GameObject:
   m_ObjectHideFlags: 0
