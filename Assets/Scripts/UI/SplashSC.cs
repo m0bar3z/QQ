@@ -8,6 +8,7 @@ public class SplashSC : MonoBehaviour
     public float time;
     public int startMenuIndex;
     public SceneManage sceneManager;
+    public AndroidButton androidButton;
 
     public void LoadingStartMenu()
     {
@@ -16,6 +17,14 @@ public class SplashSC : MonoBehaviour
 
     private void Start()
     {
+        androidButton = FindObjectOfType<BackToAndroid>();
         Invoke(nameof(LoadingStartMenu), time);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            androidButton.BackButton();
+        }   
     }
 }
