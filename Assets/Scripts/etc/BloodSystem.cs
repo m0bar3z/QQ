@@ -82,11 +82,11 @@ public class BloodSystem : MonoBehaviour
     protected virtual void Update()
     {
         // for testing
-        if (Input.GetMouseButtonUp(1))
-        {
-            Vector2 posdir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Spill(posdir, posdir);
-        }
+        //if (Input.GetMouseButtonUp(1))
+        //{
+        //    Vector2 posdir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    Spill(posdir, posdir);
+        //}
     }
 
     private void PreSpawnAllBloods()
