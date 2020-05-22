@@ -183,7 +183,7 @@ MonoBehaviour:
   plyReloadSFX: 1
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: 39330f89b3bace94fa0438fff39899eb, type: 3}
+  - {fileID: 8300000, guid: e846637a242396c44ac7be58fda718e9, type: 3}
   audioSource: {fileID: 2226817692784221105}
   dirRecoil: 1
   shake: 1
@@ -231,7 +231,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 0
   MaxDistance: 10
