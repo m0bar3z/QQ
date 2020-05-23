@@ -14,6 +14,8 @@ public class Room
     public int x, y;
     public bool[] boxes;
 
+    public List<Vector2Int> corners = new List<Vector2Int>();
+
     public static List<Room> MakeRooms(List<FloorBox> boxes)
     {
         boxes_ = boxes.ToArray();
@@ -73,9 +75,54 @@ public class Room
             }
         }
 
+        foreach(Room r in rooms)
+        {
+            r.AssignCorners();
+        }
+
         return rooms;
     }
 
+
+    // constructor
+    public Room(int x, int y, int boxIndex)
+    {
+        boxes = new bool[boxes_.Length];
+        this.x = x;
+        this.y = y;
+        boxes[boxIndex] = true;
+    }
+
+    // finds the corners of the rooom
+    public void AssignCorners()
+    {
+        List<FloorBox> checkedBoxes = new List<FloorBox>();
+        for(int i = 0; i < boxes.Length; i++)
+        {
+            if (!boxes[i]) continue;
+
+            bool inside = false;
+            FloorBox b = boxes_[i];
+
+            foreach (Vector2Int corner in b.corners)
+            {
+                foreach (FloorBox cb in checkedBoxes)
+                {
+
+                    if (cb.IsInside(corner))
+                    {
+                        inside = true;
+                        break;
+                    }
+                }
+                if (!inside) corners.Add(corner);
+            }
+
+            checkedBoxes.Add(b);
+        }
+    }
+
+    // adds a box to the room!
     public void AddBox(int index)
     {
         if (!boxes[index])
@@ -89,13 +136,5 @@ public class Room
                 }
             }
         }
-    }
-
-    public Room(int x, int y, int boxIndex)
-    {
-        boxes = new bool[boxes_.Length];
-        this.x = x;
-        this.y = y;
-        boxes[boxIndex] = true;
     }
 }
