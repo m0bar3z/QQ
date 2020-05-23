@@ -291,15 +291,57 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: NaN
+      e01: 0
+      e02: -0.06085241
+      e03: NaN
+      e10: NaN
+      e11: 0
+      e12: 8.45e-43
+      e13: NaN
+      e20: -3.574918e-14
+      e21: -3.574918e-14
+      e22: -3.574918e-14
+      e23: -3.585977e-14
+      e30: 8.42e-43
+      e31: 8.42e-43
+      e32: 8.42e-43
+      e33: 8.42e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: NaN
+      e01: 0
+      e02: 0
+      e03: NaN
+      e10: NaN
+      e11: 0
+      e12: 0
+      e13: NaN
+      e20: 0
+      e21: 0
+      e22: 0
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 0
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 7.14552e-10, g: 7.14552e-10, b: 7.14552e-10, a: 7.14552e-10}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Size: {x: 86, y: 50, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -379,10 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorTile: {fileID: 11400000, guid: f4ec994dc3c7ea546b10c57bfa70e8bb, type: 2}
   wallTile: {fileID: 11400000, guid: 71105ee7f73ae784f93a6d5e67289265, type: 2}
-  wallTileLeft: {fileID: 0}
-  wallTileRight: {fileID: 0}
   wallTileTop: {fileID: 11400000, guid: ae2c5de9b025d434795ceb23d0cd79ba, type: 2}
-  wallTileBottom: {fileID: 0}
   floorTM: {fileID: 1444711252}
   wallsTM: {fileID: 1811797323}
   noiseSample: {fileID: 979460481}
@@ -393,10 +432,12 @@ MonoBehaviour:
   height: 200
   minWidth: 4
   minHeight: 6
-  maxWidth: 100
-  maxHeight: 100
-  boxCount: 30
+  maxWidth: 200
+  maxHeight: 200
+  boxCount: 4
   doGenerate: 0
+  rooms: []
+  boxes: []
 --- !u!1 &1811797320
 GameObject:
   m_ObjectHideFlags: 0
