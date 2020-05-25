@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
 
     public void SetMusicVolume()
     {
-        music.GetComponent<AudioSource>().volume = PlayerPrefsManager.GetMasterVolume();
+      //  music.GetComponent<AudioSource>().volume = PlayerPrefsManager.GetMasterVolume();
     }
     private void FindAuidoSourcesOnScene()
     {
@@ -45,7 +45,7 @@ public class MusicManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = PlayerPrefsManager.GetMasterVolume();
+    //    audioSource.volume = PlayerPrefsManager.GetMasterVolume();
     }
     void Update()
     {
