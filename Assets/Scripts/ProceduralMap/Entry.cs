@@ -7,14 +7,14 @@ using UnityEngine.EventSystems;
 public class Entry : MonoBehaviour
 {
     [Serializable]
-    public enum Type
+    public enum Directions
     {
         UP, DOWN, LEFT, RIGHT
     }
 
     public class EntryType
     {
-        public Type self, fit;
+        public Directions self, fit;
     }
 
     public static EntryType right = new EntryType(), left = new EntryType(), up = new EntryType(), down = new EntryType();
@@ -28,17 +28,17 @@ public class Entry : MonoBehaviour
     public static void Initialize()
     {
         initialized = true;
-        right.self = Type.RIGHT;
-        right.fit = Type.LEFT;
+        right.self = Directions.RIGHT;
+        right.fit = Directions.LEFT;
 
-        up.self = Type.UP;
-        up.fit = Type.DOWN;
+        up.self = Directions.UP;
+        up.fit = Directions.DOWN;
 
-        down.self = Type.DOWN;
-        down.fit = Type.UP;
+        down.self = Directions.DOWN;
+        down.fit = Directions.UP;
 
-        left.self = Type.LEFT;
-        left.fit = Type.RIGHT;
+        left.self = Directions.LEFT;
+        left.fit = Directions.RIGHT;
     }
 
     private void Awake()

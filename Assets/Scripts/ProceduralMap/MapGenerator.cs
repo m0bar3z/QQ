@@ -21,47 +21,37 @@ using UnityEngine.Tilemaps;
 ///     infinitely down, by going down increase the probability of good rooms
 /// 
 
+public class MapPos
+{
+    public Vector2 location;
+    public bool l, r, d, u;
+
+    public MapPos(Vector2 location, bool l, bool r, bool d, bool u)
+    {
+        this.location = location;
+        this.l = l;
+        this.r = r;
+        this.d = d;
+        this.u = u;
+    }
+}
+
 public class MapGenerator : MonoBehaviour
 {
     public GameObject[] maps;
 
-    public GameObject up_down, left_right, up_left, up_right, down_left, down_right;
-    public Dictionary<Entry.Type, Dictionary<Entry.Type, GameObject>> joints;
+    public Vector2 offset;
 
     public Transform Tilemap;
 
-    public int roomsThreshold = 10;
+    public int roomsThreshold = 2;
+
+    public PathFinder pathFinder;
 
     private List<Map> rooms = new List<Map>();
-    private List<Entry> unfulfilledChannels = new List<Entry>();
 
-    private void Awake()
-    {
-        joints = new Dictionary<Entry.Type, Dictionary<Entry.Type, GameObject>>();
-
-        foreach(Entry.Type t in (Entry.Type[])System.Enum.GetValues(typeof(Entry.Type)))
-        {
-            joints[t] = new Dictionary<Entry.Type, GameObject>();
-        }
-
-        joints[Entry.Type.UP][Entry.Type.DOWN] = up_down;
-        joints[Entry.Type.DOWN][Entry.Type.UP] = up_down;
-
-        joints[Entry.Type.LEFT][Entry.Type.RIGHT] = left_right;
-        joints[Entry.Type.RIGHT][Entry.Type.LEFT] = left_right;
-
-        joints[Entry.Type.DOWN][Entry.Type.LEFT] = down_left;
-        joints[Entry.Type.LEFT][Entry.Type.DOWN] = down_left;
-
-        joints[Entry.Type.DOWN][Entry.Type.RIGHT] = down_right;
-        joints[Entry.Type.RIGHT][Entry.Type.DOWN] = down_right;
-
-        joints[Entry.Type.UP][Entry.Type.LEFT] = up_left;
-        joints[Entry.Type.LEFT][Entry.Type.UP] = up_left;
-
-        joints[Entry.Type.UP][Entry.Type.RIGHT] = up_right;
-        joints[Entry.Type.RIGHT][Entry.Type.UP] = up_right;
-    }
+    private List<MapPos> unfulfilled = new List<MapPos>();
+    private List<Entry> emptyEntries = new List<Entry>();
 
     private void Start()
     {
@@ -70,91 +60,93 @@ public class MapGenerator : MonoBehaviour
 
     private void Generate()
     {
-        int iterations = 0;
+        MapPos mp = new MapPos(Vector2.zero, false, false, false, false);
+        Map newRoom = MakeNewRoom(mp);
 
-        // make the first room randomly
-        Map newMap = Instantiate(maps[Random.Range(0, maps.Length)], Vector3.zero, Quaternion.identity, Tilemap).GetComponent<Map>();
-
-        // add enteries to unfulfilled
-        foreach(Entry e in newMap.entries)
+        for (int i = 0; i < roomsThreshold; i++)
         {
-            unfulfilledChannels.Add(e);
+            if (unfulfilled.Count > 0)
+            {
+                mp = unfulfilled[0];
+                unfulfilled.RemoveAt(0);
+                MakeNewRoom(mp);
+            }
+            else
+            {
+                break;
+            }
         }
 
-        // make rooms untill fulfilling threshold
-        while(rooms.Count < roomsThreshold || iterations++ > 100)
-        {
-            // pick random entry
-            int rnd = 0;
-            Entry re = unfulfilledChannels[rnd];
-            unfulfilledChannels.RemoveAt(rnd);
-
-            // fulfill entry
-            FulFillEntry(re);
-
-        }
-
-        // fill the rest with prop rooms (shop - boss_fight - gem_room)
-
+        Invoke(nameof(FulFillEntries), 1);
     }
 
-    // generates random room to fulfill entry
-    private void FulFillEntry(Entry exit)
+    private void FulFillEntries()
     {
-        // make random room
-        int rnd = Random.Range(0, maps.Length);
-        GameObject newMapGO = Instantiate(maps[rnd], Tilemap);
-        Map newMap = newMapGO.GetComponent<Map>();
+        emptyEntries.Reverse();
 
-        // pick random entry that is not the same as exit
-        Entry re = null;
-        foreach(Entry e_ in newMap.entries)
+        for(int i = emptyEntries.Count - 1; i >= 0; i--)
         {
-            if(e_.type.self != exit.type.self)
+            Entry e = emptyEntries[i];
+            emptyEntries.RemoveAt(i);
+            SortedList<float, Entry> others = new SortedList<float, Entry>();
+
+            foreach (Entry e1 in emptyEntries)
             {
-                re = e_;
+                try
+                {
+                    others.Add((e.transform.position - e1.transform.position).magnitude, e1);
+                }
+                catch { }
+            }
+
+            float rnd = Random.Range(0f, 100f);
+            float chance = 1f;
+
+            foreach(KeyValuePair<float, Entry> e2 in others)
+            {
+                if(rnd > chance)
+                {
+                    emptyEntries.Remove(e2.Value);
+                    pathFinder.DrawPath(
+                        pathFinder.FindPath(e.transform.position, e2.Value.transform.position).ToArray()
+                    );
+                }
+                else
+                {
+                    chance /= 2f;
+                }
             }
         }
+    }
 
-        // initialize appropriate joint
-        GameObject jointPrefab = joints[exit.type.fit][re.type.fit];
-        Channel newJoint = Instantiate(jointPrefab, Tilemap).GetComponent<Channel>();
+    private Map MakeNewRoom(MapPos pos)
+    {
+        Map newRoom = Instantiate(maps[Random.Range(0, maps.Length)], pos.location, Quaternion.identity, Tilemap).GetComponent<Map>();
+        Vector2 instantiationOffset = new Vector2(pos.l ? -newRoom.width / 2 : pos.r ? newRoom.width / 2 : 0, pos.d ? -newRoom.height / 2 : pos.u ? newRoom.height / 2 : 0);
+        newRoom.transform.position += (Vector3)instantiationOffset;
+        MapPos mp;
 
-        // find appropriate entry to joint
-        Entry e1 = null;
-        Entry e2 = null;
-        foreach(Entry e in newJoint.enteries)
+        mp = new MapPos(newRoom.transform.position + new Vector3(newRoom.width/2 + offset.x, 0), false, true, false, false);
+        if (!pos.r)
+            unfulfilled.Add(mp);
+
+        mp = new MapPos(newRoom.transform.position + new Vector3(-newRoom.width/2 - offset.x, 0), true, false, false, false);
+        if (!pos.l)
+            unfulfilled.Add(mp);
+
+        mp = new MapPos(newRoom.transform.position + new Vector3(0, newRoom.height/2 + offset.y), false, false, false, true);
+        if (!pos.u)
+            unfulfilled.Add(mp);
+
+        mp = new MapPos(newRoom.transform.position + new Vector3(0, -newRoom.height/2 - offset.y), false, false, true, false);
+        if (!pos.d)
+            unfulfilled.Add(mp);
+
+        foreach(Entry e in newRoom.entries)
         {
-            if(e.type.self == exit.type.fit)
-            {
-                e1 = e;
-            }
-            if(e.type.self == re.type.fit)
-            {
-                e2 = e;
-            }
+            emptyEntries.Add(e);
         }
 
-        // place joint
-        Vector3 diff = newJoint.transform.position - e1.transform.position;
-        newJoint.transform.position = exit.transform.position + diff;
-
-        // place room
-        diff = newMap.transform.position - re.transform.position;
-        newMap.transform.position = e2.transform.position + diff;
-        re.isUsed = true;
-
-        // add room to list
-        rooms.Add(newMap);
-
-        // add unfulfilled to list
-        foreach(Entry entry in newMap.entries)
-        {
-            if (!entry.isUsed)
-            {
-                unfulfilledChannels.Add(entry);
-            }
-        }
-
+        return newRoom;
     }
 }

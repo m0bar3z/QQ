@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,8 +16,6 @@ public class Map : MonoBehaviour
     public GameObject MapOBJ;
 
     public List<Entry> entries;
-
-    public bool hasLeft, hasRight, hasUp, hasDown;
 
     public MapType type;
 
