@@ -20,6 +20,8 @@ public class Entry : MonoBehaviour
     public static EntryType right = new EntryType(), left = new EntryType(), up = new EntryType(), down = new EntryType();
     public static bool initialized = false;
 
+    public Map map;
+
     public EntryType type;
     public bool r, u, d, l;
 

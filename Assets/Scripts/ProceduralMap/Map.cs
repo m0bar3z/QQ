@@ -12,6 +12,14 @@ public class Map : MonoBehaviour
         DEADEND
     }
 
+    private void Start()
+    {
+        foreach(Entry e in entries)
+        {
+            e.map = this;
+        }
+    }
+
     public int width, height;
     public GameObject MapOBJ;
 

@@ -86,7 +86,14 @@ public class MapGenerator : MonoBehaviour
 
         for(int i = emptyEntries.Count - 1; i >= 0; i--)
         {
-            Entry e = emptyEntries[i];
+            Entry e = null;
+
+            try
+            {
+                e = emptyEntries[i];
+            }
+            catch { continue; }
+
             emptyEntries.RemoveAt(i);
             SortedList<float, Entry> others = new SortedList<float, Entry>();
 
@@ -94,7 +101,10 @@ public class MapGenerator : MonoBehaviour
             {
                 try
                 {
-                    others.Add((e.transform.position - e1.transform.position).magnitude, e1);
+                    if (e.map == e1.map) continue;
+
+                    float magnitude = (e.transform.position - e1.transform.position).magnitude;
+                    others.Add(magnitude, e1);
                 }
                 catch { }
             }
@@ -110,6 +120,7 @@ public class MapGenerator : MonoBehaviour
                     pathFinder.DrawPath(
                         pathFinder.FindPath(e.transform.position, e2.Value.transform.position).ToArray()
                     );
+                    break;
                 }
                 else
                 {

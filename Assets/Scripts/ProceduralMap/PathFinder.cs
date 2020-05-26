@@ -84,7 +84,7 @@ public class PathFinder : MonoBehaviour
 
     public void DrawPath(Vector2[] path)
     {
-        int roadWidth_ = roadWidth * 2 + 1;
+        int roadWidth_ = (int)(roadWidth * 1.5f + 1);
         foreach(Vector2 v in path)
         {
             Vector3Int vi = new Vector3Int((int)v.x, (int)v.y, 0);
@@ -113,7 +113,7 @@ public class PathFinder : MonoBehaviour
         int iterations = 0;
         CameFrom curCF = CameFrom.GetFromV2(cur);
         curCF.costSoFar = 0;
-        while (diff > roadWidth * 2 - 1 && iterations++ < 10000)
+        while (diff > roadWidth * 2 - 1 && iterations++ < 4000)
         {
             foreach (Vector2Int dir in directions)
             {
@@ -152,7 +152,7 @@ public class PathFinder : MonoBehaviour
         path = new List<Vector2>();
         iterations = 0;
         CameFrom lastCF = CameFrom.GetFromV2(cur);
-        while (lastCF != null && iterations++ < 10000)
+        while (lastCF != null && iterations++ < 4000)
         {
             path.Add(lastCF.vector);
             lastCF = lastCF.cf;
@@ -171,7 +171,7 @@ public class PathFinder : MonoBehaviour
         // TODO:
         // enable tags and layers
         Collider2D[] hits;
-        hits = Physics2D.OverlapCircleAll(origin, roadWidth * 2);
+        hits = Physics2D.OverlapCircleAll(origin, roadWidth + 1);
 
         float addition = 0;
         if(hits.Length > 0)
