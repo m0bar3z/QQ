@@ -14,9 +14,13 @@ public class SetMusicVolume : MonoBehaviour
         musicManager.SetVolume();
     }
 
+    private void Awake()
+    {
+        musicManager = FindObjectOfType<MusicManager>();
+    }
+
     void Start()
     {
         musicSlider.value = PlayerPrefsManager.GetMasterMusic();
-        musicManager = FindObjectOfType<MusicManager>();
     }
 }

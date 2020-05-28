@@ -6,12 +6,19 @@ public class MusicPlayer : MonoBehaviour
 {
     public List<AudioClip> clips;
     public AudioSource ass;
+    public MusicManager musicManager;
 
     private int index = 0;
 
+    private void Awake()
+    {
+        musicManager = FindObjectOfType<MusicManager>();
+    }
     private void Start()
     {
         ass = GetComponent<AudioSource>();
+        musicManager.audioSource = ass;
+        musicManager.SetVolume();
     }
 
     private void Update()

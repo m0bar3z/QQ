@@ -6,10 +6,20 @@ public class PlayerPrefsManager : MonoBehaviour
 {
     const string MASTER_MUSIC_KEY = "master_volume";
     const string MASTER_SCORE_KEY = "master_score";
+    const string MASTER_VIBRATION_KEY = "master_vibrate";
     
     public static void ResetKeys()
     {
         PlayerPrefs.DeleteAll();
+    }
+    // vibration activity
+    public static void SetMasterVibration(int activity)
+    {
+        PlayerPrefs.SetInt(MASTER_VIBRATION_KEY, activity);
+    }
+    public static int GetMasterVibration()
+    {
+        return PlayerPrefs.GetInt(MASTER_VIBRATION_KEY);
     }
     // music volume
     public static void SetMasterMusic(float volume)

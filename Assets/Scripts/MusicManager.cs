@@ -12,10 +12,4 @@ public class MusicManager : MonoBehaviour
     {
         audioSource.volume = PlayerPrefsManager.GetMasterMusic() * MaxVolume;
     }
-    private void OnLevelWasLoaded(int level)
-    {
-        audioSource = FindObjectOfType<AudioSource>();
-        SetVolume();
-        print("testtesttsetset  " + PlayerPrefsManager.GetMasterMusic());
-    }
 }

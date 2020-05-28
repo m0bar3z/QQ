@@ -24,7 +24,7 @@ public class SplashSC : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
         quitAction = gameObject.GetComponent<BackToAndroid>();
         Invoke(nameof(LoadingStartMenu), time);
     }
