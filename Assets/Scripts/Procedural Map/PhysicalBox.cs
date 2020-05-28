@@ -5,6 +5,7 @@ using UnityEngine;
 public class PhysicalBox : MonoBehaviour
 {
     public static List<PhysicalBox> movingBoxes = new List<PhysicalBox>();
+    public static List<PhysicalBox> stableBoxes = new List<PhysicalBox>();
     public static event SystemTools.SimpleSystemCB OnPlacingDone;
 
     public Rigidbody2D rb;
@@ -14,13 +15,23 @@ public class PhysicalBox : MonoBehaviour
     public float width, height;
 
     private Vector2 lastpos;
-    private int checks = 10;
+    private int checks = 30;
 
     public void ApplyScale(float x, float y)
     {
         transform.localScale = new Vector3(x, y, 1);
         width = x;
         height = y;
+    }
+
+    public bool DoIntersectX(float x)
+    {
+        return false;
+    }
+
+    public bool DoIntersectY(float y)
+    {
+        return false;
     }
 
     private void Start()
@@ -40,20 +51,23 @@ public class PhysicalBox : MonoBehaviour
             {
                 CancelInvoke(nameof(CheckMoving));
 
+                stableBoxes.Add(this);
                 movingBoxes.Remove(this);
                 isMoving = false;
 
-                Snap();
-
                 if (movingBoxes.Count <= 0)
                 {
+                    foreach(PhysicalBox b in stableBoxes)
+                    {
+                        b.Snap();
+                    }
                     OnPlacingDone?.Invoke();
                 }
             }
         }
         else
         {
-            checks = 10;
+            checks = 30;
             lastpos = transform.position;
         }
     }
@@ -62,7 +76,6 @@ public class PhysicalBox : MonoBehaviour
     {
         Destroy(col);
         Destroy(rb);
-
         transform.position = new Vector3(Mathf.Floor(transform.position.x), Mathf.Floor(transform.position.y), 0);
     }
 }

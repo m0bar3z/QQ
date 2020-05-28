@@ -21,7 +21,7 @@ public class MapGenerator : MonoBehaviour
     [Header("etc")]
     public SpriteRenderer noiseSample;
     public float scale = 0.1f;
-    public float xOffset = 100f, yOffset = 100f;
+    public float xOffset = 100f, yOffset = 100f, roadWidth = 3;
 
     [Header("Map")]
     public int width;
@@ -44,6 +44,8 @@ public class MapGenerator : MonoBehaviour
 
     private TriangleNet.Meshing.IMesh mesh;
     private bool hasMesh = false;
+    private TriangleNet.Geometry.Vertex[] verticies;
+    private Edge[] edges;
 
     private void Start()
     {
@@ -67,12 +69,10 @@ public class MapGenerator : MonoBehaviour
 
     private void DrawGraph()
     {
-        TriangleNet.Geometry.Vertex[] verticies = new TriangleNet.Geometry.Vertex[mesh.Vertices.Count];
-        mesh.Vertices.CopyTo(verticies, 0);
-
-        foreach (Edge e in mesh.Edges)
+        foreach (Edge e in edges)
         {
-            Debug.DrawLine(new Vector2((float)verticies[e.P0].x, (float)verticies[e.P0].y), new Vector2((float)verticies[e.P1].x, (float)verticies[e.P1].y), Color.green);
+            if(e.P0 >= 0 && e.P1 >= 0)
+                Debug.DrawLine(new Vector2((float)verticies[e.P0].x, (float)verticies[e.P0].y), new Vector2((float)verticies[e.P1].x, (float)verticies[e.P1].y), Color.green);
         }
     }
 
@@ -103,7 +103,7 @@ public class MapGenerator : MonoBehaviour
         // find the biggest rooms
         meanBoxSize /= physicalRooms.Count;
         meanBoxSize *= 10;
-        meanBoxSize *= 1.7f;
+        meanBoxSize *= 1.2f;
 
         List<PhysicalBox> mainBoxes = new List<PhysicalBox>();
         foreach(PhysicalBox pb in physicalRooms)
@@ -117,32 +117,129 @@ public class MapGenerator : MonoBehaviour
 
         // delaunay triangulation
         TriangleNet.Meshing.Algorithm.Dwyer dwyer = new TriangleNet.Meshing.Algorithm.Dwyer();
-        List<TriangleNet.Geometry.Vertex> vertecies = new List<TriangleNet.Geometry.Vertex>();
+        List<TriangleNet.Geometry.Vertex> vertexList = new List<TriangleNet.Geometry.Vertex>();
 
         foreach (PhysicalBox pb in mainBoxes)
         {
-            vertecies.Add(
+            vertexList.Add(
                 new TriangleNet.Geometry.Vertex(pb.transform.position.x, pb.transform.position.y)
             );
         }
 
-        mesh = dwyer.Triangulate(vertecies, new Configuration());
-        hasMesh = true;
+        mesh = dwyer.Triangulate(vertexList, new Configuration());
+
+        this.verticies = new TriangleNet.Geometry.Vertex[mesh.Vertices.Count];
+        mesh.Vertices.CopyTo(this.verticies, 0);
 
         // minimum spanning tree
+        int[,] graph = new int[this.verticies.Length, this.verticies.Length];
+        foreach (Edge e in mesh.Edges)
+        {
+            graph[e.P0, e.P1] = 1;
+        }
 
+        int[] parents;
+        Prime.Calculate(graph, this.verticies.Length, out parents);
+
+        List<Edge> es = new List<Edge>();
+
+        for(int i = 0; i < this.verticies.Length; i++)
+        {
+            es.Add(
+                new Edge(i, parents[i])
+            );
+        }
 
         // add 10% random edges
+        foreach (Edge e in mesh.Edges)
+        {
+            bool skip = false;
+            foreach(Edge ee in es)
+            {
+                if (ee.P0 == e.P0 && ee.P1 == e.P1)
+                {
+                    skip = true;
+                    break;
+                }
+            }
+            if (skip) continue;
 
+            if(Random.Range(0, 100) <= 10)
+            {
+                es.Add(e);
+            }
+        }
 
-        // add pathways
-
-
-        // add colliding rooms
-
+        edges = es.ToArray();
+        hasMesh = true;
 
         // turn into array
+        Vector2 start = new Vector2();
+        Vector2 end = new Vector2();
 
+        float minX = Mathf.Infinity;
+        float minY = Mathf.Infinity;
+        float maxX = -Mathf.Infinity;
+        float maxY = -Mathf.Infinity;
+
+        foreach(PhysicalBox pb in physicalRooms)
+        {
+            float x = pb.transform.position.x - pb.width / 2;
+            float y = pb.transform.position.y - pb.height / 2;
+
+            if(minX > x)
+            {
+                minX = x;
+            }
+
+            if(minY > y)
+            {
+                minY = y;
+            }
+
+            if(maxX < x)
+            {
+                maxX = x;
+            }
+
+            if(maxY < y)
+            {
+                maxY = y;
+            }
+        }
+
+        minX = Mathf.FloorToInt(minX);
+        minY = Mathf.FloorToInt(minY);
+
+        maxX = Mathf.FloorToInt(maxX);
+        maxY = Mathf.FloorToInt(maxY);
+
+        int width = (int)(maxX - minX);
+        int height = (int)(maxY - minY);
+
+        int[,] mapArr = new int[width, height];
+
+        int boxNum = 100;
+        foreach(PhysicalBox pb in physicalRooms)
+        {
+            int s0, s1, e0, e1;
+
+            s0 = (int)(pb.transform.position.x - pb.width / 2 - minX);
+            s1 = (int)(pb.transform.position.y - pb.height / 2 - minY);
+
+            e0 = (int)(pb.transform.position.x + pb.width / 2 - minX);
+            e1 = (int)(pb.transform.position.y + pb.height / 2 - minY);
+
+            for (int i = s0; i < e0; i++)
+            {
+                for(int j = s1; j < e1; j++)
+                {
+                    mapArr[i, j] = boxNum;
+                }
+            }
+
+            boxNum++;
+        }
 
         // place doors
 

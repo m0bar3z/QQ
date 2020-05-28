@@ -349,13 +349,14 @@ MonoBehaviour:
   scale: 20
   xOffset: 100
   yOffset: 100
-  width: 10
-  height: 50
+  roadWidth: 3
+  width: 20
+  height: 20
   minWidth: 5
   minHeight: 5
   maxWidth: 20
   maxHeight: 20
-  boxCount: 100
+  boxCount: 50
   doGenerate: 0
   rooms: []
   boxes: []
