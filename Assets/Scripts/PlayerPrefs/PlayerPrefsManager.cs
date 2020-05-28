@@ -14,7 +14,7 @@ public class PlayerPrefsManager : MonoBehaviour
     // music volume
     public static void SetMasterMusic(float volume)
     {
-        if(volume >= 0 && volume <= 0.6f)
+        if(volume >= 0 && volume <= 1f)
         {
             PlayerPrefs.SetFloat(MASTER_MUSIC_KEY, volume);
         }

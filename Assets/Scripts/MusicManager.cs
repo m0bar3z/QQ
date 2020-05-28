@@ -5,50 +5,17 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    static MusicManager instance;
-
-    public GameObject music;
+    public float MaxVolume;
     public AudioSource audioSource;
-    public AudioSource[] audioSourcesOnScene;
 
-    public void SetMusicVolume()
+    public void SetVolume()
     {
-      //  music.GetComponent<AudioSource>().volume = PlayerPrefsManager.GetMasterVolume();
+        audioSource.volume = PlayerPrefsManager.GetMasterMusic() * MaxVolume;
     }
-    private void FindAuidoSourcesOnScene()
-    {
-        audioSourcesOnScene = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource Asrc in audioSourcesOnScene)
-        {
-            if(Asrc.volume == 1)
-            {
-                Asrc.volume = audioSource.volume;
-            }
-        }
-    }
-
     private void OnLevelWasLoaded(int level)
     {
-        FindAuidoSourcesOnScene();
-        //music = GameObject.FindGameObjectWithTag("music");
-        SetMusicVolume();
-    }
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        audioSource = GetComponent<AudioSource>();
-    //    audioSource.volume = PlayerPrefsManager.GetMasterVolume();
-    }
-    void Update()
-    {
-        
+        audioSource = FindObjectOfType<AudioSource>();
+        SetVolume();
+        print("testtesttsetset  " + PlayerPrefsManager.GetMasterMusic());
     }
 }

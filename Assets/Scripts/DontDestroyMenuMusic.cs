@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DontDestroyMenuMusic : MonoBehaviour
 {
-    public AudioSource audioSource;
+    //public AudioSource audioSource;
     static DontDestroyMenuMusic instance;
 
     void Singleton()
@@ -24,8 +24,8 @@ public class DontDestroyMenuMusic : MonoBehaviour
     {
         Singleton();
         DontDestroyOnLoad(this.gameObject);
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.volume = PlayerPrefsManager.GetMasterMusic();
+        //audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource.volume = PlayerPrefsManager.GetMasterMusic();
     }
 
 }
