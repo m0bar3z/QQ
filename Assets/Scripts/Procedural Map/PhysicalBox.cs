@@ -8,11 +8,14 @@ public class PhysicalBox : MonoBehaviour
     public static List<PhysicalBox> stableBoxes = new List<PhysicalBox>();
     public static event SystemTools.SimpleSystemCB OnPlacingDone;
 
+    public static int boxNum = 100;
+
     public Rigidbody2D rb;
     public Collider2D col;
     public bool isMoving = true;
     public float speedThreshold = 1f;
     public float width, height;
+    public int boxNumber = 0;
 
     private Vector2 lastpos;
     private int checks = 30;
@@ -39,6 +42,7 @@ public class PhysicalBox : MonoBehaviour
         movingBoxes.Add(this);
         lastpos = transform.position;
         InvokeRepeating(nameof(CheckMoving), 2, 0.2f);
+        boxNumber = boxNum++;
     }
 
     private void CheckMoving()

@@ -121,6 +121,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1246518155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1246518156}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1246518156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246518155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75.544075, y: 42.26395, z: -780.2241}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1444711249
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorTile: {fileID: 11400000, guid: f4ec994dc3c7ea546b10c57bfa70e8bb, type: 2}
-  wallTile: {fileID: 11400000, guid: 71105ee7f73ae784f93a6d5e67289265, type: 2}
+  wallTile: {fileID: 11400000, guid: 108a67e03854fe84c88af17129c9a02f, type: 2}
   wallTileTop: {fileID: 11400000, guid: ae2c5de9b025d434795ceb23d0cd79ba, type: 2}
   physicalRoomPrefab: {fileID: 8960676861831444342, guid: bbbc5082e84fe424fa65837efdcecef4,
     type: 3}
@@ -349,13 +379,13 @@ MonoBehaviour:
   scale: 20
   xOffset: 100
   yOffset: 100
-  roadWidth: 3
+  roadWidth: 6
   width: 20
   height: 20
-  minWidth: 5
-  minHeight: 5
-  maxWidth: 20
-  maxHeight: 20
+  minWidth: 8
+  minHeight: 8
+  maxWidth: 30
+  maxHeight: 30
   boxCount: 50
   doGenerate: 0
   rooms: []

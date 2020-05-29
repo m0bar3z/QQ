@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Tilemaps;
-
 using TriangleNet;
 using TriangleNet.Meshing;
 using TriangleNet.Geometry;
-using UnityEngine.UIElements;
 using System.Linq;
+using DG.Tweening;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -46,11 +45,18 @@ public class MapGenerator : MonoBehaviour
     private bool hasMesh = false;
     private TriangleNet.Geometry.Vertex[] verticies;
     private Edge[] edges;
+    private int[,] mapArr;
+
+    private float minX = Mathf.Infinity;
+    private float minY = Mathf.Infinity;
+    private float maxX = -Mathf.Infinity;
+    private float maxY = -Mathf.Infinity;
+
+    private List<PhysicalBox> mainBoxes;
 
     private void Start()
     {
-        //Generate();
-        floorTM.BoxFill(new Vector3Int(85, 75, 0), floorTile, 41, 45, 85, 75);
+        Generate();
     }
 
     private void Update()
@@ -105,12 +111,12 @@ public class MapGenerator : MonoBehaviour
         meanBoxSize *= 10;
         meanBoxSize *= 1.2f;
 
-        List<PhysicalBox> mainBoxes = new List<PhysicalBox>();
+        mainBoxes = new List<PhysicalBox>();
         foreach(PhysicalBox pb in physicalRooms)
         {
             if(pb.width * pb.height >= meanBoxSize)
             {
-                pb.GetComponent<SpriteRenderer>().color = Color.red;
+                pb.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
                 mainBoxes.Add(pb);
             }
         }
@@ -177,17 +183,15 @@ public class MapGenerator : MonoBehaviour
         Vector2 start = new Vector2();
         Vector2 end = new Vector2();
 
-        float minX = Mathf.Infinity;
-        float minY = Mathf.Infinity;
-        float maxX = -Mathf.Infinity;
-        float maxY = -Mathf.Infinity;
-
         foreach(PhysicalBox pb in physicalRooms)
         {
             float x = pb.transform.position.x - pb.width / 2;
             float y = pb.transform.position.y - pb.height / 2;
 
-            if(minX > x)
+            float xx = pb.transform.position.x + pb.width / 2;
+            float yy = pb.transform.position.y + pb.height / 2;
+
+            if (minX > x)
             {
                 minX = x;
             }
@@ -197,14 +201,14 @@ public class MapGenerator : MonoBehaviour
                 minY = y;
             }
 
-            if(maxX < x)
+            if(maxX < xx)
             {
-                maxX = x;
+                maxX = xx;
             }
 
-            if(maxY < y)
+            if(maxY < yy)
             {
-                maxY = y;
+                maxY = yy;
             }
         }
 
@@ -214,38 +218,248 @@ public class MapGenerator : MonoBehaviour
         maxX = Mathf.FloorToInt(maxX);
         maxY = Mathf.FloorToInt(maxY);
 
-        int width = (int)(maxX - minX);
-        int height = (int)(maxY - minY);
+        int width = (int)(maxX - minX) + 10;
+        int height = (int)(maxY - minY) + 10;
 
-        int[,] mapArr = new int[width, height];
+        mapArr = new int[width, height];
 
-        int boxNum = 100;
-        foreach(PhysicalBox pb in physicalRooms)
+        // add rooms to array
+        foreach(PhysicalBox pb in mainBoxes)
         {
-            int s0, s1, e0, e1;
-
-            s0 = (int)(pb.transform.position.x - pb.width / 2 - minX);
-            s1 = (int)(pb.transform.position.y - pb.height / 2 - minY);
-
-            e0 = (int)(pb.transform.position.x + pb.width / 2 - minX);
-            e1 = (int)(pb.transform.position.y + pb.height / 2 - minY);
-
-            for (int i = s0; i < e0; i++)
-            {
-                for(int j = s1; j < e1; j++)
-                {
-                    mapArr[i, j] = boxNum;
-                }
-            }
-
-            boxNum++;
+            AddRoomToArr(pb);
         }
 
-        // place doors
+        foreach(PhysicalBox pb in physicalRooms)
+        {
+            if (mainBoxes.Contains(pb))
+                continue;
 
+            AddRoomToArr(pb, -1);
+        }
 
-        // place walls
+        // place pathWays
+        foreach (Edge e in edges) 
+        {
+            if (e.P0 >= 0 && e.P1 >= 0)
+            {
+                // get rooms
+                PhysicalBox pb0 = mainBoxes[e.P0];
+                PhysicalBox pb1 = mainBoxes[e.P1];
 
+                // check intersections
+                bool hasPath = false;
+                bool xIntersect = false, yIntersect = false;
+
+                float x0, y0, x21, x22, y21, y22;
+                x0 = pb0.transform.position.x;
+                y0 = pb0.transform.position.y;
+
+                x21 = pb1.transform.position.x - pb1.width / 2;
+                x22 = pb1.transform.position.x + pb1.width / 2;
+
+                y21 = pb1.transform.position.y - pb1.height / 2;
+                y22 = pb1.transform.position.y + pb1.height / 2;
+
+                if(x0 > x21 && x0 < x22)
+                {
+                    yIntersect = true;
+                }
+
+                if(y0 > y21 && y0 < y22)
+                {
+                    xIntersect = true;
+                }
+
+                Vector2 d = pb1.transform.position - pb0.transform.position;
+                Vector2Int diff = new Vector2Int((int)d.x, (int)d.y);
+                if (xIntersect != yIntersect)
+                {
+                    hasPath = true;
+                                        
+                    if (xIntersect)
+                    {
+                        // place x path
+                        YRoad(pb0.transform.position, diff);
+                    }
+                    else
+                    {
+                        // place y path
+                        XRoad(pb0.transform.position, diff);
+                    }
+
+                }
+                else
+                {
+                    if (!xIntersect)
+                    {
+                        Vector2 theCenter = new Vector2(width/2, height/2);
+                        d = (Vector2)pb0.transform.position - theCenter;
+
+                        d = new Vector2(Mathf.Abs(d.x), Mathf.Abs(d.y));
+
+                        bool xvsy = Mathf.Abs(d.x) < Mathf.Abs(d.y);
+                        Vector2 newPos;
+
+                        if (xvsy)
+                        {
+                            XRoad(pb0.transform.position, diff);
+
+                            newPos = new Vector2(pb0.transform.position.x + diff.x - (int)roadWidth * Mathf.Sign(diff.x), pb0.transform.position.y);
+                            d = (Vector2)pb1.transform.position - newPos;
+                            diff = new Vector2Int((int)d.x, (int)d.y);
+
+                            YRoad(newPos, diff);
+                        }
+                        else
+                        {
+                            YRoad(pb0.transform.position, diff);
+
+                            newPos = new Vector2(pb0.transform.position.x, pb0.transform.position.y + diff.y - (int)roadWidth * Mathf.Sign(diff.y));
+                            d = (Vector2)pb1.transform.position - newPos;
+                            diff = new Vector2Int((int)d.x, (int)d.y);
+
+                            XRoad(newPos, diff);
+                        }
+
+                        print(pb0.transform.position + " -> " + pb1.transform.position + " diff:" + (pb1.transform.position - pb0.transform.position) + "|" + xvsy + "|" + pb0.transform.position + " - " + newPos);
+                    }
+                }
+            }
+        }
+
+        ProcessMap();
+
+        // draw the motherfuckin map!
+        // use invoke to see the changes before drawing process
+        Invoke(nameof(DrawTheMap), 0.1f);
+    }
+
+    private void YRoad(Vector3 pb0, Vector2Int diff)
+    {
+        int otherValue = (int)(pb0.x - minX);
+
+        int s0 = (int)(pb0.y - minY);
+        int e0 = (int)(pb0.y - minY) + diff.y;
+        int sign = (int)Mathf.Sign(diff.y);
+
+        // start from pb0 and go to the dir of diff on x
+        for (int i = s0; i < e0; i += sign)
+        {
+            for (int j = (int)-roadWidth / 2; j <= roadWidth / 2; j++)
+            {
+                int sum = otherValue + j;
+                if (i < 0 || i >= mapArr.GetLength(0) || sum < 0 || sum >= mapArr.GetLength(1))
+                {
+                    print("err");
+                }
+
+                if (mapArr[i, sum] == 0)
+                {
+                    mapArr[i, sum] = 1;
+                }
+                else
+                {
+                    if (mapArr[i, sum] < 0)
+                    {
+                        CheckAddRoomArr(i, sum, mapArr[i, sum]);
+                    }
+                }
+            }
+        }
+    }
+
+    private void XRoad(Vector3 pb0, Vector2Int diff)
+    {
+        int otherValue = (int)(pb0.y - minY);
+
+        int s0 = (int)(pb0.x - minX);
+        int e0 = (int)(pb0.x - minX) + diff.x;
+        int sign = (int)Mathf.Sign(diff.x);
+
+        // start from pb0 and go to the dir of diff on x
+        for (int i = s0; i < e0; i += sign)
+        {
+            for (int j = (int)-roadWidth / 2; j <= roadWidth / 2; j++)
+            {
+                int sum = otherValue + j;
+                if (i < 0 || i >= mapArr.GetLength(0) || sum < 0 || sum >= mapArr.GetLength(1))
+                {
+                    print("err");
+                }
+
+                if (mapArr[i, sum] == 0)
+                {
+                    mapArr[i, sum] = 1;
+                }
+                else
+                {
+                    if (mapArr[i, sum] < 0)
+                    {
+                        CheckAddRoomArr(i, sum, mapArr[i, sum]);
+                    }
+                }
+            }
+        }
+    }
+
+    private void CheckAddRoomArr(int x, int y, int val)
+    {
+        try
+        {
+            if (mapArr[x, y] == val)
+            {
+                mapArr[x, y] = -mapArr[x, y];
+
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        CheckAddRoomArr(x + i, y + j, val);
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
+    private void AddRoomToArr(PhysicalBox pb, int sgn = 1)
+    {
+        int s0, s1, e0, e1;
+
+        s0 = (int)(pb.transform.position.x - pb.width / 2 - minX);
+        s1 = (int)(pb.transform.position.y - pb.height / 2 - minY);
+
+        e0 = (int)(pb.transform.position.x + pb.width / 2 - minX);
+        e1 = (int)(pb.transform.position.y + pb.height / 2 - minY);
+
+        for (int i = s0; i < e0; i++)
+        {
+            for (int j = s1; j < e1; j++)
+            {
+                mapArr[i, j] = pb.boxNumber * sgn;
+            }
+        }
+    }
+
+    private void DrawTheMap()
+    {
+        for(int i = 0; i < mapArr.GetLength(0); i++)
+        {
+            for(int j = 0; j < mapArr.GetLength(1); j++)
+            {
+                if (mapArr[i, j] > 0)
+                {
+                    if (mapArr[i, j] == 2)
+                    {
+                        wallsTM.SetTile(new Vector3Int(i, j, 0), wallTile);
+                    }
+                    else
+                    {
+                        floorTM.SetTile(new Vector3Int(i, j, 0), floorTile);
+                    }                        
+                }
+            }
+        }
     }
 
     private void CreatePhysicalRoom()
@@ -262,5 +476,66 @@ public class MapGenerator : MonoBehaviour
         newRoom.ApplyScale(bWidth, bHeight);
 
         physicalRooms.Add(newRoom);
+    }
+
+    private void ProcessMap()
+    {
+        for(int i = 0; i < mapArr.GetLength(0); i++)
+        {
+            for(int j = 0; j < mapArr.GetLength(1); j++)
+            {
+                int val = mapArr[i, j];
+                if(val > 0 && val <= 500 && val != 2)
+                {
+                    ProcessTile(i, j, val);
+
+                    if(mapArr[i, j] != 2)
+                        mapArr[i, j] = val + 500;
+                }
+            }
+        }
+    }
+
+    private void ProcessTile(int x, int y, int val)
+    {
+        int idx0, idx1;
+
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if ((i != 0 && j != 0) ||(j == 0 && i == 0)) continue;
+
+                idx0 = x + i;
+                idx1 = y + j;
+
+                if(idx0 > mapArr.GetLength(0) || idx0 < 0 || idx1 > mapArr.GetLength(1) || idx1 < 0)
+                {
+                    mapArr[x, y] = 2;
+                    continue;
+                }
+
+                int curVal = mapArr[idx0, idx1];
+                if (curVal != val && curVal != val + 500 && curVal != 2)
+                {
+                    print(x + "," + y + " " +idx0 + " ," + idx1 + " - curVal:" + curVal + " val" + val);
+
+
+                    if (val == 1)
+                    {
+                        if(curVal <= 0)
+                        {
+                            mapArr[x, y] = 2;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        mapArr[x, y] = 2;
+                        return;
+                    }
+                }
+            }
+        }
     }
 }
