@@ -12503,7 +12503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &400155763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14015,6 +14015,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 809f0aa8fbce5a44d83431e59e189873, type: 3}
   - {fileID: 8300000, guid: 926e34bc8e8b85643a9016f3758e8d61, type: 3}
   ass: {fileID: 991539289}
+  musicManager: {fileID: 0}
 --- !u!1 &1007828202
 GameObject:
   m_ObjectHideFlags: 0

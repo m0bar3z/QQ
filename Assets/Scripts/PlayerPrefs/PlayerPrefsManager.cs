@@ -7,19 +7,48 @@ public class PlayerPrefsManager : MonoBehaviour
     const string MASTER_MUSIC_KEY = "master_volume";
     const string MASTER_SCORE_KEY = "master_score";
     const string MASTER_VIBRATION_KEY = "master_vibrate";
+    const string MASTER_SFX_KEY = "master_sfx";
     
     public static void ResetKeys()
     {
         PlayerPrefs.DeleteAll();
     }
-    // vibration activity
-    public static void SetMasterVibration(int activity)
+    // SFX volume
+    public static void SetMasterSFX(float sfxVol)
     {
-        PlayerPrefs.SetInt(MASTER_VIBRATION_KEY, activity);
+        if (sfxVol >= 0 && sfxVol <= 1f)
+        {
+            PlayerPrefs.SetFloat(MASTER_SFX_KEY, sfxVol);
+        }
     }
-    public static int GetMasterVibration()
+    public static float GetMasterSFX()
     {
-        return PlayerPrefs.GetInt(MASTER_VIBRATION_KEY);
+        return PlayerPrefs.GetFloat(MASTER_SFX_KEY);
+    }
+    // vibration activity
+    public static bool VibrationIsActive
+    {
+        get
+        {
+            if (PlayerPrefs.GetInt(MASTER_VIBRATION_KEY) == 1)
+                return true;
+            else
+                return false;
+        }
+        set
+        {
+            if(value == true)
+                SetMasterVibration(1);
+            else
+                SetMasterVibration(0);
+        }
+    }
+    static void SetMasterVibration(int activity)
+    {
+        if(activity == 1 || activity == 0)
+        {
+            PlayerPrefs.SetInt(MASTER_VIBRATION_KEY, activity);
+        }
     }
     // music volume
     public static void SetMasterMusic(float volume)

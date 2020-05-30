@@ -6,14 +6,31 @@ using UnityEngine;
 public class VibrationKey : MonoBehaviour
 {
     public Toggle vibrationToggle;
+
+    public void SetVibrationToggleCheckbox()
+    {
+        if(PlayerPrefsManager.VibrationIsActive)
+        {
+            vibrationToggle.isOn = true;
+        }
+        else
+        {
+            vibrationToggle.isOn = false;
+        }
+    }
     public void ChangeVibrationActivityStatus()
     {
         if (vibrationToggle.isOn)
         {
-            PlayerPrefsManager.SetMasterVibration(1);
+            PlayerPrefsManager.VibrationIsActive = true;
         } else
         {
-            PlayerPrefsManager.SetMasterVibration(0);
+            PlayerPrefsManager.VibrationIsActive = false;
         }
+    }
+
+    private void Start()
+    {
+        SetVibrationToggleCheckbox();
     }
 }

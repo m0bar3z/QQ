@@ -16,7 +16,7 @@ public static class Vibration
 
     public static void Vibrate()
     {
-        if (PlayerPrefsManager.GetMasterVibration() == 1)
+        if (PlayerPrefsManager.VibrationIsActive)
         {
             if (isAndroid())
                 vibrator.Call("vibrate");
@@ -28,7 +28,7 @@ public static class Vibration
 
     public static void Vibrate(long milliseconds)
     {
-        if(PlayerPrefsManager.GetMasterVibration() == 1)
+        if(PlayerPrefsManager.VibrationIsActive)
         {
             if (isAndroid())
                 vibrator.Call("vibrate", milliseconds);
@@ -39,7 +39,7 @@ public static class Vibration
 
     public static void Vibrate(long[] pattern, int repeat)
     {
-        if (PlayerPrefsManager.GetMasterVibration() == 1)
+        if (PlayerPrefsManager.VibrationIsActive)
         {
             if (isAndroid())
                 vibrator.Call("vibrate", pattern, repeat);

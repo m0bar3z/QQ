@@ -25,6 +25,7 @@ public class BasicGun : QQObject
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
+    public SFXManager sfxManager;
     public bool dirRecoil = false, shake = false, halfVibration;
 
     public float shakeStrength, recoilStrength = 1;
@@ -38,6 +39,12 @@ public class BasicGun : QQObject
     private int mag = 0;
     private bool vibrate = true;
 
+    public void SetVolume()
+    {
+        sfxManager = FindObjectOfType<SFXManager>();
+        sfxManager.maxVolume = audioSource.volume;
+        sfxManager.SetSFXVoiume();
+    }
     public override void Trigger(Vector3 dir)
     {
         if (waiting || reloading) return;
@@ -114,6 +121,7 @@ public class BasicGun : QQObject
     {
         base.Start(); 
         ResetMagToFull();
+        SetVolume();
     }
 
     private void PlayShootingSFX()

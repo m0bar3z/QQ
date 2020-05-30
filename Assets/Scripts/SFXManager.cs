@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    void Start()
+    public float maxVolume;
+    public AudioSource audioSource;
+    public void SetSFXVoiume()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        audioSource.volume = PlayerPrefsManager.GetMasterSFX() * maxVolume;
     }
 }
