@@ -384,9 +384,9 @@ MonoBehaviour:
   height: 20
   minWidth: 8
   minHeight: 8
-  maxWidth: 30
-  maxHeight: 30
-  boxCount: 50
+  maxWidth: 40
+  maxHeight: 40
+  boxCount: 20
   doGenerate: 0
   rooms: []
   boxes: []

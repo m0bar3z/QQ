@@ -37,7 +37,7 @@ public class PhysicalBox : MonoBehaviour
         return false;
     }
 
-    private void Start()
+    private void Awake()
     {
         movingBoxes.Add(this);
         lastpos = transform.position;
