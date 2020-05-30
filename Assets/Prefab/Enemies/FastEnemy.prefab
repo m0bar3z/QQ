@@ -130,6 +130,9 @@ MonoBehaviour:
   playerHeld: 0
   bloodEffect: {fileID: 6206904238022313651, guid: 11edf4b893fbd3840ba070351be1fc67,
     type: 3}
+  bloodSpreader: {fileID: 7761757281222994845, guid: 221df78d882982f45adb24de2ea1d1bb,
+    type: 3}
+  bloodSpreaders: 5
   rightHand: {fileID: 1724403308654058784}
   rightHandFull: 1
   facingRight: 1
