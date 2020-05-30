@@ -8,6 +8,7 @@ public class SMController : MonoBehaviour
 {
     public Canvas canvas;
     public GameObject music, musicParent;
+    public MusicManager musicManager;
     public int gameSceneIndex;
     public int helpSceneIndex;
     public int optionSceneIndex;
@@ -16,6 +17,11 @@ public class SMController : MonoBehaviour
 
     public SceneManage scenesManager;
 
+    public void SetAudioSource()
+    {
+        musicManager = FindObjectOfType<MusicManager>();
+        musicManager.audioSource = music.GetComponent<AudioSource>();
+    }
     public void AddParentToMusic()
     {
         music.transform.parent = musicParent.transform;
@@ -47,12 +53,11 @@ public class SMController : MonoBehaviour
     {
         BackButtonFunction();
     }
-
     void Start()
     {
-        music = FindObjectOfType<DontDestroyMenuMusic>().gameObject;
-        quitAction = gameObject.GetComponent<BackToAndroid>();
         scenesManager = FindObjectOfType<SceneManage>();
         scenesManager.mainCanvas = canvas;
+        music = FindObjectOfType<DontDestroyMenuMusic>().gameObject;
+        quitAction = gameObject.GetComponent<BackToAndroid>();
     }
 }

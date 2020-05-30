@@ -563,7 +563,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1582798882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1069065165}
+        m_MethodName: BackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &900361911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,6 +740,7 @@ MonoBehaviour:
   canvas: {fileID: 1737691587}
   music: {fileID: 1984110372}
   musicParent: {fileID: 1022993050}
+  musicManager: {fileID: 0}
   gameSceneIndex: 2
   helpSceneIndex: 4
   optionSceneIndex: 3
@@ -11158,6 +11170,7 @@ GameObject:
   - component: {fileID: 1984110375}
   - component: {fileID: 1984110374}
   - component: {fileID: 1984110376}
+  - component: {fileID: 1984110377}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -11293,6 +11306,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b759e14e4f8e6eb41b5b76f1319307a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicManager: {fileID: 0}
+--- !u!114 &1984110377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984110372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46967d4b1021e44a8d17f4f3a6d67ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   musicManager: {fileID: 0}

@@ -7,6 +7,7 @@ public class SetMusicVolume : MonoBehaviour
 {
     public Slider musicSlider;
     public MusicManager musicManager;
+    public AudioSource audioSource;
 
     public void ChangeMusicVolume()
     {
@@ -21,6 +22,9 @@ public class SetMusicVolume : MonoBehaviour
 
     void Start()
     {
+        musicManager = FindObjectOfType<MusicManager>();
+        audioSource = FindObjectOfType<AudioSource>();
         musicSlider.value = PlayerPrefsManager.GetMasterMusic();
+        musicManager.audioSource = audioSource;
     }
 }

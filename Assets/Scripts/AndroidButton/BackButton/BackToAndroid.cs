@@ -8,6 +8,5 @@ public class BackToAndroid : MonoBehaviour, IBackButton
    public void BackButton()
     {
         Application.Quit();
-        print("test");
     }
 }
