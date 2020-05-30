@@ -38,7 +38,17 @@ public class BasicGun : QQObject
     private bool waiting = false, reloading = false;
     private int mag = 0;
     private bool vibrate = true;
-
+    
+    public bool Shaking
+    {
+        get
+        {
+            if (shake && PlayerPrefsManager.CameraShakeIsActive)
+                return true;
+            else
+                return false;
+        }
+    }
     public void SetVolume()
     {
         sfxManager = FindObjectOfType<SFXManager>();
@@ -74,7 +84,7 @@ public class BasicGun : QQObject
         mag--;
         CheckForReload();
 
-        if (shake)
+        if (Shaking)
         {
             Camera.main.DOShakePosition(betweenBullets / 2, shakeStrength, shakeVibrato);
             Camera.main.DOShakeRotation(betweenBullets / 2, shakeStrength * 4, shakeVibrato);

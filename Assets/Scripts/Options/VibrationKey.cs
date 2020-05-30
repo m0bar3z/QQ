@@ -9,15 +9,10 @@ public class VibrationKey : MonoBehaviour
 
     public void SetVibrationToggleCheckbox()
     {
-        if(PlayerPrefsManager.VibrationIsActive)
-        {
-            vibrationToggle.isOn = true;
-        }
-        else
-        {
-            vibrationToggle.isOn = false;
-        }
+        vibrationToggle.isOn = PlayerPrefsManager.VibrationIsActive;
     }
+
+
     public void ChangeVibrationActivityStatus()
     {
         if (vibrationToggle.isOn)
@@ -28,6 +23,7 @@ public class VibrationKey : MonoBehaviour
             PlayerPrefsManager.VibrationIsActive = false;
         }
     }
+
 
     private void Start()
     {
