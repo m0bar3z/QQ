@@ -42,6 +42,7 @@ public class BasicGun : QQObject
     public void SetVolume()
     {
         sfxManager = FindObjectOfType<SFXManager>();
+        sfxManager.audioSource = audioSource;
         sfxManager.maxVolume = audioSource.volume;
         sfxManager.SetSFXVoiume();
     }
