@@ -190,13 +190,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c1cc8a14336dbe4b83cc6ccf26758b1, type: 3}
   - {fileID: 8300000, guid: c2ae2a946b599944aa12d904b327db91, type: 3}
   audioSource: {fileID: 1351972933}
+  sfxManager: {fileID: 0}
   dirRecoil: 1
   shake: 1
   halfVibration: 0
   shakeStrength: 0.3
   recoilStrength: 1
   shakeVibrato: 10
-  vibrationDuration: 200
+  vibrationDuration: 0
 --- !u!50 &-1246512055783283428
 Rigidbody2D:
   serializedVersion: 4

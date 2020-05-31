@@ -17,7 +17,7 @@ public class BloodObject : QQObject
         pool = FindObjectOfType<BloodPL>();
         bld = GetComponent<Blood>();
 
-        Invoke(nameof(Deactivate), deactiveAfter);
+        //Invoke(nameof(Deactivate), deactiveAfter);
     }
 
     public void Deactivate()

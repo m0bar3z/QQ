@@ -19,22 +19,25 @@ public class Burnable : MonoBehaviour
 
     public virtual void Burn()
     {
-        burning = true;
-        InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
-
-        if (hasBurnFX)
+        if (!burning)
         {
-            burnFX.SetActive(true);
+            burning = true;
+            InvokeRepeating(nameof(BurnEffect), burnEffectTick, 0.5f);
+
+            if (hasBurnFX)
+            {
+                burnFX.SetActive(true);
+            }
+            else
+            {
+                burnFX = Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
+            }
+
+            OnBurn?.Invoke();
+
+            // for test purposes
+            //GetComponent<SpriteRenderer>().color = Color.red;
         }
-        else
-        {
-            burnFX = Instantiate(Statics.instance.fireFX, transform.position + Vector3.back * 0.1f, Quaternion.identity, transform);
-        }        
-
-        OnBurn?.Invoke();
-
-        // for test purposes
-        //GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public virtual void StopBurning()
@@ -82,9 +85,9 @@ public class Burnable : MonoBehaviour
                 {
                     adjucantBurnable.Burn();
                 }
-
-                _obj.Hurt(5);
             }
         }
+
+        _obj.Hurt(5);
     }
 }

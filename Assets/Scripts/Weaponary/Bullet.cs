@@ -40,6 +40,7 @@ public class Bullet : QQObject
     {
         if (collision.gameObject.layer == 13)
         {
+            Vibration.Vibrate(100);
             contactBeforeDestruction--;
             if(contactBeforeDestruction > 0)
             {

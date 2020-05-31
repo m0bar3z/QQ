@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
-  betweenSpawns: 0.1
+  betweenSpawns: 0.05
   destroyAfter: 1
   rb: {fileID: 7761757281222994834}
 --- !u!50 &7761757281222994834

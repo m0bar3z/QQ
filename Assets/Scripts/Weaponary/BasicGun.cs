@@ -49,6 +49,7 @@ public class BasicGun : QQObject
                 return false;
         }
     }
+
     public void SetVolume()
     {
         sfxManager = FindObjectOfType<SFXManager>();
@@ -56,6 +57,7 @@ public class BasicGun : QQObject
         sfxManager.maxVolume = audioSource.volume;
         sfxManager.SetSFXVoiume();
     }
+
     public override void Trigger(Vector3 dir)
     {
         if (waiting || reloading) return;

@@ -9,6 +9,7 @@ public class PlayerPrefsManager : MonoBehaviour
     const string MASTER_VIBRATION_KEY = "master_vibrate";
     const string MASTER_CAMERASHAKE_KEY = "master_camera_shake";
     const string MASTER_SFX_KEY = "master_sfx";
+    const string CHARACTER_INDEX = "char_index";
     
     public static void ResetKeys()
     {
@@ -102,6 +103,17 @@ public class PlayerPrefsManager : MonoBehaviour
     public static int GetMasterScore()
     {
         return PlayerPrefs.GetInt(MASTER_SCORE_KEY);
+    }
+
+    // character
+    public static void SetCharacter(int charIndex)
+    {
+        PlayerPrefs.SetInt(CHARACTER_INDEX, charIndex);
+    }
+
+    public static int GetCharacter()
+    {
+        return PlayerPrefs.GetInt(CHARACTER_INDEX);
     }
 
 }

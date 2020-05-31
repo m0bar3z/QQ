@@ -71,7 +71,6 @@ public class QQObject : MonoBehaviour
             if (isBloody)
             {
                 //BloodSystem.instance.Spill((Vector2)transform.position, dir);
-
             }
 
             health.Damage(damage);
@@ -107,7 +106,6 @@ public class QQObject : MonoBehaviour
         if (isBloody)
         {
             Instantiate(bloodEffect, transform.position, Quaternion.identity);
-            SpreadBlood();
         }
     }
 
@@ -122,6 +120,7 @@ public class QQObject : MonoBehaviour
     protected virtual void OnDie()
     {
         Statics.instance.GlitchForS(0.1f);
+        SpreadBlood();
         Destroy(gameObject);
     }
 
