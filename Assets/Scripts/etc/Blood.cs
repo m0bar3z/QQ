@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Blood : Burnable
 {
+    public int benefit = 2;
     int x, y;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +14,7 @@ public class Blood : Burnable
         }
         else if(collision.gameObject.layer == 11)
         {
-            collision.gameObject.GetComponent<PlayerController>().health.Healt(5);
+            collision.gameObject.GetComponent<PlayerController>().health.Healt(benefit);
             GetComponent<BloodObject>().Deactivate();
         }
     }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Bullet : QQObject
 {
+    private static List<Bullet> bullets = new List<Bullet>();
+    private static int bulletsLimit = 500;
+
     [Space(20)]
     [Header("Bullet Vars")]
     public GameObject bulletEffect, explosionFX;
-    public int damage = 100;
+    public int damage = 100, contactBeforeDestruction = 2;
     public float explosionChance = 0f;
-
-    private static List<Bullet> bullets = new List<Bullet>();
-    private static int bulletsLimit = 500;
 
     [Range(5, 100)]
     public float bulletSpeed = 10; // speed of the bullet
@@ -38,6 +38,16 @@ public class Bullet : QQObject
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.layer == 13)
+        {
+            Vibration.Vibrate(100);
+            contactBeforeDestruction--;
+            if(contactBeforeDestruction > 0)
+            {
+                return;
+            }
+        }
+
         if(explosionChance > 0)
             BlowUp();
 

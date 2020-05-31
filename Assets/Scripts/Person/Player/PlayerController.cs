@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerController : Person
 {
-    public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
     public static bool isAlive = true;
+
+    public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
+    public GameObject willieSprite, billieSprite;
+    public int characterIndex;
 
     public void TouchInput()
     {
@@ -22,6 +25,21 @@ public class PlayerController : Person
         isAlive = true;
         base.Start();
         health.OnHeal += OnHeal;
+
+        SetCharacter();
+    }
+
+    private void SetCharacter()
+    {
+        characterIndex = PlayerPrefsManager.GetCharacter();
+        if (characterIndex == 0)
+        {
+            billieSprite.SetActive(false);
+        }
+        else
+        {
+            willieSprite.SetActive(false);
+        }
     }
 
     protected override void Update()

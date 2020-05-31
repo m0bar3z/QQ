@@ -14,6 +14,9 @@ public class Enemy : Person
     public GameObject coinPref, preSpawnPref;
     public bool visible;
 
+    public AudioSource ass;
+    public AudioClip hitSFX;
+
     public IndicatorArrow indicator;
 
     [SerializeField] // for assigning by hand in tests
@@ -68,6 +71,8 @@ public class Enemy : Person
         {
             crowdSystem.GotKill(indicator);
         }
+
+        Statics.instance.publicAS.PlayOneShot(hitSFX);
 
         Instantiate(Statics.instance.scoreText, transform.position, Quaternion.identity).GetComponent<TextMesh>().text = coinSpawnNumber * CrowdSystem.combo + "";
 

@@ -169,9 +169,11 @@ MonoBehaviour:
   dontGlitch: 0
   playerHeld: 0
   bloodEffect: {fileID: 0}
+  bloodSpreader: {fileID: 0}
+  bloodSpreaders: 10
   betweenBullets: 0.1
   recoil: 0.4
-  explosionChanceOfBullets: 0.3
+  explosionChanceOfBullets: 0
   reloadTime: 2
   chunkSize: 1
   capacity: 30
@@ -185,12 +187,14 @@ MonoBehaviour:
   shootingSFX:
   - {fileID: 8300000, guid: 56ba337692b402c4bb511e35f643587a, type: 3}
   audioSource: {fileID: 2226817692784221105}
+  sfxManager: {fileID: 0}
   dirRecoil: 1
   shake: 1
   halfVibration: 1
   shakeStrength: 0.3
+  recoilStrength: 1
   shakeVibrato: 1
-  vibrationDuration: 100
+  vibrationDuration: 0
 --- !u!50 &8094165930217277160
 Rigidbody2D:
   serializedVersion: 4
