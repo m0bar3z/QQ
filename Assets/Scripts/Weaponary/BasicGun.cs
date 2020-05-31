@@ -109,7 +109,7 @@ public class BasicGun : QQObject
             }
         }
 
-        Instantiate(shellPref, transform.position, Quaternion.identity);
+        Instantiate(shellPref, transform.position, Quaternion.identity).GetComponent<Shell>().Fly(-dir);
 
         if (playerHeld)
             SetCount();

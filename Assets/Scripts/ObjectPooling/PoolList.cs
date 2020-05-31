@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PoolList<T> : MonoBehaviour where T : MonoBehaviour
@@ -28,8 +29,15 @@ public class PoolList<T> : MonoBehaviour where T : MonoBehaviour
 
     public void ReturnOne(T one)
     {
-        list.Add(one);
-        one.gameObject.SetActive(false);
+        if (list.Count < spawnNumber)
+        {
+            list.Add(one);
+            one.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(one);
+        }
     }
 
     protected virtual void Start()
