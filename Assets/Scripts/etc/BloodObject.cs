@@ -23,7 +23,7 @@ public class BloodObject : QQObject
     public void Deactivate()
     {
         //BloodSystem.instance.Deactivate(x, y);
-
+        bld.StopBurning();
         pool.ReturnOne(bld);
     }
 
