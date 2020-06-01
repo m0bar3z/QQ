@@ -1009,7 +1009,7 @@ MonoBehaviour:
   - {fileID: 1173023544}
   lvlUpRate: 0.3
   timeBetweenWaves: 5
-  comboReset: 1
+  comboReset: 3
   _chunckSize: 2
   _betweenSpawns: 5
   _betweenSteps: 0.5

@@ -51,6 +51,8 @@ public class Bullet : QQObject
         if(explosionChance > 0)
             BlowUp();
 
+        Instantiate(bulletEffect, transform.position, Quaternion.identity);
+
         if (destroyOnTouch)
             Destroy(gameObject);
     }
@@ -60,11 +62,7 @@ public class Bullet : QQObject
         if (Random.Range(0, 0.99f) < explosionChance)
         {
             Instantiate(explosionFX, transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
-        }        
+        }  
     }
 
     private void CheckBulletLimit()

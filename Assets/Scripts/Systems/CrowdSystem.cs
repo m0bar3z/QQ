@@ -71,6 +71,7 @@ public class CrowdSystem : MonoBehaviour
 
         combo *= 1.2f;
         Instantiate(Statics.instance.scoreText, _pc.transform.position, Quaternion.identity).GetComponent<TextMesh>().text = "x" + CrowdSystem.combo;
+
         CancelInvoke(nameof(ResetCombo));
         Invoke(nameof(ResetCombo), comboReset);
 
