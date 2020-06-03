@@ -12,7 +12,7 @@ public class SceneManage : MonoBehaviour
     public Canvas mainCanvas;
 
 
-    public void ActiveLoadingWindow(int index)
+    public  void ActiveLoadingWindow(int index)
     {
         mainCanvas.gameObject.SetActive(false);
         loadingWindowInstance = Instantiate(loadingWindowPref, transform.position, Quaternion.identity);

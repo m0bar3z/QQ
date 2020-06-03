@@ -7,6 +7,8 @@ public class Bullet : QQObject
     private static List<Bullet> bullets = new List<Bullet>();
     private static int bulletsLimit = 500;
 
+    public Enemy[] enemies;
+
     [Space(20)]
     [Header("Bullet Vars")]
     public GameObject bulletEffect, explosionFX;
@@ -15,17 +17,57 @@ public class Bullet : QQObject
 
     [Range(5, 100)]
     public float bulletSpeed = 10; // speed of the bullet
+    [Range(1, 10)]
+    public float chasingSpeed; // speed of the bullet when chasing is active
 
     public bool testShoot = false; // if on bullet flies on start
     public bool destroyOnTouch = true;
+    public bool chasingEnemy;
     public float destroyAfter = 5; // the bullet get's destroyed after this amount of time
 
     private Vector3 dir; // dir in which the bullet is shot
 
+    public void BulletAccelerate()
+    {
+        chasingSpeed += 0.5f;
+    }
+    public void ChasingEnemy()
+    {
+        enemies = FindObjectsOfType<Enemy>();
+        Vector2 shortestDistanceToEnemy = new Vector2(1000, 1000);
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Vector2 enemyDistance = enemies[i].transform.position - transform.position;
+            if (enemyDistance.magnitude < shortestDistanceToEnemy.magnitude)
+            {
+                shortestDistanceToEnemy = enemyDistance;
+            }
+        }
+        dir = shortestDistanceToEnemy.normalized * chasingSpeed;
+    }
+
     public void Shoot(Vector3 dir, bool withRecoil = false, float recoilStrength = 1)
     {
-        this.dir = dir.normalized;
-        Fly(withRecoil, recoilStrength);
+        if (!chasingEnemy)
+        {
+            this.dir = dir.normalized;
+            Fly(withRecoil, recoilStrength);
+        }
+        else
+        {
+            ChasingEnemy();
+            if(dir.normalized.x > 0 && this.dir.normalized.x > 0 || dir.normalized.x < 0 && this.dir.normalized.x < 0)
+            {
+                Fly(withRecoil, recoilStrength);
+            }
+            else
+            {
+                this.dir = dir.normalized;
+                //InvokeRepeating(nameof(BulletAccelerate), 0.1f, 0.2f);
+                Fly(withRecoil, recoilStrength);
+            }
+        }
     }
 
     protected override void Start()
