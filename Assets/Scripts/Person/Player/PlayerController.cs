@@ -7,8 +7,12 @@ public class PlayerController : Person
     public static bool isAlive = true;
 
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
-    public GameObject willieSprite, billieSprite;
+    public GameObject willieSprite, billieSprite, dashFXPrefab;
     public int characterIndex;
+    public float dashWait = 0.2f, dashSpeed = 70;
+
+    private float time;
+    public bool timerOn = false, isShooting = false;
 
     public void TouchInput()
     {
@@ -48,14 +52,48 @@ public class PlayerController : Person
         {
             base.Update();
             CheckInput();
+
+            if (timerOn)
+            {
+                time += Time.deltaTime;
+                if(time > dashWait)
+                {
+                    time = 0;
+                    timerOn = false;
+                }
+            }
         }
+    }
+
+    protected virtual void Dash()
+    {
+        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dir -= (Vector2)transform.position;
+        ReceiveForce(dir.normalized * dashSpeed);
+        Instantiate(dashFXPrefab, transform);
     }
 
     protected virtual void CheckInput()
     {
         if (Input.GetMouseButton(0))
         {
-            RightHandTrigger();
+            if (!timerOn)
+                RightHandTrigger();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (timerOn)
+            {
+                timerOn = false;
+                time = 0;
+                Dash();
+            }
+            else
+            {
+                timerOn = true;
+                time = 0;
+            }
         }
     }
 
@@ -92,6 +130,16 @@ public class PlayerController : Person
             Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dir -= (Vector2)transform.position;
             ReceiveForce(dir.normalized);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 15)
+        {
+            Bullet b = collision.gameObject.GetComponent<Bullet>();
+            Hurt(b.damage);
+            b.Blow();
         }
     }
 }

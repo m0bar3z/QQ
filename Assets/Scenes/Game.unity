@@ -19238,9 +19238,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 767861879, guid: d8d14a4a7bda4b34495b8a8d1328e328, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1045730095, guid: d8d14a4a7bda4b34495b8a8d1328e328, type: 3}
       propertyPath: m_Radius
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045730095, guid: d8d14a4a7bda4b34495b8a8d1328e328, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6885726290802021348, guid: d8d14a4a7bda4b34495b8a8d1328e328,
         type: 3}
@@ -19317,6 +19325,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.24146
       objectReference: {fileID: 0}
+    - target: {fileID: 6885726290802021371, guid: d8d14a4a7bda4b34495b8a8d1328e328,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6885726290802021372, guid: d8d14a4a7bda4b34495b8a8d1328e328,
         type: 3}
       propertyPath: willieSprite
@@ -19327,6 +19340,17 @@ PrefabInstance:
       propertyPath: billieSprite
       value: 
       objectReference: {fileID: 1426780187}
+    - target: {fileID: 6885726290802021372, guid: d8d14a4a7bda4b34495b8a8d1328e328,
+        type: 3}
+      propertyPath: dashWait
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885726290802021372, guid: d8d14a4a7bda4b34495b8a8d1328e328,
+        type: 3}
+      propertyPath: dashFXPrefab
+      value: 
+      objectReference: {fileID: 6658309611817787700, guid: d7d31b12372072444bfa2cd9ef3f9de0,
+        type: 3}
     - target: {fileID: 7254417055138824961, guid: d8d14a4a7bda4b34495b8a8d1328e328,
         type: 3}
       propertyPath: m_RootOrder
