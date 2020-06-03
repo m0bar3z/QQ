@@ -155,14 +155,19 @@ public class BasicGun : QQObject
         }
     }
 
+    private void DisableReloadFX()
+    {
+        Statics.instance.reloadFX.SetActive(false);
+    }
+
     private void Reload()
     {
         if (playerHeld)
         {
             try
             {
-                Statics.instance.ReloadBar.fillAmount = 1;
-                Statics.instance.ReloadBar.DOFillAmount(0, reloadTime);
+                Statics.instance.reloadFX.SetActive(true);
+                Invoke(nameof(DisableReloadFX), reloadTime);
             }
             catch { }
         }
