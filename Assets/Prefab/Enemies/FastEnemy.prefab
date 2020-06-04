@@ -141,18 +141,17 @@ MonoBehaviour:
   handsReach: 1
   handPos: {fileID: 3102703430254278663}
   timeBetweensteps: 0.68
-  stopAtRange: 3
-  moveForceMultiplier: 10
-  timeMultiplier: 1
-  reach: 5
-  coinSpawnNumber: 10
+  stopAtRange: 5
+  moveForceMultiplier: 5
+  timeMultiplier: 4
+  reach: 10
+  coinSpawnNumber: 20
   coinPref: {fileID: 2908427190590912309, guid: 3d62c6a47f402a2489de569289bbafbf,
     type: 3}
   preSpawnPref: {fileID: 1295796832535611125, guid: d379920e2b0a51d41805229c012c8197,
     type: 3}
   visible: 0
   ass: {fileID: 7951786534006015220}
-  hitSFX: {fileID: 8300000, guid: 839e3bb53c1f2fa4e8411700e890ce29, type: 3}
   indicator: {fileID: 0}
   _target: {fileID: 0}
   targetDistance: {x: 0, y: 0}

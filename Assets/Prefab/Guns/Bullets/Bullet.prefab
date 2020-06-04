@@ -152,6 +152,7 @@ MonoBehaviour:
   testShoot: 0
   destroyOnTouch: 1
   destroyAfter: 5
+  hitSFX: {fileID: 8300000, guid: 2edf81454b82ba342956d55bb9d0e062, type: 3}
 --- !u!96 &6793469649731297346
 TrailRenderer:
   serializedVersion: 2
@@ -277,7 +278,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6793469649731297471
 BoxCollider2D:

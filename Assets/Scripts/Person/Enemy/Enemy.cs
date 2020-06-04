@@ -15,7 +15,6 @@ public class Enemy : Person
     public bool visible;
 
     public AudioSource ass;
-    public AudioClip hitSFX;
 
     public IndicatorArrow indicator;
 
@@ -71,8 +70,6 @@ public class Enemy : Person
         {
             crowdSystem.GotKill(indicator);
         }
-
-        Statics.instance.publicAS.PlayOneShot(hitSFX);
 
         Instantiate(Statics.instance.scoreText, transform.position, Quaternion.identity).GetComponent<TextMesh>().text = coinSpawnNumber * CrowdSystem.combo + "";
 

@@ -36,7 +36,7 @@ public class PoolList<T> : MonoBehaviour where T : MonoBehaviour
         }
         else
         {
-            Destroy(one);
+            Destroy(one.gameObject);
         }
     }
 

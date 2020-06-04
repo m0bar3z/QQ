@@ -152,7 +152,7 @@ MonoBehaviour:
     type: 3}
   visible: 0
   ass: {fileID: 122815339506613049}
-  hitSFX: {fileID: 8300000, guid: 839e3bb53c1f2fa4e8411700e890ce29, type: 3}
+  hitSFX: {fileID: 8300000, guid: 2edf81454b82ba342956d55bb9d0e062, type: 3}
   indicator: {fileID: 0}
   _target: {fileID: 0}
   targetDistance: {x: 0, y: 0}

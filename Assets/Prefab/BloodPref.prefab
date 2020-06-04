@@ -130,7 +130,7 @@ MonoBehaviour:
   bloodSpreaders: 10
   x: 0
   y: 0
-  deactiveAfter: 20
+  deactiveAfter: 10
 --- !u!61 &-5997447625270334332
 BoxCollider2D:
   m_ObjectHideFlags: 0

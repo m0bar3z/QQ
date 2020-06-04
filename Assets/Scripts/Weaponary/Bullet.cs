@@ -20,6 +20,8 @@ public class Bullet : QQObject
     public bool destroyOnTouch = true;
     public float destroyAfter = 5; // the bullet get's destroyed after this amount of time
 
+    public AudioClip hitSFX;
+
     private Vector3 dir; // dir in which the bullet is shot
 
     public void Shoot(Vector3 dir, bool withRecoil = false, float recoilStrength = 1)
@@ -49,6 +51,7 @@ public class Bullet : QQObject
         if (collision.gameObject.layer == 13)
         {
             Vibration.Vibrate(100);
+            Statics.instance.publicAS.PlayOneShot(hitSFX);
 
             try
             {

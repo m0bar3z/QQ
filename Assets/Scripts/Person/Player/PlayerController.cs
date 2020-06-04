@@ -12,7 +12,7 @@ public class PlayerController : Person
     public float dashWait = 0.2f, dashSpeed = 70;
 
     private float time;
-    public bool timerOn = false, isShooting = false;
+    public bool timerOn = false, isShooting = false, dashing;
 
     public void TouchInput()
     {
@@ -61,6 +61,12 @@ public class PlayerController : Person
                     time = 0;
                     timerOn = false;
                 }
+
+                if (Shop.isOpen)
+                {
+                    timerOn = false;
+                    time = 0;
+                }
             }
         }
     }
@@ -71,22 +77,23 @@ public class PlayerController : Person
         dir -= (Vector2)transform.position;
         ReceiveForce(dir.normalized * dashSpeed);
         Instantiate(dashFXPrefab, transform);
+        Invoke(nameof(DisableDashing), 0.5f);
+    }
+
+    private void DisableDashing()
+    {
+        dashing = false;
     }
 
     protected virtual void CheckInput()
     {
-        if (Input.GetMouseButton(0))
-        {
-            if (!timerOn)
-                RightHandTrigger();
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             if (timerOn)
             {
                 timerOn = false;
                 time = 0;
+                dashing = true;
                 Dash();
             }
             else
@@ -94,6 +101,12 @@ public class PlayerController : Person
                 timerOn = true;
                 time = 0;
             }
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (!timerOn && !dashing)
+                RightHandTrigger();
         }
     }
 
