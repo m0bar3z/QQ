@@ -5456,18 +5456,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1746408545 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2929585252054973415, guid: f122a9065357e4040b7a0c1a4a20eba5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1602475680}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5adacbc6a25bc04458ab2a3759eacda3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1767986966
 GameObject:
   m_ObjectHideFlags: 0
@@ -10417,7 +10405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1737691587}
-  sceneManager: {fileID: 1746408545}
+  sceneManager: {fileID: 0}
   startMenuIndex: 1
 --- !u!114 &2138152592
 MonoBehaviour:
@@ -10458,9 +10446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085e5e1c8b7d2db448a05907917a31df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
+  MaxVolume: 0
   audioSource: {fileID: 0}
-  audioSourcesOnScene: []
 --- !u!82 &8335789317744466147
 AudioSource:
   m_ObjectHideFlags: 0
