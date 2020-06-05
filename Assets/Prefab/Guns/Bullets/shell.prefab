@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3926751685609466501}
   shellDropSFX: {fileID: 0}
-  speed: 12
+  speed: 30
   playSFXAfter: 0.3
 --- !u!50 &3926751685609466501
 Rigidbody2D:
@@ -158,6 +158,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fb1251c46e563c84ab123aaf602676e0, type: 3}
   - {fileID: 8300000, guid: 5b657d89503522a4a8064e98b1ab3fec, type: 3}
   - {fileID: 8300000, guid: 24c1f76e3533e9b4d8fb1876a4fdb819, type: 3}
+  sfxManager: {fileID: 0}
 --- !u!82 &9104211919163450541
 AudioSource:
   m_ObjectHideFlags: 0

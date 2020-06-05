@@ -25,7 +25,7 @@ public class HealthSystem
         }
     }
 
-    public virtual void Healt(float amount)
+    public virtual void Heal(float amount)
     {
         this.amount += amount;
         if (this.amount > 100) this.amount = 100;

@@ -8,13 +8,13 @@ public class Blood : Burnable
     int x, y;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 9 || collision.gameObject.layer == 15)
+        if(collision.gameObject.layer == 16)
         {
             Burn();
         }
         else if(collision.gameObject.layer == 11)
         {
-            collision.gameObject.GetComponent<PlayerController>().health.Healt(benefit);
+            collision.gameObject.GetComponent<PlayerController>().health.Heal(benefit);
             GetComponent<BloodObject>().Deactivate();
         }
     }

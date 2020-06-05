@@ -28,8 +28,8 @@ TagManager:
   - Enemy
   - TouchBar
   - EnemyBullet
-  - 
-  - 
+  - Non-Interactive
+  - Collectible-trigger
   - 
   - 
   - 

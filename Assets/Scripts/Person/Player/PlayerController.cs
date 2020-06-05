@@ -7,8 +7,12 @@ public class PlayerController : Person
     public static bool isAlive = true;
 
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
-    public GameObject willieSprite, billieSprite;
+    public GameObject willieSprite, billieSprite, dashFXPrefab;
     public int characterIndex;
+    public float dashWait = 0.2f, dashSpeed = 70;
+
+    private float time;
+    public bool timerOn = false, isShooting = false, dashing;
 
     public void TouchInput()
     {
@@ -48,14 +52,62 @@ public class PlayerController : Person
         {
             base.Update();
             CheckInput();
+
+            if (timerOn)
+            {
+                time += Time.deltaTime;
+                if(time > dashWait)
+                {
+                    time = 0;
+                    timerOn = false;
+                    RightHandTrigger();
+                }
+
+                if (Shop.isOpen)
+                {
+                    timerOn = false;
+                    time = 0;
+                }
+            }
         }
+    }
+
+    protected virtual void Dash()
+    {
+        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dir -= (Vector2)transform.position;
+        ReceiveForce(dir.normalized * dashSpeed);
+        Instantiate(dashFXPrefab, transform);
+        Invoke(nameof(DisableDashing), 0.5f);
+    }
+
+    private void DisableDashing()
+    {
+        dashing = false;
     }
 
     protected virtual void CheckInput()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (timerOn)
+            {
+                timerOn = false;
+                time = 0;
+                dashing = true;
+                Dash();
+            }
+            else
+            {
+                timerOn = true;
+                time = 0;
+            }
+        }
+
         if (Input.GetMouseButton(0))
         {
-            RightHandTrigger();
+            if (!timerOn && !dashing)
+                RightHandTrigger();
         }
     }
 
@@ -92,6 +144,16 @@ public class PlayerController : Person
             Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dir -= (Vector2)transform.position;
             ReceiveForce(dir.normalized);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 15)
+        {
+            Bullet b = collision.gameObject.GetComponent<Bullet>();
+            Hurt(b.damage);
+            b.Blow();
         }
     }
 }

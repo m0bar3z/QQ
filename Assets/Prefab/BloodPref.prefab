@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a0e07a4c6f81644a30ef56d52c4dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 20
   holderController: {fileID: 0}
   health:
     isDead: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   bloodSpreaders: 10
   x: 0
   y: 0
-  deactiveAfter: 20
+  deactiveAfter: 10
 --- !u!61 &-5997447625270334332
 BoxCollider2D:
   m_ObjectHideFlags: 0
