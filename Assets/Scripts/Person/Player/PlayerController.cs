@@ -60,6 +60,7 @@ public class PlayerController : Person
                 {
                     time = 0;
                     timerOn = false;
+                    RightHandTrigger();
                 }
 
                 if (Shop.isOpen)

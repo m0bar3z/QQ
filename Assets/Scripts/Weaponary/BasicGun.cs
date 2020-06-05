@@ -10,6 +10,8 @@ public class BasicGun : QQObject
     [Header("Gun vars")]
     [Space(20)]
 
+    public string name_model = "gun";
+
     [Header("Floats")]
     [Range(0, 5)]
     public float betweenBullets = 0.2f;
