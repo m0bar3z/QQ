@@ -16,4 +16,4 @@ MonoBehaviour:
   isHandheld: 1
   name_: ShutGun
   price: 100
-  sprite: {fileID: 21300000, guid: 54574e682f583a744923690de3cd3e7c, type: 3}
+  sprite: {fileID: 21300000, guid: adf3babf79caede42941f65351d7bd57, type: 3}

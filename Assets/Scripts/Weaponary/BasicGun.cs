@@ -5,9 +5,14 @@ using DG.Tweening;
 
 public class BasicGun : QQObject
 {
+    public static float defCamSize = 8;
+
     [Header("Gun vars")]
     [Space(20)]
 
+    public string name_model = "gun";
+
+    [Header("Floats")]
     [Range(0, 5)]
     public float betweenBullets = 0.2f;
     [Range(0.01f, 30f)]
@@ -15,30 +20,43 @@ public class BasicGun : QQObject
     [Range(0f, 0.99f)]
     public float explosionChanceOfBullets = 0f;
     public float reloadTime = 2;
+    public float shakeStrength, recoilStrength = 1;
+
+    [Header("Ints")]
     [Range(1, 20)]
     public int chunkSize = 3;
     public int capacity = 7;
+    public int shakeVibrato;
+    public int vibrationDuration = 100;
+    public int scope = 1;
+    public int hitBeforeDes = 1;
+
+    [Header("GO, Transforms")]
     public GameObject bulletPref;
     public GameObject shellPref;
     public Transform gunHole;
+
+    [Header("Bool")]
     public bool plyReloadSFX = true;
+    public bool dirRecoil = false, shake = false, halfVibration;
+
+    [Header("Audio")]
     public AudioClip reloadSFX;
     public AudioClip[] shootingSFX;
     public AudioSource audioSource;
     public SFXManager sfxManager;
-    public bool dirRecoil = false, shake = false, halfVibration;
-
-    public float shakeStrength, recoilStrength = 1;
-    public int shakeVibrato;
-    public int vibrationDuration = 100;
 
     [Space(20)]
 
     private float time = 0;
-    private bool waiting = false, reloading = false;
+
     private int mag = 0;
+
+
+    private bool waiting = false, reloading = false;
     private bool vibrate = true;
-    
+    private bool scopeSet = false;
+
     public bool Shaking
     {
         get
@@ -52,10 +70,14 @@ public class BasicGun : QQObject
 
     public void SetVolume()
     {
-        sfxManager = FindObjectOfType<SFXManager>();
-        sfxManager.audioSource = audioSource;
-        sfxManager.maxVolume = audioSource.volume;
-        sfxManager.SetSFXVoiume();
+        try
+        {
+            sfxManager = FindObjectOfType<SFXManager>();
+            sfxManager.audioSource = audioSource;
+            sfxManager.maxVolume = audioSource.volume;
+            sfxManager.SetSFXVoiume();
+        }
+        catch { }
     }
 
     public override void Trigger(Vector3 dir)
@@ -80,6 +102,7 @@ public class BasicGun : QQObject
 
             Bullet b = Instantiate(bulletPref, gunHole.position, Quaternion.identity).GetComponent<Bullet>();
             b.explosionChance = explosionChanceOfBullets;
+            b.contactBeforeDestruction = hitBeforeDes;
             b.Shoot(tempDir, dirRecoil, recoilStrength);
         }
 
@@ -109,7 +132,7 @@ public class BasicGun : QQObject
             }
         }
 
-        Instantiate(shellPref, transform.position, Quaternion.identity);
+        Instantiate(shellPref, transform.position, Quaternion.identity).GetComponent<Shell>().Fly(-dir);
 
         if (playerHeld)
             SetCount();
@@ -132,9 +155,21 @@ public class BasicGun : QQObject
 
     protected override void Start()
     {
-        base.Start(); 
+        base.Start();
         ResetMagToFull();
         SetVolume();
+        SetScope();
+    }
+
+    private void SetScope()
+    {
+        if (playerHeld)
+        {
+            scopeSet = true;
+
+            if(scope > 0)
+                CamManager.SetSize(CamManager.GetDefSize() * scope);
+        }
     }
 
     private void PlayShootingSFX()
@@ -155,14 +190,19 @@ public class BasicGun : QQObject
         }
     }
 
+    private void DisableReloadFX()
+    {
+        Statics.instance.reloadFX.SetActive(false);
+    }
+
     private void Reload()
     {
         if (playerHeld)
         {
             try
             {
-                Statics.instance.ReloadBar.fillAmount = 1;
-                Statics.instance.ReloadBar.DOFillAmount(0, reloadTime);
+                Statics.instance.reloadFX.SetActive(true);
+                Invoke(nameof(DisableReloadFX), reloadTime);
             }
             catch { }
         }

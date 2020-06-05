@@ -25,6 +25,8 @@ public class Bullet : QQObject
     public bool chasingEnemy;
     public float destroyAfter = 5; // the bullet get's destroyed after this amount of time
 
+    public AudioClip hitSFX;
+
     private Vector3 dir; // dir in which the bullet is shot
 
     public void BulletAccelerate()
@@ -70,6 +72,14 @@ public class Bullet : QQObject
         }
     }
 
+    public void Blow()
+    {
+        Instantiate(bulletEffect, transform.position, Quaternion.identity);
+
+        if (destroyOnTouch)
+            Destroy(gameObject);
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -78,23 +88,33 @@ public class Bullet : QQObject
         Destroy(gameObject, destroyAfter);
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 13)
         {
             Vibration.Vibrate(100);
+            Statics.instance.publicAS.PlayOneShot(hitSFX);
+
+            try
+            {
+                collision.GetComponent<Enemy>().Hurt(damage);
+            }
+            catch { }
+
             contactBeforeDestruction--;
-            if(contactBeforeDestruction > 0)
+            if (contactBeforeDestruction > 0)
             {
                 return;
             }
         }
 
-        if(explosionChance > 0)
+        if (collision.gameObject.layer == 12 || collision.gameObject.layer == 16 || collision.gameObject.layer == 10 || collision.gameObject.layer == 11)
+            return;
+
+        if (explosionChance > 0)
             BlowUp();
 
-        if (destroyOnTouch)
-            Destroy(gameObject);
+        Blow();
     }
 
     protected virtual void BlowUp()
@@ -102,11 +122,7 @@ public class Bullet : QQObject
         if (Random.Range(0, 0.99f) < explosionChance)
         {
             Instantiate(explosionFX, transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
-        }        
+        }  
     }
 
     private void CheckBulletLimit()
