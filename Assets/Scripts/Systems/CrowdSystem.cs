@@ -17,7 +17,7 @@ public class CrowdSystem : MonoBehaviour
     public float timeBetweenWaves = 5f, comboReset = 3f;
 
     [SerializeField]
-    private float _chunckSize = 1, _betweenSpawns = 5, _betweenSteps = 0.5f, _hardEnemyProbability = 0.1f;
+    private float _chunckSize = 1, _betweenSpawns = 5, _betweenSteps = 0.5f, _hardEnemyProbability = 100f;
     private int _lvl, _kills, _killsTillNext = 3;
 
     private float _lvlSpeedDiff = 10;

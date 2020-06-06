@@ -12,7 +12,7 @@ public class Enemy : Person
     public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
     public int coinSpawnNumber;
     public GameObject coinPref, preSpawnPref;
-    public bool visible;
+    public bool visible, zombieOnBurn = true;
 
     public AudioSource ass;
 
@@ -90,7 +90,7 @@ public class Enemy : Person
 
     private void Tick()
     {
-        if (!_burnable.burning)
+        if (!_burnable.burning || !zombieOnBurn)
         {
             Move();
             Shoot();
