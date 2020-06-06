@@ -8,6 +8,7 @@ public class PlayerController : Person
 
     public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
     public GameObject willieSprite, billieSprite, dashFXPrefab;
+    public BP bp;
     public int characterIndex;
     public float dashWait = 0.2f, dashSpeed = 70;
 
@@ -21,6 +22,12 @@ public class PlayerController : Person
 
     public override void PickUp(QQObject obj)
     {
+        if (rightHandFull)
+        {
+            BasicGun gunInHand = (BasicGun)rightHand;
+            bp.StoreGun(gunInHand);
+        }
+
         obj.GetPickedUp(this);
     }
 
