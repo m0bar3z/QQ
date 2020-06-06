@@ -16,7 +16,9 @@ public class BPItem : MonoBehaviour
 	public int index;
 	//[Header("bools")]
 	[Header("GO, Components")]
-	public Image iconRenderer;	
+	public Image iconRenderer;
+	public BasicGun gun;
+	public Button btn;
 	#endregion
 
 	#region PrivateVars
@@ -27,9 +29,15 @@ public class BPItem : MonoBehaviour
 	#endregion
 
 	#region PublicFunctions
-	public void ApplyGun(Sprite sp)
+	public void ApplyGun(Sprite sp, BasicGun gun, BP bp)
 	{
 		iconRenderer.sprite = sp;
+		this.gun = gun;
+
+		btn.onClick.AddListener(() =>
+		{
+			bp.GetGunAt(index);
+		});
 	}
 	#endregion
 

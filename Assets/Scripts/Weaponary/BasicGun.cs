@@ -46,6 +46,8 @@ public class BasicGun : QQObject
     public AudioSource audioSource;
     public SFXManager sfxManager;
 
+    public SpriteRenderer spr;
+
     [Space(20)]
 
     private float time = 0;
@@ -141,6 +143,12 @@ public class BasicGun : QQObject
         holderController.ReceiveForce(-dir * recoil * 10); // recoil
     }
 
+    public override void GetPickedUp(PlayerController picker)
+    {
+        base.GetPickedUp(picker);
+        SetScope();
+    }
+
     protected virtual void SetCount()
     {
         try
@@ -158,7 +166,6 @@ public class BasicGun : QQObject
         base.Start();
         ResetMagToFull();
         SetVolume();
-        SetScope();
     }
 
     private void SetScope()

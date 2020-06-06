@@ -9,10 +9,14 @@ public class SFXPlayer : MonoBehaviour
     public SFXManager sfxManager;
     public void SetVolume()
     {
-        sfxManager = FindObjectOfType<SFXManager>();
-        sfxManager.audioSource = source;
-        sfxManager.maxVolume = source.volume;
-        sfxManager.SetSFXVoiume();
+        try
+        {
+            sfxManager = FindObjectOfType<SFXManager>();
+            sfxManager.audioSource = source;
+            sfxManager.maxVolume = source.volume;
+            sfxManager.SetSFXVoiume();
+        }
+        catch { }
     }
     private void Start()
     {
