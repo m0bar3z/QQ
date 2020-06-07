@@ -933,6 +933,8 @@ MonoBehaviour:
     type: 3}
   arrowPref: {fileID: 4012305482451964834, guid: d950193392c498f44ad68229d10f64a1,
     type: 3}
+  bossPref: {fileID: 1708702157812046922, guid: 6213edbdee5488541b714ba5bbb5921b,
+    type: 3}
   enemyPrefs:
   - {fileID: 3297070023406046534, guid: bae31097943dffc4b8c81c46c4b3a774, type: 3}
   - {fileID: 3297070023406046534, guid: 4c31c06826320ab48a46c4429a6a710f, type: 3}

@@ -9,7 +9,7 @@ public class CrowdSystem : MonoBehaviour
     public static int enemiesCount = 0, waveNumber = 1;
     public static float combo = 1;
 
-    public GameObject SimpleEnemyPref, arrowPref;
+    public GameObject SimpleEnemyPref, arrowPref, bossPref;
     public GameObject[] enemyPrefs;
     public Transform[] doors;
 
@@ -22,6 +22,7 @@ public class CrowdSystem : MonoBehaviour
 
     private float _lvlSpeedDiff = 10;
     private float _temperatureMultiplier = 1;
+    private float _bossCount = 1;
 
     private Transform _target;
     private PlayerController _pc;
@@ -55,6 +56,10 @@ public class CrowdSystem : MonoBehaviour
         _lvl++;
         _killsTillNext *= _killsTillNext;
         _chunckSize *= 1.2f;
+
+        if (_chunckSize > 10)
+            _chunckSize = 10;
+
         SpeedUp();
     }
 
@@ -149,25 +154,53 @@ public class CrowdSystem : MonoBehaviour
 
     private void Spawn()
     {
-        Statics.instance.messageSystem.ShowMessage("Wave " + waveNumber++);
-        for(int i = 0; i < _chunckSize; i++)
+        if (_lvl % 5 == 0)
         {
-            SpawnOne();
+            // comment the condition for test purposes
+            if(_lvl != 0)
+                SpawnBoss();
+        }
+        else
+        {
+            Statics.instance.messageSystem.ShowMessage("Wave " + waveNumber++);
+            for (int i = 0; i < _chunckSize; i++)
+            {
+                SpawnOne();
+            }
         }
     }
 
     private void SpawnOne()
     {
         Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
-
         GameObject enemyType = SimpleEnemyPref;
         float betweenstps = _betweenSteps;
-        if(Random.Range(0f, 100f) < _hardEnemyProbability)
+
+        if (Random.Range(0f, 100f) < _hardEnemyProbability)
         {
             enemyType = enemyPrefs[Random.Range(0, enemyPrefs.Length)];
             betweenstps *= 2;
         }
 
+        SpawnByType(spawnPos, enemyType, betweenstps);
+    }
+
+    private void SpawnBoss()
+    {
+        GameObject enemyType = bossPref;
+        float betweenstps = _betweenSteps;
+
+        if (_bossCount == 0) _bossCount = 1;
+
+        for (int i = 0; i < _bossCount; i++)
+        {
+            Vector3 spawnPos = doors[Random.Range(0, doors.Length)].position;
+            SpawnByType(spawnPos, enemyType, betweenstps);
+        }
+    }
+
+    private void SpawnByType(Vector3 spawnPos, GameObject enemyType, float betweenstps)
+    {
         Enemy enemy = Instantiate(enemyType, spawnPos, Quaternion.identity).GetComponent<Enemy>();
         enemy.AssignTarget(_target);
         enemy.AssignCS(this);
