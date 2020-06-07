@@ -12,9 +12,30 @@ public class HealthSystem
     public event SystemTools.SimpleSystemCB OnDamage;
     public bool isDead = false;
 
+    public Slider2D healthSlider;
+    public bool hasSlider = false;
+
+    private float baseHealth;
+
     public HealthSystem(float baseAmount)
     {
         amount = baseAmount;
+        baseHealth = amount;
+    }
+
+    public void AssignSlider(Slider2D s)
+    {
+        healthSlider = s;
+        hasSlider = true;
+        SetSlider();
+    }
+
+    public void SetSlider()
+    {
+        if (hasSlider)
+        {
+            healthSlider.value = amount / baseHealth;
+        }
     }
 
     public float Amount
@@ -29,12 +50,14 @@ public class HealthSystem
     {
         this.amount += amount;
         if (this.amount > 100) this.amount = 100;
+        SetSlider();
         OnHeal?.Invoke();
     }
 
     public virtual void Damage(float damage)
     {
         amount -= damage;
+        SetSlider();
         OnDamage?.Invoke();
         if(amount <= 0)
         {

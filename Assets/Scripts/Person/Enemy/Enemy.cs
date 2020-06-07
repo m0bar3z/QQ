@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : Person
 {
@@ -12,7 +13,8 @@ public class Enemy : Person
     public float stopAtRange = 4, moveForceMultiplier, timeMultiplier = 1, reach = 4;
     public int coinSpawnNumber;
     public GameObject coinPref, preSpawnPref;
-    public bool visible, zombieOnBurn = true;
+    public bool visible, zombieOnBurn = true, hasHealthSlider;
+    public Slider2D healthSlider;
 
     public AudioSource ass;
 
@@ -42,6 +44,12 @@ public class Enemy : Person
     protected override void Start()
     {
         base.Start();
+
+        if (hasHealthSlider)
+        {
+            health.AssignSlider(healthSlider);
+        }
+
         Instantiate(preSpawnPref, transform.position, Quaternion.identity).GetComponent<PreSpawn>().AddGOActivation(gameObject);
         gameObject.SetActive(false);
     }
