@@ -163,6 +163,8 @@ MonoBehaviour:
   holderController: {fileID: 0}
   health:
     isDead: 0
+    healthSlider: {fileID: 0}
+    hasSlider: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 0
@@ -176,13 +178,13 @@ MonoBehaviour:
   recoil: 0.3
   explosionChanceOfBullets: 0
   reloadTime: 1
-  shakeStrength: 0
+  shakeStrength: 1
   recoilStrength: 1
+  scope: 1
   chunkSize: 1
   capacity: 20
-  shakeVibrato: 0
+  shakeVibrato: 1
   vibrationDuration: 0
-  scope: 1
   hitBeforeDes: 1
   bulletPref: {fileID: 6793469649731297349, guid: 7ba875276a2df0541ba23e9aa1022bea,
     type: 3}

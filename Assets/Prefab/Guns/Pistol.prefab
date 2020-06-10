@@ -178,13 +178,13 @@ MonoBehaviour:
   recoil: 1
   explosionChanceOfBullets: 0
   reloadTime: 1
-  shakeStrength: 0.2
+  shakeStrength: 2
   recoilStrength: 1
+  scope: 1
   chunkSize: 1
   capacity: 8
-  shakeVibrato: 1
+  shakeVibrato: 5
   vibrationDuration: 0
-  scope: 1
   hitBeforeDes: 1
   bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
     type: 3}

@@ -163,6 +163,8 @@ MonoBehaviour:
   holderController: {fileID: 0}
   health:
     isDead: 0
+    healthSlider: {fileID: 0}
+    hasSlider: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 0
@@ -173,16 +175,16 @@ MonoBehaviour:
   bloodSpreaders: 10
   name_model: gun
   betweenBullets: 0.4
-  recoil: 1.5
+  recoil: 3
   explosionChanceOfBullets: 0
   reloadTime: 1
-  shakeStrength: 0.3
+  shakeStrength: 5
   recoilStrength: 1
+  scope: 1.2
   chunkSize: 5
   capacity: 6
-  shakeVibrato: 10
+  shakeVibrato: 20
   vibrationDuration: 0
-  scope: 1
   hitBeforeDes: 1
   bulletPref: {fileID: 6793469649731297349, guid: a3ccd4120eb1fc74f8135b67ef9622c3,
     type: 3}

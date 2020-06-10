@@ -21,6 +21,7 @@ public class BasicGun : QQObject
     public float explosionChanceOfBullets = 0f;
     public float reloadTime = 2;
     public float shakeStrength, recoilStrength = 1;
+    public float scope = 1;
 
     [Header("Ints")]
     [Range(1, 20)]
@@ -28,7 +29,6 @@ public class BasicGun : QQObject
     public int capacity = 7;
     public int shakeVibrato;
     public int vibrationDuration = 100;
-    public int scope = 1;
     public int hitBeforeDes = 1;
 
     [Header("GO, Transforms")]
