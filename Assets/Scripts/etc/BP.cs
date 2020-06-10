@@ -58,7 +58,7 @@ public class BP : MonoBehaviour
 		BasicGun gn = guns[index];
 		gn.gameObject.SetActive(true);
 
-		if (pc.facingRight && gn.transform.localScale.x > 0 || !pc.facingRight && gn.transform.localScale.x < 0) 
+		if (pc.facingRight && gn.transform.localScale.x < 0 || !pc.facingRight && gn.transform.localScale.x < 0) 
 			gn.transform.localScale = new Vector3(-gn.transform.localScale.x, gn.transform.localScale.y, gn.transform.localScale.z);
 
 		DropGunAt(index);

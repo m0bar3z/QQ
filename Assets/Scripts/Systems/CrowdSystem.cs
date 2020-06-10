@@ -154,11 +154,10 @@ public class CrowdSystem : MonoBehaviour
 
     private void Spawn()
     {
-        if (_lvl % 5 == 0)
+        if (_lvl % 5 == 0 && _lvl != 0)
         {
-            // comment the condition for test purposes
-            if(_lvl != 0)
-                SpawnBoss();
+            // comment the second condition for test purposes
+            SpawnBoss();
         }
         else
         {

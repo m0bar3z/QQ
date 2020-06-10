@@ -206,6 +206,8 @@ MonoBehaviour:
   holderController: {fileID: 0}
   health:
     isDead: 0
+    healthSlider: {fileID: 0}
+    hasSlider: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 1
@@ -214,6 +216,7 @@ MonoBehaviour:
   bloodEffect: {fileID: 0}
   bloodSpreader: {fileID: 0}
   bloodSpreaders: 10
+  enemies: []
   bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
     type: 3}
   explosionFX: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
@@ -222,9 +225,12 @@ MonoBehaviour:
   contactBeforeDestruction: 2
   explosionChance: 0
   bulletSpeed: 10
+  chasingSpeed: 0
   testShoot: 0
   destroyOnTouch: 1
+  chasingEnemy: 0
   destroyAfter: 5
+  hitSFX: {fileID: 0}
 --- !u!50 &6793469649731297470
 Rigidbody2D:
   serializedVersion: 4
@@ -270,7 +276,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14891829, y: 0.1495707}
+  m_Size: {x: 0.3394476, y: 0.34482616}
   m_EdgeRadius: 0
 --- !u!58 &4475083316230815079
 CircleCollider2D:

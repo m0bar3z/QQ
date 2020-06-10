@@ -88,7 +88,7 @@ public class Bullet : QQObject
         Destroy(gameObject, destroyAfter);
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 13)
         {
@@ -112,17 +112,20 @@ public class Bullet : QQObject
             return;
 
         if (explosionChance > 0)
-            BlowUp();
+        {
+            if (Random.Range(0, 0.99f) < explosionChance)
+            {
+                BlowUp();
+            }
+        }
 
         Blow();
     }
 
     protected virtual void BlowUp()
     {
-        if (Random.Range(0, 0.99f) < explosionChance)
-        {
-            Instantiate(explosionFX, transform.position, Quaternion.identity);
-        }  
+        Instantiate(explosionFX, transform.position, Quaternion.identity);
+        Blow();
     }
 
     private void CheckBulletLimit()

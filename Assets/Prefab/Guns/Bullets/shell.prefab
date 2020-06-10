@@ -102,6 +102,7 @@ MonoBehaviour:
   shellDropSFX: {fileID: 0}
   speed: 30
   playSFXAfter: 0.3
+  duration: 0.1
 --- !u!50 &3926751685609466501
 Rigidbody2D:
   serializedVersion: 4
