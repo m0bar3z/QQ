@@ -778,7 +778,8 @@ PrefabInstance:
       propertyPath: mainCanvas
       value: 
       objectReference: {fileID: 654621422}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2997654563155718366, guid: f122a9065357e4040b7a0c1a4a20eba5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f122a9065357e4040b7a0c1a4a20eba5, type: 3}
 --- !u!114 &2929585251725437689 stripped
 MonoBehaviour:

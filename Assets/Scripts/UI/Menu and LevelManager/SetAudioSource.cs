@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetAudioSource : MonoBehaviour
 {
-    public MusicManager musicManager;
+    public VolumeManager musicManager;
 
     private void OnLevelWasLoaded(int level)
     {
@@ -12,6 +12,6 @@ public class SetAudioSource : MonoBehaviour
     }
     private void Awake()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        musicManager = FindObjectOfType<VolumeManager>();
     }
 }

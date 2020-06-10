@@ -6,13 +6,13 @@ public class MusicPlayer : MonoBehaviour
 {
     public List<AudioClip> clips;
     public AudioSource ass;
-    public MusicManager musicManager;
+    public VolumeManager musicManager;
 
     private int index = 0;
 
     private void Awake()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        musicManager = FindObjectOfType<VolumeManager>();
     }
     private void Start()
     {

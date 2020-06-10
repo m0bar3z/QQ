@@ -960,8 +960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88992d983051fa47b2e9cd3c527fbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxSlider: {fileID: 0}
-  sfxManager: {fileID: 0}
+  sfxSlider: {fileID: 1621751409}
+  vm: {fileID: 0}
 --- !u!114 &1069065169
 MonoBehaviour:
   m_ObjectHideFlags: 0

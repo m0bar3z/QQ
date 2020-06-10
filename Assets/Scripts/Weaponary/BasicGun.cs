@@ -70,18 +70,6 @@ public class BasicGun : QQObject
         }
     }
 
-    public void SetVolume()
-    {
-        try
-        {
-            sfxManager = FindObjectOfType<SFXManager>();
-            sfxManager.audioSource = audioSource;
-            sfxManager.maxVolume = audioSource.volume;
-            sfxManager.SetSFXVoiume();
-        }
-        catch { }
-    }
-
     public override void Trigger(Vector3 dir)
     {
         if (waiting || reloading) return;
@@ -165,7 +153,7 @@ public class BasicGun : QQObject
     {
         base.Start();
         ResetMagToFull();
-        SetVolume();
+        gameObject.tag = "SFX";
     }
 
     private void SetScope()

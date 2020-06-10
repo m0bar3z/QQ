@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SplashScreenSFX : MonoBehaviour
 {
-    public MusicManager musicManager;
+    public VolumeManager musicManager;
     void Start()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        musicManager = FindObjectOfType<VolumeManager>();
         musicManager.audioSource = gameObject.GetComponent<AudioSource>();
         musicManager.SetVolume();
     }

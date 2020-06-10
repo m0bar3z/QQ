@@ -8,7 +8,7 @@ public class SMController : MonoBehaviour
 {
     public Canvas canvas;
     public GameObject music, musicParent;
-    public MusicManager musicManager;
+    public VolumeManager musicManager;
     public int gameSceneIndex;
     public int helpSceneIndex;
     public int optionSceneIndex;
@@ -19,7 +19,7 @@ public class SMController : MonoBehaviour
 
     public void SetAudioSource()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        musicManager = FindObjectOfType<VolumeManager>();
         musicManager.audioSource = music.GetComponent<AudioSource>();
     }
     public void AddParentToMusic()

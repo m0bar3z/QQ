@@ -11,6 +11,8 @@ TagManager:
   - quitButton
   - Wall
   - FloorTile
+  - Music
+  - SFX
   layers:
   - Default
   - TransparentFX

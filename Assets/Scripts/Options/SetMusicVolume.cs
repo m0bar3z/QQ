@@ -6,25 +6,25 @@ using UnityEngine;
 public class SetMusicVolume : MonoBehaviour
 {
     public Slider musicSlider;
-    public MusicManager musicManager;
+    public VolumeManager vm;
     public AudioSource audioSource;
 
     public void ChangeMusicVolume()
     {
         PlayerPrefsManager.SetMasterMusic(musicSlider.value);
-        musicManager.SetVolume();
+        vm.SetVolume();
     }
 
     private void Awake()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        vm = FindObjectOfType<VolumeManager>();
     }
 
     void Start()
     {
-        musicManager = FindObjectOfType<MusicManager>();
+        vm = FindObjectOfType<VolumeManager>();
         audioSource = FindObjectOfType<AudioSource>();
         musicSlider.value = PlayerPrefsManager.GetMasterMusic();
-        musicManager.audioSource = audioSource;
+        vm.audioSource = audioSource;
     }
 }

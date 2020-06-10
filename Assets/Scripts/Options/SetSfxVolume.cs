@@ -6,16 +6,18 @@ using UnityEngine;
 public class SetSfxVolume : MonoBehaviour
 {
     public Slider sfxSlider;
-    public SFXManager sfxManager;
+    public VolumeManager vm;
 
     public void ChangeSfxVolume()
     {
         PlayerPrefsManager.SetMasterSFX(sfxSlider.value);
     }
+
     private void Awake()
     {
-        sfxManager = FindObjectOfType<SFXManager>();
+        vm = FindObjectOfType<VolumeManager>();
     }
+
     void Start()
     {
         sfxSlider.value = PlayerPrefsManager.GetMasterSFX();
