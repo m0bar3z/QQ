@@ -6,13 +6,17 @@ public class SFXPlayer : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip[] clips;
-    public SFXManager sfxManager;
 
     private void Start()
     {
+        if(source == null)
+        {
+            print("null");
+        }
+
         gameObject.tag = "SFX";
         source.PlayOneShot(
-            clips[Random.Range(0, clips.Length)]    
+            clips[Random.Range(0, clips.Length)]
         );
     }
 }

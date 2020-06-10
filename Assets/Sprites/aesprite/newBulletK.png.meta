@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: 8c8e966709dab324ea796a9531163728
+guid: 43b34b0a94e297047adcf5694bb95f1a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6476216950843935821
-    second: newEnemyBullet_0
+      213: -5681918928782851688
+    second: newBulletK_0
   - first:
-      213: -8762991138164636846
-    second: newEnemyBullet_1
-  - first:
-      213: 931768865458492080
-    second: newEnemyBullet_2
-  - first:
-      213: -669251702790214707
-    second: newEnemyBullet_3
-  - first:
-      213: 2510678548323128888
-    second: newEnemyBullet_4
-  - first:
-      213: -2632208602675324899
-    second: newEnemyBullet_5
+      213: 3340819001989895543
+    second: newBulletK_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: newEnemyBullet_0
+      name: newBulletK_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4c8a6b110520e950800000000000000
-      internalID: 6476216950843935821
+      spriteID: 891845f96d4c521b0800000000000000
+      internalID: -5681918928782851688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: newEnemyBullet_1
+      name: newBulletK_1
       rect:
         serializedVersion: 2
         x: 32
@@ -176,92 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2530dc7fcf9936680800000000000000
-      internalID: -8762991138164636846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newEnemyBullet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b21c6ea8de4eec00800000000000000
-      internalID: 931768865458492080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newEnemyBullet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcb2dd54f1756b6f0800000000000000
-      internalID: -669251702790214707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newEnemyBullet_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8365ef966d8b7d220800000000000000
-      internalID: 2510678548323128888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newEnemyBullet_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d185fcec834887bd0800000000000000
-      internalID: -2632208602675324899
+      spriteID: 7759b709e29fc5e20800000000000000
+      internalID: 3340819001989895543
       vertices: []
       indices: 
       edges: []

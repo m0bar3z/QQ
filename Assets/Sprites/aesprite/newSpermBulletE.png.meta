@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 8c8e966709dab324ea796a9531163728
+guid: d1debf0d264e8a349848e3b0f6468c8c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6476216950843935821
-    second: newEnemyBullet_0
+      213: 469541894292348003
+    second: newSpermBulletE_0
   - first:
-      213: -8762991138164636846
-    second: newEnemyBullet_1
+      213: -721899865616586804
+    second: newSpermBulletE_1
   - first:
-      213: 931768865458492080
-    second: newEnemyBullet_2
+      213: 1586006567791227512
+    second: newSpermBulletE_2
   - first:
-      213: -669251702790214707
-    second: newEnemyBullet_3
-  - first:
-      213: 2510678548323128888
-    second: newEnemyBullet_4
-  - first:
-      213: -2632208602675324899
-    second: newEnemyBullet_5
+      213: 4809858058862799052
+    second: newSpermBulletE_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,7 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: newEnemyBullet_0
+      name: newSpermBulletE_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4c8a6b110520e950800000000000000
-      internalID: 6476216950843935821
+      spriteID: 36c95787dd5248600800000000000000
+      internalID: 469541894292348003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: newEnemyBullet_1
+      name: newSpermBulletE_1
       rect:
         serializedVersion: 2
         x: 32
@@ -176,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2530dc7fcf9936680800000000000000
-      internalID: -8762991138164636846
+      spriteID: cc76582a5eb4bf5f0800000000000000
+      internalID: -721899865616586804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: newEnemyBullet_2
+      name: newSpermBulletE_2
       rect:
         serializedVersion: 2
         x: 64
@@ -197,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b21c6ea8de4eec00800000000000000
-      internalID: 931768865458492080
+      spriteID: 872f1a40290a20610800000000000000
+      internalID: 1586006567791227512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: newEnemyBullet_3
+      name: newSpermBulletE_3
       rect:
         serializedVersion: 2
         x: 96
@@ -218,50 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcb2dd54f1756b6f0800000000000000
-      internalID: -669251702790214707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newEnemyBullet_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8365ef966d8b7d220800000000000000
-      internalID: 2510678548323128888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newEnemyBullet_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d185fcec834887bd0800000000000000
-      internalID: -2632208602675324899
+      spriteID: cc8219abb6c00c240800000000000000
+      internalID: 4809858058862799052
       vertices: []
       indices: 
       edges: []
