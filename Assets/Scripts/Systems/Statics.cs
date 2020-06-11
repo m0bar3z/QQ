@@ -23,7 +23,7 @@ public class Statics : MonoBehaviour
 
     public Shop shop;
 
-    public Image ReloadBar;
+    public GameObject reloadFX;
 
     // Game Over Stuff
     public event SystemTools.SimpleSystemCB OnGameOver;

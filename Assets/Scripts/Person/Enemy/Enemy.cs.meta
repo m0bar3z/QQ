@@ -3,7 +3,17 @@ guid: bd6f54dfcabb33042a62f5008cef2f6c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - holderController: {instanceID: 0}
+  - bloodEffect: {instanceID: 0}
+  - bloodSpreader: {instanceID: 0}
+  - rightHand: {instanceID: 0}
+  - handPos: {instanceID: 0}
+  - coinPref: {instanceID: 0}
+  - preSpawnPref: {instanceID: 0}
+  - hitSFX: {fileID: 8300000, guid: 839e3bb53c1f2fa4e8411700e890ce29, type: 3}
+  - indicator: {instanceID: 0}
+  - _target: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

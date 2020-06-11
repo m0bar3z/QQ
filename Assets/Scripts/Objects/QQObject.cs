@@ -12,7 +12,8 @@ public class QQObject : MonoBehaviour
     public bool isStatic, hasHolder, isBloody;
     public bool dontGlitch = false, playerHeld = false;
 
-    public GameObject bloodEffect;
+    public GameObject bloodEffect, bloodSpreader;
+    public int bloodSpreaders = 10;
 
     protected Rigidbody2D rb;
     protected bool isDead = false;
@@ -69,7 +70,7 @@ public class QQObject : MonoBehaviour
         {
             if (isBloody)
             {
-                BloodSystem.instance.Spill((Vector2)transform.position, dir);
+                //BloodSystem.instance.Spill((Vector2)transform.position, dir);
             }
 
             health.Damage(damage);
@@ -108,19 +109,18 @@ public class QQObject : MonoBehaviour
         }
     }
 
+    protected virtual void SpreadBlood()
+    {
+        for(int i = 0; i < bloodSpreaders; i++)
+        {
+            Instantiate(bloodSpreader, transform.position, Quaternion.identity);
+        }
+    }
+
     protected virtual void OnDie()
     {
         Statics.instance.GlitchForS(0.1f);
+        SpreadBlood();
         Destroy(gameObject);
-    }
-
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        // layer 9 is bullet
-        if(collision.gameObject.layer == 9 || collision.gameObject.layer == 15)
-        {
-            Bullet b = collision.gameObject.GetComponent<Bullet>();
-            Hurt(b.damage, (Vector2)transform.position - (Vector2)collision.transform.position);
-        }
     }
 }

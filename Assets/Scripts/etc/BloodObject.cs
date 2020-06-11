@@ -5,10 +5,26 @@ using UnityEngine;
 public class BloodObject : QQObject
 {
     public int x, y;
+    public float deactiveAfter = 20f;
+
+    BloodPL pool;
+    Blood bld;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        pool = FindObjectOfType<BloodPL>();
+        bld = GetComponent<Blood>();
+
+        Invoke(nameof(Deactivate), deactiveAfter);
+    }
 
     public void Deactivate()
     {
-        BloodSystem.instance.Deactivate(x, y);
+        //BloodSystem.instance.Deactivate(x, y);
+        bld.StopBurning();
+        pool.ReturnOne(bld);
     }
 
     public void SetXY(int x, int y)

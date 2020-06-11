@@ -163,35 +163,44 @@ MonoBehaviour:
   holderController: {fileID: 0}
   health:
     isDead: 0
+    healthSlider: {fileID: 0}
+    hasSlider: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 0
   dontGlitch: 0
   playerHeld: 0
   bloodEffect: {fileID: 0}
+  bloodSpreader: {fileID: 0}
+  bloodSpreaders: 10
+  name_model: gun
   betweenBullets: 0.05
   recoil: 0.4
   explosionChanceOfBullets: 0.3
   reloadTime: 3
+  shakeStrength: 2
+  recoilStrength: 5
+  scope: 1.2
   chunkSize: 2
   capacity: 200
+  shakeVibrato: 100
+  vibrationDuration: 0
+  hitBeforeDes: 1
   bulletPref: {fileID: 6793469649731297349, guid: 4d7e0909dae1dc44c839c0b4808433d8,
     type: 3}
   shellPref: {fileID: 888987847402964985, guid: d2603971028a6b94dae0be90a6074d74,
     type: 3}
   gunHole: {fileID: 2226817692675152342}
   plyReloadSFX: 1
+  dirRecoil: 1
+  shake: 1
+  halfVibration: 1
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
   - {fileID: 8300000, guid: e846637a242396c44ac7be58fda718e9, type: 3}
   audioSource: {fileID: 2226817692784221105}
-  dirRecoil: 1
-  shake: 1
-  halfVibration: 1
-  shakeStrength: 0.5
-  recoilStrength: 5
-  shakeVibrato: 1
-  vibrationDuration: 100
+  sfxManager: {fileID: 0}
+  spr: {fileID: 2226817693989637755}
 --- !u!50 &8094165930217277160
 Rigidbody2D:
   serializedVersion: 4

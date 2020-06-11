@@ -31,7 +31,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.82, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
-  m_Children: []
+  m_Children:
+  - {fileID: 7890931979843311981}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,22 +99,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d006aefab4f4488488f9dfb12c028e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHealth: 100
   holderController: {fileID: 0}
+  health:
+    isDead: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 0
   dontGlitch: 0
+  playerHeld: 0
   bloodEffect: {fileID: 0}
+  bloodSpreader: {fileID: 0}
+  bloodSpreaders: 10
   bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
     type: 3}
   explosionFX: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
     type: 3}
   damage: 100
+  contactBeforeDestruction: 2
   explosionChance: 0
-  bulletSpeed: 20
+  bulletSpeed: 60
   testShoot: 0
   destroyOnTouch: 1
   destroyAfter: 0.6
+  hitSFX: {fileID: 8300000, guid: 2edf81454b82ba342956d55bb9d0e062, type: 3}
 --- !u!96 &6793469649731297346
 TrailRenderer:
   serializedVersion: 2
@@ -233,7 +242,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -251,7 +260,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -266,4 +275,61 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.125, y: 0.234375}
+  m_EdgeRadius: 0
+--- !u!1 &7171933685025085617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7890931979843311981}
+  - component: {fileID: 4076826545782655511}
+  m_Layer: 16
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7890931979843311981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171933685025085617}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6793469649731297345}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4076826545782655511
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171933685025085617}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.125, y: 0.234375}
+    newSize: {x: 0.125, y: 0.234375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12502229, y: 0.24990648}
   m_EdgeRadius: 0

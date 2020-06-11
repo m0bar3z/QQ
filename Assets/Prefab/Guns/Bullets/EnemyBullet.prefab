@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8682709858302442173, guid: 03b8475dd2e781f4389f25f10e1749a0,
+  m_Sprite: {fileID: 6476216950843935821, guid: 8c8e966709dab324ea796a9531163728,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -93,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 1181885465}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff669b6def8608e4691ef1b9dba73823, type: 2}
+  m_Controller: {fileID: 9100000, guid: 13cd163de80f512488a291a28d71f5cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 6793469649731297347}
   - component: {fileID: 6793469649731297470}
   - component: {fileID: 6793469649731297471}
+  - component: {fileID: 4529707388771991717}
   m_Layer: 15
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -200,22 +201,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d006aefab4f4488488f9dfb12c028e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHealth: 100
   holderController: {fileID: 0}
+  health:
+    isDead: 0
+    healthSlider: {fileID: 0}
+    hasSlider: 0
   isStatic: 0
   hasHolder: 0
   isBloody: 1
   dontGlitch: 0
+  playerHeld: 0
   bloodEffect: {fileID: 0}
+  bloodSpreader: {fileID: 0}
+  bloodSpreaders: 10
+  enemies: []
   bulletEffect: {fileID: 1659987502379310701, guid: ea7da5d2310f4b84ba48272868015bbc,
     type: 3}
   explosionFX: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
     type: 3}
   damage: 20
+  contactBeforeDestruction: 2
   explosionChance: 0
   bulletSpeed: 5
+  chasingSpeed: 0
   testShoot: 0
   destroyOnTouch: 1
+  chasingEnemy: 0
   destroyAfter: 5
+  hitSFX: {fileID: 0}
 --- !u!50 &6793469649731297470
 Rigidbody2D:
   serializedVersion: 4
@@ -247,7 +261,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.0014967509}
@@ -261,5 +275,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14891829, y: 0.1495707}
+  m_Size: {x: 0.13971356, y: 0.13104063}
   m_EdgeRadius: 0
+--- !u!58 &4529707388771991717
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6793469649731297349}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.114161454

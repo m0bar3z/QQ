@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class Shop : MonoBehaviour
 {
+    public static bool isOpen = false;
+
     public int coins = 0;
     public Text coinsText;
     public RectTransform panel;
@@ -59,14 +61,10 @@ public class Shop : MonoBehaviour
 
             if (goods[index].isHandheld)
             {
-                if (controller.rightHandFull)
-                {
-                    controller.Throw();
-                }
-
                 QQObject obj = Instantiate(goods[index].prefab).GetComponent<QQObject>();
-                if (!controller.facingRight) obj.gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                if(!controller.facingRight) obj.gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
+                if (!controller.facingRight) obj.transform.localScale = new Vector3(-obj.transform.localScale.x, obj.transform.localScale.y, obj.transform.localScale.z);
+
                 controller.PickUp(obj);
             }
             else
@@ -85,6 +83,7 @@ public class Shop : MonoBehaviour
 
     public void OpenUp()
     {
+        isOpen = true;
         ts = Time.timeScale;
         Time.timeScale = 0;
         panel.DOMoveX(0, 1).SetUpdate(true);
@@ -92,6 +91,7 @@ public class Shop : MonoBehaviour
 
     public void Close()
     {
+        isOpen = false;
         panel.position = new Vector2(basePos.x, basePos.y);
         panel.DOMoveX(basePos.x, 1).SetUpdate(true);
         Time.timeScale = ts;

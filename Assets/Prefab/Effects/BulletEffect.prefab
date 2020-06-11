@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -868,7 +868,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -986,20 +986,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0.7297306
-          inSlope: 0
-          outSlope: 0
+          inSlope: -1.964604
+          outSlope: -1.964604
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.15217389
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -0.074790254
-          outSlope: -0.074790254
+          inSlope: 0.20219767
+          outSlope: 0.20219767
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.18068546
+          inWeight: 0.152174
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1306,8 +1306,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.68858093, b: 0, a: 1}
-        key1: {r: 0.49056602, g: 0, b: 0, a: 1}
+        key0: {r: 1, g: 0.99149597, b: 0, a: 1}
+        key1: {r: 0.9339623, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2570,7 +2570,7 @@ ParticleSystem:
     inWorldSpace: 0
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
-    dampen: 0.3
+    dampen: 0.5
     drag:
       serializedVersion: 2
       minMaxState: 0
@@ -4870,6 +4870,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 39330f89b3bace94fa0438fff39899eb, type: 3}
   - {fileID: 8300000, guid: 642e79759ac2bb4419527669e72fdf59, type: 3}
   - {fileID: 8300000, guid: 5d9f4fbc7076a7742a820e01dd806ce0, type: 3}
+  sfxManager: {fileID: 0}
 --- !u!114 &-1477918568868041717
 MonoBehaviour:
   m_ObjectHideFlags: 0

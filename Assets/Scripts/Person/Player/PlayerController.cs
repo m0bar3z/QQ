@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class PlayerController : Person
 {
-    public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
     public static bool isAlive = true;
+
+    public KeyCode MoveUp, MoveDown, MoveLeft, MoveRight;
+    public GameObject willieSprite, billieSprite, dashFXPrefab;
+    public BP bp;
+    public int characterIndex;
+    public float dashWait = 0.2f, dashSpeed = 70;
+
+    private float time;
+    public bool timerOn = false, isShooting = false, dashing;
 
     public void TouchInput()
     {
@@ -14,6 +22,12 @@ public class PlayerController : Person
 
     public override void PickUp(QQObject obj)
     {
+        if (rightHandFull)
+        {
+            BasicGun gunInHand = (BasicGun)rightHand;
+            bp.StoreGun(gunInHand);
+        }
+
         obj.GetPickedUp(this);
     }
 
@@ -22,6 +36,21 @@ public class PlayerController : Person
         isAlive = true;
         base.Start();
         health.OnHeal += OnHeal;
+
+        SetCharacter();
+    }
+
+    private void SetCharacter()
+    {
+        characterIndex = PlayerPrefsManager.GetCharacter();
+        if (characterIndex == 0)
+        {
+            billieSprite.SetActive(false);
+        }
+        else
+        {
+            willieSprite.SetActive(false);
+        }
     }
 
     protected override void Update()
@@ -30,14 +59,62 @@ public class PlayerController : Person
         {
             base.Update();
             CheckInput();
+
+            if (timerOn)
+            {
+                time += Time.deltaTime;
+                if(time > dashWait)
+                {
+                    time = 0;
+                    timerOn = false;
+                    RightHandTrigger();
+                }
+
+                if (Shop.isOpen)
+                {
+                    timerOn = false;
+                    time = 0;
+                }
+            }
         }
+    }
+
+    protected virtual void Dash()
+    {
+        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dir -= (Vector2)transform.position;
+        ReceiveForce(dir.normalized * dashSpeed);
+        Instantiate(dashFXPrefab, transform);
+        Invoke(nameof(DisableDashing), 0.5f);
+    }
+
+    private void DisableDashing()
+    {
+        dashing = false;
     }
 
     protected virtual void CheckInput()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (timerOn)
+            {
+                timerOn = false;
+                time = 0;
+                dashing = true;
+                Dash();
+            }
+            else
+            {
+                timerOn = true;
+                time = 0;
+            }
+        }
+
         if (Input.GetMouseButton(0))
         {
-            RightHandTrigger();
+            if (!timerOn && !dashing)
+                RightHandTrigger();
         }
     }
 
@@ -74,6 +151,16 @@ public class PlayerController : Person
             Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dir -= (Vector2)transform.position;
             ReceiveForce(dir.normalized);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 15)
+        {
+            Bullet b = collision.gameObject.GetComponent<Bullet>();
+            Hurt(b.damage);
+            b.Blow();
         }
     }
 }
