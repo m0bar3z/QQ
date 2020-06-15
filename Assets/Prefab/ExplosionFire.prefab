@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 6793469649731297345}
   - component: {fileID: 6793469649731297344}
   - component: {fileID: 8792733440496611015}
-  - component: {fileID: 4578526680169412019}
-  - component: {fileID: 7592775302986757486}
   m_Layer: 0
   m_Name: ExplosionFire
   m_TagString: Untagged
@@ -98,48 +96,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 5
---- !u!114 &4578526680169412019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6793469649731297349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b25e580b8a0c541ad41eb64f522be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 0.5
-  burning: 0
-  extraTemperature: 0
-  burnEffectTick: 0.5
-  colliders: []
-  burnFX: {fileID: 1122974839698170129, guid: e8c3e40d2417b5b4a97575f63ee3dfc6, type: 3}
-  hasBurnFX: 0
---- !u!114 &7592775302986757486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6793469649731297349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8572990bf155a84d80104e1eae27275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHealth: 100
-  holderController: {fileID: 0}
-  health:
-    isDead: 0
-    healthSlider: {fileID: 0}
-    hasSlider: 0
-  isStatic: 0
-  hasHolder: 0
-  isBloody: 0
-  dontGlitch: 0
-  playerHeld: 0
-  bloodEffect: {fileID: 0}
-  bloodSpreader: {fileID: 0}
-  bloodSpreaders: 10
