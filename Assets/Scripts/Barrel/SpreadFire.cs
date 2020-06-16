@@ -18,12 +18,4 @@ public class SpreadFire : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        AfterExplosion();    
-    }
-    void Update()
-    {
-        
-    }
 }

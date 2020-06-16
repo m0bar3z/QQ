@@ -15,7 +15,7 @@ public class CamManager : MonoBehaviour
 
     public static float GetDefSize()
     {
-        return defSize;
+         return defSize;
     }
 
     private void Start()

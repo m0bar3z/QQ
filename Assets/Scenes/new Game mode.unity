@@ -12672,6 +12672,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12771,6 +12772,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 312b85bbe86e7a7429c2f5d4e5ee8436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c69d0e743c5439459f03d5f4e434b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &521443114
@@ -15354,7 +15367,6 @@ GameObject:
   - component: {fileID: 1556999463}
   - component: {fileID: 1556999462}
   - component: {fileID: 1556999467}
-  - component: {fileID: 1556999468}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -15471,7 +15483,7 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: 1000
+  m_ForceMagnitude: 800
   m_ForceVariation: 100
   m_DistanceScale: 1
   m_ForceSource: 0
@@ -15487,7 +15499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556999461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8, y: -0.51, z: -1.5428365}
+  m_LocalPosition: {x: 1.65, y: -1.85, z: -1}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15505,40 +15517,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8bae9096b3278428d8006b7c7c9589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
-  holderController: {fileID: 0}
-  health:
-    isDead: 0
-    healthSlider: {fileID: 0}
-    hasSlider: 0
-  isStatic: 0
-  hasHolder: 0
-  isBloody: 0
-  dontGlitch: 0
-  playerHeld: 0
-  bloodEffect: {fileID: 0}
-  bloodSpreader: {fileID: 0}
-  bloodSpreaders: 10
   explosion: {fileID: 8713371182342845800, guid: d0820ae4317bdd146915908c50a11639,
     type: 3}
-  boxCollider: {fileID: 0}
-  explosionRadius: 1
---- !u!114 &1556999468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556999461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f41ba8adbf7d404abf9fb326247b218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   explosionFire: {fileID: 6793469649731297349, guid: 3ac17941dc09c3f4e9d369c8623408c7,
     type: 3}
-  maximumFlames: 20
-  fireZone: 1
+  boxCollider: {fileID: 1556999463}
+  explosionRadius: 1.5
+  maximumFlames: 10
+  shakingDuration: 1
 --- !u!1001 &1571438314
 PrefabInstance:
   m_ObjectHideFlags: 0
