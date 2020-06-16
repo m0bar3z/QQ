@@ -13,6 +13,10 @@ public class BarrelExplosion : MonoBehaviour
     public int maximumFlames;
     public float shakingDuration, shakingStrngth;
 
+    public void RandomDestroyTime()
+    {
+
+    }
     public void ExplosionEffect()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
@@ -29,6 +33,7 @@ public class BarrelExplosion : MonoBehaviour
             Vector3 pos = new Vector3(transform.position.x + Random.Range(-explosionRadius, explosionRadius),
                                                                                                                      transform.position.y + Random.Range(-explosionRadius, explosionRadius), transform.position.z);
             Instantiate(explosionFire, pos, Quaternion.identity);
+
         }
     }
     bool Shaking
