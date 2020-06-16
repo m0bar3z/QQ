@@ -7,6 +7,8 @@ public class CamManager : MonoBehaviour
 {
     private static float defSize;
     private static Camera self;
+    private static float resetTime;
+
 
     public static void SetSize(float newSize)
     {
@@ -16,6 +18,16 @@ public class CamManager : MonoBehaviour
     public static float GetDefSize()
     {
          return defSize;
+    }
+
+    public void ResetCameraRotation(float duration)
+    {
+        resetTime = duration;
+        Invoke(nameof(ResetRotation), resetTime);
+    }
+    private void ResetRotation()
+    {
+        Camera.main.transform.DORotate(Vector3.zero, resetTime);
     }
 
     private void Start()

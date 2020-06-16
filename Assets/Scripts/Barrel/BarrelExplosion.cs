@@ -8,24 +8,19 @@ public class BarrelExplosion : MonoBehaviour
     public GameObject explosion;
     public GameObject explosionFire;
     public BoxCollider2D boxCollider;
+    public CamManager camManager;
     public float explosionRadius;
     public int maximumFlames;
-    public float shakingDuration;
-
-    public void ResetCamRotation()
-    {
-        Camera.main.DOSmoothRewind();
-    }
+    public float shakingDuration, shakingStrngth;
 
     public void ExplosionEffect()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
 
         if (Shaking)
-            CameraShaker.CameraShake(shakingDuration, 20);
+            Camera.main.DOShakeRotation(shakingDuration, shakingStrngth, 10);
 
-        //Camera.main.DOShakeRotation(shakingDuration, 20, 15);
-        //Invoke(nameof(ResetCamRotation), shakingDuration);
+        camManager.ResetCameraRotation(shakingDuration);
     }
     public void AfterExplosion()
     {
@@ -49,6 +44,7 @@ public class BarrelExplosion : MonoBehaviour
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        camManager = FindObjectOfType<CamManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

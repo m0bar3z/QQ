@@ -169,6 +169,8 @@ MonoBehaviour:
   explosionFire: {fileID: 6793469649731297349, guid: 3ac17941dc09c3f4e9d369c8623408c7,
     type: 3}
   boxCollider: {fileID: 386965363728123636}
+  camManager: {fileID: 0}
   explosionRadius: 1.5
-  maximumFlames: 10
+  maximumFlames: 14
   shakingDuration: 1
+  shakingStrngth: 20
