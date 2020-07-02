@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,9 @@ public class PlayerController : Person
     private float time;
     public bool timerOn = false, isShooting = false, dashing;
 
+    public GameObject hurtFX;
+    public float hurtThreshold = 30;
+
     public void TouchInput()
     {
         RightHandTrigger();
@@ -29,6 +33,11 @@ public class PlayerController : Person
         }
 
         obj.GetPickedUp(this);
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
     }
 
     protected override void Start()
@@ -106,6 +115,9 @@ public class PlayerController : Person
             }
             else
             {
+                transform.DOScaleY(transform.localScale.y * 1.5f, dashWait/2)
+                    .SetLoops(2, LoopType.Yoyo)
+                    .SetUpdate(true);
                 timerOn = true;
                 time = 0;
             }
@@ -129,11 +141,25 @@ public class PlayerController : Person
     {
         Statics.instance.SetHealth(health.Amount / 100);
         base.OnDamage();
+        SetHurtFX();
     }
 
     protected void OnHeal()
     {
         Statics.instance.SetHealth(health.Amount / 100);
+        SetHurtFX();
+    }
+
+    private void SetHurtFX()
+    {
+        if(health.Amount < 50)
+        {
+            hurtFX.SetActive(true);
+        }
+        else
+        {
+            hurtFX.SetActive(false);
+        }
     }
 
     private void RightHandTrigger()

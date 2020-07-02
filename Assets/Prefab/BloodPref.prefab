@@ -103,7 +103,7 @@ MonoBehaviour:
   colliders: []
   burnFX: {fileID: 0}
   hasBurnFX: 0
-  benefit: 2
+  benefit: 1
 --- !u!114 &132086761824195981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +120,8 @@ MonoBehaviour:
   holderController: {fileID: 0}
   health:
     isDead: 0
+    healthSlider: {fileID: 0}
+    hasSlider: 0
   isStatic: 1
   hasHolder: 0
   isBloody: 0

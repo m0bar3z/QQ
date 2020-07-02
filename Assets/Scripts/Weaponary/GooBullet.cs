@@ -6,7 +6,7 @@ public class GooBullet : Bullet
 {
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Vibration.Vibrate(100);
+        AndroidVibration.Vibrate(100);
         Statics.instance.publicAS.PlayOneShot(hitSFX);
 
         try

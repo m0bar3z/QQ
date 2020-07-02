@@ -92,7 +92,7 @@ public class Bullet : QQObject
     {
         if (collision.gameObject.layer == 13)
         {
-            Vibration.Vibrate(100);
+            AndroidVibration.Vibrate(100);
             Statics.instance.publicAS.PlayOneShot(hitSFX);
 
             try

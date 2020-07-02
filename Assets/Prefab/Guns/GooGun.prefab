@@ -162,6 +162,7 @@ MonoBehaviour:
   baseHealth: 100
   holderController: {fileID: 0}
   health:
+    amount: 0
     isDead: 0
     healthSlider: {fileID: 0}
     hasSlider: 0
@@ -197,15 +198,7 @@ MonoBehaviour:
   halfVibration: 0
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: c189e6f470a42eb43b31153af7746baa, type: 3}
-  - {fileID: 8300000, guid: 2b9ee60b40cb07c4da090e8e52362465, type: 3}
-  - {fileID: 8300000, guid: c70874880176bec4f9d6c5ab5d8e4572, type: 3}
-  - {fileID: 8300000, guid: ebd3d2172f56f324db4d12601ea08dae, type: 3}
-  - {fileID: 8300000, guid: 9f47320eac5afd64bbf90f2f5942c54a, type: 3}
-  - {fileID: 8300000, guid: 42fdc14156c58a246abce735172f87e4, type: 3}
-  - {fileID: 8300000, guid: 2933fdd6a0d8c0e448fa12792e9b877e, type: 3}
-  - {fileID: 8300000, guid: 95f0194963d250a4392e5981562788f6, type: 3}
-  - {fileID: 8300000, guid: 5aa6151633f15c746a9ff18d4fd01b28, type: 3}
+  - {fileID: 8300000, guid: 6c05528cbf83a2a41a31215fc03725f9, type: 3}
   audioSource: {fileID: 1351972933}
   sfxManager: {fileID: 0}
   spr: {fileID: 414100879}

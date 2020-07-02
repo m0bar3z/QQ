@@ -83,6 +83,10 @@ public class QQObject : MonoBehaviour
         {
             health.Damage(damage);
         }
+        else
+        {
+            OnDie();
+        }
     }
 
     protected virtual void Start()

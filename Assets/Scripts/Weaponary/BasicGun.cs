@@ -109,7 +109,7 @@ public class BasicGun : QQObject
                 if (vibrate)
                 {
                     vibrate = false;
-                    Vibration.Vibrate(vibrationDuration);
+                    //AndroidVibration.Vibrate(vibrationDuration);
                 }
                 else
                 {
@@ -118,7 +118,7 @@ public class BasicGun : QQObject
             }
             else
             {
-                Vibration.Vibrate(vibrationDuration);
+                //AndroidVibration.Vibrate(vibrationDuration);
             }
         }
 
@@ -134,7 +134,13 @@ public class BasicGun : QQObject
     public override void GetPickedUp(PlayerController picker)
     {
         base.GetPickedUp(picker);
-        SetScope();
+
+
+        if (playerHeld)
+        {
+            SetCount(); 
+            SetScope();
+        }
     }
 
     protected virtual void SetCount()
@@ -154,6 +160,9 @@ public class BasicGun : QQObject
         base.Start();
         ResetMagToFull();
         gameObject.tag = "SFX";
+
+        if (playerHeld)
+            SetCount();
     }
 
     private void SetScope()

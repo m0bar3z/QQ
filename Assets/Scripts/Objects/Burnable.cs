@@ -44,6 +44,7 @@ public class Burnable : MonoBehaviour
     {
         burning = false;
         Destroy(burnFX);
+        hasBurnFX = false;
         CancelInvoke(nameof(BurnEffect));
     }
 

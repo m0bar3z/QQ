@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public static class Vibration
+public static class AndroidVibration
 {
 
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -31,14 +32,29 @@ public static class Vibration
         if(PlayerPrefsManager.VibrationIsActive)
         {
             if (isAndroid())
-                vibrator.Call("vibrate", milliseconds);
+            {
+                try
+                {
+                    vibrator.Call("vibrate", milliseconds);
+                }
+                catch(System.Exception e) 
+                {
+                    OnScreenConsole.Print(e.ToString());
+                }
+            }
             else
                 Handheld.Vibrate();
         }
     }
 
-    public static void Vibrate(long[] pattern, int repeat)
+    /// <summary>
+    /// takes 0.6 of second
+    /// </summary>
+    /// <param name="repeat">-1 means once and 0 means forever</param>
+    public static void VibrateHeartBeat(int repeat)
     {
+        long[] pattern = {100, 100, 100, 300};
+
         if (PlayerPrefsManager.VibrationIsActive)
         {
             if (isAndroid())

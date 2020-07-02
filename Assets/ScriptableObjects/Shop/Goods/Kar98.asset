@@ -15,5 +15,5 @@ MonoBehaviour:
   prefab: {fileID: 8193200535544986646, guid: 6915dee2947213742988b1ce4bf1e960, type: 3}
   isHandheld: 1
   name_: Kar98
-  price: 300
+  price: 500
   sprite: {fileID: 5639676245328538603, guid: 600ce650afa72d049b5ebe8fd362c8db, type: 3}

@@ -162,6 +162,7 @@ MonoBehaviour:
   baseHealth: 100
   holderController: {fileID: 0}
   health:
+    amount: 0
     isDead: 0
     healthSlider: {fileID: 0}
     hasSlider: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
   reloadTime: 0.5
   shakeStrength: 10
   recoilStrength: 1
-  scope: 1.5
+  scope: 2
   chunkSize: 1
   capacity: 1
   shakeVibrato: 100
@@ -197,7 +198,7 @@ MonoBehaviour:
   halfVibration: 0
   reloadSFX: {fileID: 8300000, guid: f320a279da9457e4bb4dfcbb53e1f00c, type: 3}
   shootingSFX:
-  - {fileID: 8300000, guid: 5342c4611a937904a8fbe6ed51a1e388, type: 3}
+  - {fileID: 8300000, guid: ca32724b93f4cb64391d69070fabbf54, type: 3}
   audioSource: {fileID: 3047342746118822868}
   sfxManager: {fileID: 0}
   spr: {fileID: 3047342747330367006}

@@ -100,6 +100,7 @@ MonoBehaviour:
   baseHealth: 100
   holderController: {fileID: 0}
   health:
+    amount: 0
     isDead: 0
     healthSlider: {fileID: 0}
     hasSlider: 0
@@ -125,7 +126,7 @@ MonoBehaviour:
   destroyOnTouch: 1
   chasingEnemy: 0
   destroyAfter: 5
-  hitSFX: {fileID: 8300000, guid: f2a238118b3ea6c49b54839c2810f5c3, type: 3}
+  hitSFX: {fileID: 8300000, guid: 6c05528cbf83a2a41a31215fc03725f9, type: 3}
 --- !u!50 &2953140704586242179
 Rigidbody2D:
   serializedVersion: 4

@@ -28,7 +28,7 @@ public class Enemy : Person
     private float _time;
 
     private CrowdSystem crowdSystem;
-    private bool gotCS;
+    private bool gotCS, alive = true;
 
     public void AssignTarget(Transform target)
     {
@@ -74,20 +74,26 @@ public class Enemy : Person
 
     protected override void OnDie()
     {
-        if (gotCS)
+        if (alive)
         {
-            crowdSystem.GotKill(indicator);
+            alive = false;
+            Statics.instance.GlitchForS(0.1f);
+
+            if (gotCS)
+            {
+                crowdSystem.GotKill(indicator);
+            }
+
+            Instantiate(Statics.instance.scoreText, transform.position, Quaternion.identity).GetComponent<TextMesh>().text = coinSpawnNumber * CrowdSystem.combo + "";
+
+            for (int i = 0; i < coinSpawnNumber * CrowdSystem.combo; i++)
+            {
+                GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
+                c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+            }
+
+            base.OnDie();
         }
-
-        Instantiate(Statics.instance.scoreText, transform.position, Quaternion.identity).GetComponent<TextMesh>().text = coinSpawnNumber * CrowdSystem.combo + "";
-
-        for(int i = 0; i < coinSpawnNumber * CrowdSystem.combo; i++)
-        {
-            GameObject c = Instantiate(coinPref, transform.position, Quaternion.identity);
-            c.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
-        }
-
-        base.OnDie();
     }
 
     protected override void OnBurn()

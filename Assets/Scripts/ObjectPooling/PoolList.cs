@@ -6,6 +6,7 @@ using UnityEngine;
 public class PoolList<T> : MonoBehaviour where T : MonoBehaviour
 {
     public List<T> list;
+
     public int spawnNumber = 10;
     public GameObject prefab;
 
@@ -13,18 +14,20 @@ public class PoolList<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (list.Count > 0)
         {
-            T one = list[0];
-            list.RemoveAt(0);
+            try
+            {
+                T one = list[0];
+                list.RemoveAt(0);
 
-            one.gameObject.SetActive(true);
+                one.gameObject.SetActive(true);
 
-            return one;
+                return one;
+            }
+            catch { }
         }
-        else
-        {
-            list.Add(CreateOne());
-            return GetOne();
-        }
+
+
+        return CreateOne();
     }
 
     public void ReturnOne(T one)

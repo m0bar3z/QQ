@@ -23,8 +23,15 @@ public class BloodObject : QQObject
     public void Deactivate()
     {
         //BloodSystem.instance.Deactivate(x, y);
-        bld.StopBurning();
-        pool.ReturnOne(bld);
+        try
+        {
+            bld.StopBurning();
+            pool.ReturnOne(bld);
+        }
+        catch
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetXY(int x, int y)

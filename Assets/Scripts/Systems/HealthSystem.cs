@@ -6,7 +6,7 @@ using System;
 [Serializable]
 public class HealthSystem
 {
-    private float amount;
+    public float amount;
 
     public event SystemTools.SimpleSystemCB OnDie, OnHeal;
     public event SystemTools.SimpleSystemCB OnDamage;

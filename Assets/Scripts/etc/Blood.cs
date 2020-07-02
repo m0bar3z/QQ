@@ -5,7 +5,9 @@ using UnityEngine;
 public class Blood : Burnable
 {
     public int benefit = 2;
+
     int x, y;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == 16)
